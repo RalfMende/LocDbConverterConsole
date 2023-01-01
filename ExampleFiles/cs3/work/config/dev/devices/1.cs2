@@ -1,0 +1,9 @@
+[conf]
+kennung=0xffff
+name=SD-Karte 1
+path=/media/sd-mmcblk1p1
+queryInterval=5
+typ=65280
+uid=0x1
+version
+ .major=16

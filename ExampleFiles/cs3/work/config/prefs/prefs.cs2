@@ -1,0 +1,82 @@
+[prefs]
+entry
+ .name=autoAnfahren
+ .value=0
+entry
+ .name=betriebWeiterfuehren
+ .value=0
+entry
+ .name=bildschirmHell
+ .value=7
+entry
+ .name=bootloaderUpdate
+ .value=0
+entry
+ .name=canGateway
+ .value=broadcast
+entry
+ .name=canGwDestIp
+ .value=0.0.0.0
+entry
+ .name=cs3UpdateAuto
+ .value=1
+entry
+ .name=drehgeberDynamik
+ .value=1
+entry
+ .name=drehgeberSpiel
+ .value=Automatisch
+entry
+ .name=ereigWeiterfuehren
+ .value=0
+entry
+ .name=erweiterteEreignisse
+ .value=0
+entry
+ .name=gbsCs2RasterHor
+ .value=60
+entry
+ .name=gbsCs2RasterVer
+ .value=60
+entry
+ .name=gbsRasterAngle
+ .value=5
+entry
+ .name=gbsRasterHor
+ .value=60
+entry
+ .name=gbsRasterVer
+ .value=35
+entry
+ .name=gleisFormatDcc
+ .value=1
+entry
+ .name=gleisFormatMfx
+ .value=1
+entry
+ .name=gleisFormatMm2
+ .value=1
+entry
+ .name=gleisFormatRCom
+ .value=0
+entry
+ .name=guiType
+ .value=standard
+entry
+ .name=popupFahrpult
+ .value=0
+entry
+ .name=remoteShutdown
+ .value=0
+entry
+ .name=sprache
+ .value=de
+entry
+ .name=volume
+ .value=100
+entry
+ .name=volumeSourceExternal
+ .value=0
+entry
+ .name=volumeSourceInternal
+ .value=1

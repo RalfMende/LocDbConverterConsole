@@ -1,0 +1,25 @@
+[conf]
+_GE#202
+ .id=-1
+ .typ=gleisende
+_GX#202
+ .id=-1
+ .typ=gleisverlauf
+_GX#203
+ .id=-1
+ .typ=gleisverlauf
+_GX#204
+ .id=-1
+ .typ=gleisverlauf
+_GX#205
+ .id=-1
+ .typ=gleisverlauf
+_GX#206
+ .id=-1
+ .typ=gleisverlauf
+_GX#207
+ .id=-1
+ .typ=gleisverlauf
+_GX#208
+ .id=-1
+ .typ=gleisverlauf

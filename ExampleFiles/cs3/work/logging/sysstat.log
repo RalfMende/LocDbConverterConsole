@@ -1,0 +1,759 @@
+Flashspeicher:
+
+Speicherplatz gesamt=3,00 GB freier Speicher=2,07 GB belegt=0,93 GB
+Dateisystem    Größe Benutzt Verf. Verw 4,940656E-324ingehängt auf
+/dev/mmcblk0p2  3,0G    951M  1,9G   34% /
+devtmpfs         81M       0   81M    0% /dev
+tmpfs           242M       0  242M    0% /dev/shm
+tmpfs           242M    840K  241M    1% /run
+tmpfs           5,0M    8,0K  5,0M    1% /run/lock
+tmpfs           242M       0  242M    0% /sys/fs/cgroup
+/dev/mmcblk1p1  1,9G    171M  1,8G    9% /media/sd-mmcblk1p1
+tmpfs            16M     48K   16M    1% /tmp
+/dev/mmcblk0p5  512M    4,4M  479M    1% /home
+/dev/mmcblk0p6   16M    4,3M   12M   27% /var/log
+cs3overlay      512M    4,4M  479M    1% /home/cs3/cs3data
+/dev/sda1       954M     24M  930M    3% /media/usb0
+
+Systemlogs:
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.5.0 (sontheim@spcxc-dos) (gcc version 4.7.3 20121106 (prerelease) (OSELAS.Toolchain-2012.12.1 linaro-4.7-2012.11) ) #60 PREEMPT Mon Oct 10 11:21:20 CEST 2016
+[    0.000000] CPU: ARMv7 Processor [412fc09a] revision 10 (ARMv7), cr=10c53c7d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] Machine model: Sontheim i.MX6 Solo SMARC Board
+[    0.000000] cma: Reserved 320 MiB at 0x1c000000
+[    0.000000] Memory policy: Data cache writeback
+[    0.000000] On node 0 totalpages: 131072
+[    0.000000] free_area_init_node: node 0, pgdat 810c0abc, node_mem_map 8bb59000
+[    0.000000]   Normal zone: 1024 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 131072 pages, LIFO batch:31
+[    0.000000] CPU: All CPU(s) started in SVC mode.
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 130048
+[    0.000000] Kernel command line: console=ttymxc2,115200 root=/dev/mmcblk0p2 rootwait rw
+[    0.000000] PID hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+[    0.000000] Memory: 165792K/524288K available (11319K kernel code, 925K rwdata, 3860K rodata, 1056K init, 8277K bss, 30816K reserved, 327680K cma-reserved, 0K highmem)
+[    0.000000] Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+    vmalloc : 0xa0800000 - 0xff800000   (1520 MB)
+    lowmem  : 0x80000000 - 0xa0000000   ( 512 MB)
+    pkmap   : 0x7fe00000 - 0x80000000   (   2 MB)
+    modules : 0x7f000000 - 0x7fe00000   (  14 MB)
+      .text : 0x80008000 - 0x80edb07c   (15181 kB)
+      .init : 0x80edc000 - 0x80fe4000   (1056 kB)
+      .data : 0x80fe4000 - 0x810cb674   ( 926 kB)
+       .bss : 0x810cb674 - 0x818e0e6c   (8278 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Running RCU self tests
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] 	RCU lockdep checking is enabled.
+[    0.000000] 	Build-time adjustment of leaf fanout to 32.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] L2C-310 erratum 769419 enabled
+[    0.000000] L2C-310 enabling early BRESP for Cortex-A9
+[    0.000000] L2C-310 full line of zeros enabled for Cortex-A9
+[    0.000000] L2C-310 ID prefetch enabled, offset 1 lines
+[    0.000000] L2C-310 dynamic clock gating enabled, standby mode enabled
+[    0.000000] L2C-310 cache controller enabled, 16 ways, 512 kB
+[    0.000000] L2C-310: CACHE_ID 0x410000c8, AUX_CTRL 0x76050001
+[    0.000000] clk: failed to reparent ldb_di0_sel to pll5_video: -22
+[    0.000000] clk: failed to reparent ldb_di1_sel to pll5_video: -22
+[    0.000000] clk: failed to reparent ldb_di0_sel to pll5_video: -22
+[    0.000000] clk: failed to reparent ldb_di1_sel to pll5_video: -22
+[    0.000000] Switching to timer-based delay loop, resolution 333ns
+[    0.000008] sched_clock: 32 bits at 3000kHz, resolution 333ns, wraps every 715827882841ns
+[    0.000031] clocksource: mxc_timer1: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 637086815595 ns
+[    0.001634] Console: colour dummy device 80x30
+[    0.001668] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.001680] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.001691] ... MAX_LOCK_DEPTH:          48
+[    0.001701] ... MAX_LOCKDEP_KEYS:        8191
+[    0.001711] ... CLASSHASH_SIZE:          4096
+[    0.001721] ... MAX_LOCKDEP_ENTRIES:     32768
+[    0.001730] ... MAX_LOCKDEP_CHAINS:      65536
+[    0.001740] ... CHAINHASH_SIZE:          32768
+[    0.001750]  memory used by lock dependency info: 5167 kB
+[    0.001760]  per task-struct memory footprint: 1536 bytes
+[    0.001790] Calibrating delay loop (skipped), value calculated using timer frequency.. 6.00 BogoMIPS (lpj=30000)
+[    0.001811] pid_max: default: 32768 minimum: 301
+[    0.002010] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.002028] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.003945] CPU: Testing write buffer coherency: ok
+[    0.004018] ftrace: allocating 35823 entries in 106 pages
+[    0.073851] Setting up static identity map for 0x10008200 - 0x10008258
+[    0.078332] devtmpfs: initialized
+[    0.110209] VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+[    0.111177] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.129044] xor: measuring software checksum speed
+[    0.223535]    arm4regs  :  1337.600 MB/sec
+[    0.323730]    8regs     :   900.000 MB/sec
+[    0.423921]    32regs    :   696.400 MB/sec
+[    0.423935] xor: using function: arm4regs (1337.600 MB/sec)
+[    0.423979] pinctrl core: initialized pinctrl subsystem
+[    0.428188] NET: Registered protocol family 16
+[    0.453775] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.484323] cpuidle: using governor ladder
+[    0.514360] cpuidle: using governor menu
+[    0.514654] CPU identified as i.MX6DL, silicon rev 1.3
+[    0.579673] No ATAGs?
+[    0.579725] hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.
+[    0.579741] hw-breakpoint: maximum watchpoint size is 4 bytes.
+[    0.583589] imx6dl-pinctrl 20e0000.iomuxc: initialized IMX pinctrl driver
+[    0.825957] raid6: int32x1  gen()   100 MB/s
+[    0.996101] raid6: int32x1  xor()    98 MB/s
+[    1.166587] raid6: int32x2  gen()   137 MB/s
+[    1.336893] raid6: int32x2  xor()   121 MB/s
+[    1.507388] raid6: int32x4  gen()   173 MB/s
+[    1.677605] raid6: int32x4  xor()   125 MB/s
+[    1.847968] raid6: int32x8  gen()   199 MB/s
+[    2.018321] raid6: int32x8  xor()   119 MB/s
+[    2.018334] raid6: using algorithm int32x8 gen() 199 MB/s
+[    2.018344] raid6: .... xor() 119 MB/s, rmw enabled
+[    2.018354] raid6: using intx1 recovery algorithm
+[    2.025754] mxs-dma 110000.dma-apbh: initialized
+[    2.031970] vgaarb: loaded
+[    2.033256] SCSI subsystem initialized
+[    2.033825] libata version 3.00 loaded.
+[    2.034771] usbcore: registered new interface driver usbfs
+[    2.034987] usbcore: registered new interface driver hub
+[    2.035207] usbcore: registered new device driver usb
+[    2.037800] i2c i2c-0: IMX I2C adapter registered
+[    2.037843] i2c i2c-0: can't use DMA, using PIO instead.
+[    2.040938] i2c i2c-1: IMX I2C adapter registered
+[    2.040979] i2c i2c-1: can't use DMA, using PIO instead.
+[    2.043179] i2c i2c-2: IMX I2C adapter registered
+[    2.043216] i2c i2c-2: can't use DMA, using PIO instead.
+[    2.043624] Linux video capture interface: v2.00
+[    2.043939] pps_core: LinuxPPS API ver. 1 registered
+[    2.043953] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    2.044023] PTP clock support registered
+[    2.045018] Advanced Linux Sound Architecture Driver Initialized.
+[    2.049121] Bluetooth: Core ver 2.21
+[    2.049257] NET: Registered protocol family 31
+[    2.049271] Bluetooth: HCI device and connection manager initialized
+[    2.049345] Bluetooth: HCI socket layer initialized
+[    2.049380] Bluetooth: L2CAP socket layer initialized
+[    2.049538] Bluetooth: SCO socket layer initialized
+[    2.052085] clocksource: Switched to clocksource mxc_timer1
+[    2.388733] VFS: Disk quotas dquot_6.6.0
+[    2.388837] VFS: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+[    2.422696] NET: Registered protocol family 2
+[    2.424502] TCP established hash table entries: 4096 (order: 2, 16384 bytes)
+[    2.424608] TCP bind hash table entries: 4096 (order: 5, 147456 bytes)
+[    2.425941] TCP: Hash tables configured (established 4096 bind 4096)
+[    2.426172] UDP hash table entries: 256 (order: 2, 20480 bytes)
+[    2.426373] UDP-Lite hash table entries: 256 (order: 2, 20480 bytes)
+[    2.427297] NET: Registered protocol family 1
+[    2.428517] RPC: Registered named UNIX socket transport module.
+[    2.428538] RPC: Registered udp transport module.
+[    2.428550] RPC: Registered tcp transport module.
+[    2.428561] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.428603] PCI: CLS 0 bytes, default 64
+[    2.430827] hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 counters available
+[    2.433909] futex hash table entries: 256 (order: 1, 11264 bytes)
+[    2.465762] NFS: Registering the id_resolver key type
+[    2.465983] Key type id_resolver registered
+[    2.466000] Key type id_legacy registered
+[    2.466222] ntfs: driver 2.1.32 [Flags: R/W].
+[    2.467096] jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+[    2.469170] fuse init (API version 7.24)
+[    2.488998] io scheduler noop registered
+[    2.489032] io scheduler deadline registered
+[    2.489140] io scheduler cfq registered (default)
+[    2.489990] imx-weim 21b8000.weim: Driver registered.
+[    2.496050] backlight supply power not found, using dummy regulator
+[    2.500809] imx-sdma 20ec000.sdma: Direct firmware load for imx/sdma/sdma-imx6q.bin failed with error -2
+[    2.500844] imx-sdma 20ec000.sdma: external firmware not found, using ROM firmware
+[    2.514467] pfuze100-regulator 1-0008: Full layer: 2, Metal layer: 1
+[    2.514845] pfuze100-regulator 1-0008: FAB: 0, FIN: 0
+[    2.514862] pfuze100-regulator 1-0008: pfuze100 found.
+[    2.536181] 21e8000.serial: ttymxc1 at MMIO 0x21e8000 (irq = 287, base_baud = 5000000) is a IMX
+[    2.538321] 21ec000.serial: ttymxc2 at MMIO 0x21ec000 (irq = 288, base_baud = 5000000) is a IMX
+[    3.380898] console [ttymxc2] enabled
+[    3.386321] 21f0000.serial: ttymxc3 at MMIO 0x21f0000 (irq = 289, base_baud = 5000000) is a IMX
+[    3.396707] 21f4000.serial: ttymxc4 at MMIO 0x21f4000 (irq = 290, base_baud = 5000000) is a IMX
+[    3.408094] [drm] Initialized drm 1.1.0 20060810
+[    3.422932] etnaviv gpu-subsystem: bound 134000.gpu (ops gpu_ops)
+[    3.429142] etnaviv gpu-subsystem: bound 130000.gpu (ops gpu_ops)
+[    3.435302] etnaviv-gpu 134000.gpu: model: GC320, revision: 5007
+[    3.471492] etnaviv-gpu 130000.gpu: model: GC880, revision: 5106
+[    3.523447] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    3.530091] [drm] No driver support for vblank timestamp query.
+[    3.536665] imx-drm display-subsystem: bound imx-ipuv3-crtc.2 (ops ipu_crtc_ops)
+[    3.544376] imx-drm display-subsystem: bound imx-ipuv3-crtc.3 (ops ipu_crtc_ops)
+[    3.552676] imx-drm display-subsystem: bound 2000000.aips-bus:ldb@020e0008 (ops imx_ldb_ops)
+[    3.575526] Console: switching to colour frame buffer device 128x37
+[    3.588988] imx-drm display-subsystem: fb0:  frame buffer device
+[    3.622269] [drm] Initialized imx-drm 1.0.0 20120507 on minor 1
+[    3.628290] imx-ipuv3 2400000.ipu: IPUv3H probed
+[    3.668332] brd: module loaded
+[    3.691851] loop: module loaded
+[    3.695571] at24 1-0050: 4096 byte 24c32 EEPROM, writable, 32 bytes/write
+[    3.702782] at24 1-0057: 4096 byte 24c32 EEPROM, writable, 32 bytes/write
+[    3.720469] m25p80 spi0.0: mr25h256 (32 Kbytes)
+[    3.730507] spi_imx 2008000.ecspi: probed
+[    3.736541] spi_imx 200c000.ecspi: probed
+[    3.742689] CAN device driver interface
+[    3.747760] 2090000.can supply xceiver not found, using dummy regulator
+[    3.757117] flexcan 2090000.can: device registered (reg_base=a0a68000, irq=37)
+[    3.765115] 2094000.can supply xceiver not found, using dummy regulator
+[    3.773982] flexcan 2094000.can: device registered (reg_base=a0a70000, irq=38)
+[    3.784995] 2188000.ethernet supply phy not found, using dummy regulator
+[    3.804010] pps pps0: new PPS source ptp0
+[    3.818068] libphy: fec_enet_mii_bus: probed
+[    3.824322] fec 2188000.ethernet eth0: registered PHC device 0
+[    3.833603] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    3.841242] usbcore: registered new interface driver pegasus
+[    3.847234] usbcore: registered new interface driver rtl8150
+[    3.853150] usbcore: registered new interface driver r8152
+[    3.858870] usbcore: registered new interface driver asix
+[    3.864525] usbcore: registered new interface driver ax88179_178a
+[    3.870775] usbcore: registered new interface driver cdc_ether
+[    3.876819] usbcore: registered new interface driver cdc_eem
+[    3.882670] usbcore: registered new interface driver net1080
+[    3.888486] usbcore: registered new interface driver cdc_subset
+[    3.894610] usbcore: registered new interface driver zaurus
+[    3.900451] usbcore: registered new interface driver cdc_ncm
+[    3.906169] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    3.912761] ehci-pci: EHCI PCI platform driver
+[    3.917376] ehci-platform: EHCI generic platform driver
+[    3.923425] ehci-mxc: Freescale On-Chip EHCI Host driver
+[    3.929063] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    3.935374] ohci-pci: OHCI PCI platform driver
+[    3.940002] ohci-platform: OHCI generic platform driver
+[    3.946032] usbcore: registered new interface driver cdc_acm
+[    3.951707] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[    3.959973] usbcore: registered new interface driver usb-storage
+[    3.966449] usbcore: registered new interface driver usbserial
+[    3.972454] usbcore: registered new interface driver usbserial_generic
+[    3.979380] usbserial: USB Serial support registered for generic
+[    3.985634] usbcore: registered new interface driver ftdi_sio
+[    3.991518] usbserial: USB Serial support registered for FTDI USB Serial Device
+[    3.999022] usbcore: registered new interface driver option
+[    4.004761] usbserial: USB Serial support registered for GSM modem (1-port)
+[    4.011887] usbcore: registered new interface driver usb_ehset_test
+[    4.022650] usb_h1_vbus: supplied by SWBST
+[    4.031837] ci_hdrc ci_hdrc.0: EHCI Host Controller
+[    4.037231] ci_hdrc ci_hdrc.0: new USB bus registered, assigned bus number 1
+[    4.062192] ci_hdrc ci_hdrc.0: USB 2.0 started, EHCI 1.00
+[    4.068643] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002
+[    4.075521] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    4.082787] usb usb1: Product: EHCI Host Controller
+[    4.087696] usb usb1: Manufacturer: Linux 4.5.0 ehci_hcd
+[    4.093046] usb usb1: SerialNumber: ci_hdrc.0
+[    4.100880] hub 1-0:1.0: USB hub found
+[    4.105016] hub 1-0:1.0: 1 port detected
+[    4.113165] usb_otg_vbus: supplied by SWBST
+[    4.124425] ci_hdrc ci_hdrc.1: EHCI Host Controller
+[    4.129380] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 2
+[    4.152185] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00
+[    4.158254] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002
+[    4.165180] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    4.172452] usb usb2: Product: EHCI Host Controller
+[    4.177362] usb usb2: Manufacturer: Linux 4.5.0 ehci_hcd
+[    4.182713] usb usb2: SerialNumber: ci_hdrc.1
+[    4.189361] hub 2-0:1.0: USB hub found
+[    4.193344] hub 2-0:1.0: 1 port detected
+[    4.201846] g_serial gadget: Gadget Serial v2.4
+[    4.208306] g_serial gadget: g_serial ready
+[    4.213855] mousedev: PS/2 mouse device common for all mice
+[    4.233438] input: EP0810M09 as /devices/soc0/soc/2100000.aips-bus/21a8000.i2c/i2c-2/2-0038/input/input0
+[    4.248725] rtc-pcf85063 2-0051: chip found, driver version 0.0.1
+[    4.258501] rtc-pcf85063 2-0051: rtc core: registered rtc-pcf85063 as rtc0
+[    4.267876] snvs_rtc 20cc000.snvs:snvs-rtc-lp: rtc core: registered 20cc000.snvs:snvs-r as rtc1
+[    4.277186] i2c /dev entries driver
+[    4.286884] at24 3-0050: 8192 byte 24c64 EEPROM, writable, 32 bytes/write
+[    4.294424] i2c i2c-0: Added multiplexed i2c bus 3
+[    4.301002] at24 4-0050: 8192 byte 24c64 EEPROM, writable, 32 bytes/write
+[    4.308100] i2c i2c-0: Added multiplexed i2c bus 4
+[    4.312949] i2c-mux-gpio 2100000.aips-bus:i2cmux: 2 port mux on 21a0000.i2c adapter
+[    4.322568] IR NEC protocol handler initialized
+[    4.327146] IR RC5(x/sz) protocol handler initialized
+[    4.332274] IR RC6 protocol handler initialized
+[    4.336855] IR JVC protocol handler initialized
+[    4.341410] IR Sony protocol handler initialized
+[    4.346079] IR SANYO protocol handler initialized
+[    4.350805] IR Sharp protocol handler initialized
+[    4.355573] IR MCE Keyboard/mouse protocol handler initialized
+[    4.361429] IR XMP protocol handler initialized
+[    4.368277] usbcore: registered new interface driver uvcvideo
+[    4.374120] USB Video Class driver (1.1.1)
+[    4.378241] gspca_main: v2.14.0 registered
+[    4.389182] imx2-wdt 20bc000.wdog: timeout 60 sec (nowayout=0)
+[    4.395502] Bluetooth: HCI UART driver ver 2.3
+[    4.399969] Bluetooth: HCI UART protocol H4 registered
+[    4.405160] Bluetooth: HCI UART protocol BCSP registered
+[    4.410503] Bluetooth: HCI UART protocol LL registered
+[    4.415679] Bluetooth: HCI UART protocol ATH3K registered
+[    4.421363] usbcore: registered new interface driver bcm203x
+[    4.427314] usbcore: registered new interface driver btusb
+[    4.432857] Bluetooth: Generic Bluetooth SDIO driver ver 0.1
+[    4.438849] usbcore: registered new interface driver ath3k
+[    4.445047] sdhci: Secure Digital Host Controller Interface driver
+[    4.451244] sdhci: Copyright(c) Pierre Ossman
+[    4.455669] sdhci-pltfm: SDHCI platform and OF driver helper
+[    4.463488] /soc/aips-bus@02100000/usdhc@02198000: voltage-ranges unspecified
+[    4.470649] sdhci-esdhc-imx 2198000.usdhc: could not get ultra high speed state, work on normal mode
+[    4.522520] mmc0: SDHCI controller on 2198000.usdhc [2198000.usdhc] using ADMA
+[    4.542679] /soc/aips-bus@02100000/usdhc@02190000: voltage-ranges unspecified
+[    4.551942] sdhci-esdhc-imx 2190000.usdhc: could not get ultra high speed state, work on normal mode
+[    4.565952] sdhci-esdhc-imx 2190000.usdhc: Got CD GPIO
+[    4.573475] sdhci-esdhc-imx 2190000.usdhc: Got WP GPIO
+[    4.632601] mmc1: SDHCI controller on 2190000.usdhc [2190000.usdhc] using ADMA
+[    4.652281] /soc/aips-bus@02100000/usdhc@0219c000: voltage-ranges unspecified
+[    4.660795] mmc0: MAN_BKOPS_EN bit is not set
+[    4.687649] mmc0: new DDR MMC card at address 0001
+[    4.695136] mmcblk0: mmc0:0001 004GA0 3.69 GiB 
+[    4.700484] mmcblk0boot0: mmc0:0001 004GA0 partition 1 2.00 MiB
+[    4.707128] mmcblk0boot1: mmc0:0001 004GA0 partition 2 2.00 MiB
+[    4.716103] mmcblk0rpmb: mmc0:0001 004GA0 partition 3 512 KiB
+[    4.727583]  mmcblk0: p1 p2 p3 < p5 p6 >
+[    4.732319] mmc2: SDHCI controller on 219c000.usdhc [219c000.usdhc] using ADMA
+[    4.744675] mmc1: new high speed SD card at address 1234
+[    4.759560] usbcore: registered new interface driver usbhid
+[    4.778048] mmcblk1: mmc1:1234 SD02G 1.90 GiB 
+[    4.785805] usbhid: USB HID core driver
+[    4.813091]  mmcblk1: p1
+[    4.822546] usbcore: registered new interface driver snd-usb-audio
+[    4.835296] sgtl5000 2-000a: sgtl5000 revision 0x11
+[    4.908345] fsl-asoc-card sound: ASoC: CPU DAI (null) not registered
+[    4.914903] fsl-asoc-card sound: snd_soc_register_card failed (-517)
+[    4.926200] fsl-asrc 2034000.asrc: driver registered
+[    4.942513] sgtl5000 2-000a: Using internal LDO instead of VDDD
+[    5.000624] imx-sgtl5000 sound: sgtl5000 <-> 2028000.ssi mapping ok
+[    5.017934] NET: Registered protocol family 26
+[    5.025015] NET: Registered protocol family 10
+[    5.033246] sit: IPv6 over IPv4 tunneling driver
+[    5.050095] NET: Registered protocol family 17
+[    5.056778] can: controller area network core (rev 20120528 abi 9)
+[    5.065293] NET: Registered protocol family 29
+[    5.071920] can: raw protocol (rev 20120528)
+[    5.078466] can: broadcast manager protocol (rev 20120528 t)
+[    5.086351] can: netlink gateway (rev 20130117) max_hops=1
+[    5.094705] Bluetooth: RFCOMM TTY layer initialized
+[    5.102315] Bluetooth: RFCOMM socket layer initialized
+[    5.109628] Bluetooth: RFCOMM ver 1.11
+[    5.116609] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    5.126101] Bluetooth: BNEP filters: protocol multicast
+[    5.131371] Bluetooth: BNEP socket layer initialized
+[    5.136394] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    5.142394] Bluetooth: HIDP socket layer initialized
+[    5.147864] 8021q: 802.1Q VLAN Support v1.8
+[    5.152358] Key type dns_resolver registered
+[    5.172578] Btrfs loaded
+[    5.180260] imx_thermal 2000000.aips-bus:tempmon: Commercial CPU temperature grade - max:95C critical:90C passive:85C
+[    5.195024] input: gpio-keys as /devices/soc0/gpio-keys/input/input1
+[    5.205297] rtc-pcf85063 2-0051: setting system clock to 2022-05-08 11:01:51 UTC (1652007711)
+[    5.265040] SW4: disabling
+[    5.268535] ALSA device list:
+[    5.271523]   #0: imx6-sie-sgtl5000
+[    5.292043] UDF-fs: warning (device mmcblk0p2): udf_fill_super: No partition found (2)
+[    5.301535] BTRFS: device fsid 93125666-09f4-4aef-9ddc-c4d50a2521cb devid 1 transid 5075 /dev/root
+[    5.316964] BTRFS info (device mmcblk0p2): disk space caching is enabled
+[    5.351076] BTRFS: detected SSD devices, enabling SSD mode
+[    5.392490] VFS: Mounted root (btrfs filesystem) on device 0:16.
+[    5.401068] devtmpfs: mounted
+[    5.405930] Freeing unused kernel memory: 1056K (80edc000 - 80fe4000)
+[    5.559747] random: systemd urandom read with 23 bits of entropy available
+[    5.570511] systemd[1]: systemd 215 running in system mode. (+PAM +AUDIT +SELINUX +IMA +SYSVINIT +LIBCRYPTSETUP +GCRYPT +ACL +XZ -SECCOMP -APPARMOR)
+[    5.584595] systemd[1]: Detected architecture 'arm'.
+[    5.616535] systemd[1]: Set hostname to <CS3-02365>.
+[    5.840562] systemd-gpt-auto-generator[153]: Failed to determine block device of root file system: No such file or directory
+[    5.911186] systemd[143]: /lib/systemd/system-generators/systemd-gpt-auto-generator failed with error code 1.
+[    6.055561] systemd[1]: Cannot add dependency job for unit display-manager.service, ignoring: Unit display-manager.service failed to load: No such file or directory.
+[    6.074406] systemd[1]: Starting Forward Password Requests to Wall Directory Watch.
+[    6.084421] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    6.092320] systemd[1]: Expecting device dev-ttymxc2.device...
+[    6.122465] systemd[1]: Starting Remote File Systems (Pre).
+[    6.142385] systemd[1]: Reached target Remote File Systems (Pre).
+[    6.148844] systemd[1]: Starting Arbitrary Executable File Formats File System Automount Point.
+[    6.182422] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[    6.192009] systemd[1]: Starting Encrypted Volumes.
+[    6.212386] systemd[1]: Reached target Encrypted Volumes.
+[    6.217896] systemd[1]: Starting Swap.
+[    6.242384] systemd[1]: Reached target Swap.
+[    6.246752] systemd[1]: Expecting device dev-mmcblk0p5.device...
+[    6.272485] systemd[1]: Expecting device dev-mmcblk0p6.device...
+[    6.302458] systemd[1]: Starting Root Slice.
+[    6.322443] systemd[1]: Created slice Root Slice.
+[    6.327268] systemd[1]: Starting User and Session Slice.
+[    6.352494] systemd[1]: Created slice User and Session Slice.
+[    6.358376] systemd[1]: Starting /dev/initctl Compatibility Named Pipe.
+[    6.392469] systemd[1]: Listening on /dev/initctl Compatibility Named Pipe.
+[    6.399564] systemd[1]: Starting Delayed Shutdown Socket.
+[    6.422453] systemd[1]: Listening on Delayed Shutdown Socket.
+[    6.428321] systemd[1]: Starting Journal Socket (/dev/log).
+[    6.452447] systemd[1]: Listening on Journal Socket (/dev/log).
+[    6.458584] systemd[1]: Starting udev Control Socket.
+[    6.482528] systemd[1]: Listening on udev Control Socket.
+[    6.488116] systemd[1]: Starting udev Kernel Socket.
+[    6.512451] systemd[1]: Listening on udev Kernel Socket.
+[    6.517938] systemd[1]: Starting Journal Socket.
+[    6.542451] systemd[1]: Listening on Journal Socket.
+[    6.547684] systemd[1]: Starting System Slice.
+[    6.572477] systemd[1]: Created slice System Slice.
+[    6.577530] systemd[1]: Starting system-getty.slice.
+[    6.602474] systemd[1]: Created slice system-getty.slice.
+[    6.607993] systemd[1]: Starting system-serial\x2dgetty.slice.
+[    6.632458] systemd[1]: Created slice system-serial\x2dgetty.slice.
+[    6.639153] systemd[1]: Starting Increase datagram queue length...
+[    6.667099] systemd[1]: Mounted Huge Pages File System.
+[    6.691721] systemd[1]: Starting Load Kernel Modules...
+[    6.724907] systemd[1]: Started Set Up Additional Binary Formats.
+[    6.731361] systemd[1]: Mounted POSIX Message Queue File System.
+[    6.746771] systemd[1]: Started Create list of required static device nodes for the current kernel.
+[    6.758215] systemd[1]: Starting Create Static Device Nodes in /dev...
+[    6.812621] systemd[1]: Mounting Debug File System...
+[    6.848004] systemd[1]: Starting udev Coldplug all Devices...
+[    6.888890] systemd[1]: Starting Slices.
+[    6.942585] systemd[1]: Reached target Slices.
+[    6.982601] systemd[1]: Mounted Debug File System.
+[    7.002675] systemd[1]: Started Increase datagram queue length.
+[    7.052556] systemd[1]: Started Load Kernel Modules.
+[    7.072960] systemd[1]: Started Create Static Device Nodes in /dev.
+[    7.202652] systemd[1]: Starting udev Kernel Device Manager...
+[    7.236463] systemd[1]: Mounting FUSE Control File System...
+[    7.276536] systemd[1]: Starting Apply Kernel Variables...
+[    7.283579] systemd-udevd[165]: starting version 215
+[    7.330778] systemd[1]: Mounting Configuration File System...
+[    7.380152] systemd[1]: Starting Syslog Socket.
+[    7.442590] systemd[1]: Listening on Syslog Socket.
+[    7.447661] systemd[1]: Starting Journal Service...
+[    7.495033] systemd[1]: Started Journal Service.
+[   10.204881] BTRFS: device fsid aff3efa2-5e70-41f6-8074-1e1d312520a5 devid 1 transid 6312 /dev/mmcblk0p5
+[   10.352056] BTRFS: device fsid b49e32a2-0483-4c8d-9937-bec987a9b059 devid 1 transid 7737 /dev/mmcblk0p6
+[   11.121039] FAT-fs (mmcblk1p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[   11.924516] BTRFS info (device mmcblk0p2): use zlib compression
+[   11.930479] BTRFS info (device mmcblk0p2): disk space caching is enabled
+[   12.226255] BTRFS info (device mmcblk0p5): use zlib compression
+[   12.243160] BTRFS info (device mmcblk0p6): use zlib compression
+[   12.249154] BTRFS info (device mmcblk0p6): disk space caching is enabled
+[   12.256273] BTRFS info (device mmcblk0p5): disk space caching is enabled
+[   12.324450] BTRFS: detected SSD devices, enabling SSD mode
+[   12.330508] BTRFS: detected SSD devices, enabling SSD mode
+[   13.008971] systemd-journald[173]: Received request to flush runtime journal from PID 1
+[   13.784205] Micrel KSZ9031 Gigabit PHY 2188000.ethernet:07: attached PHY driver [Micrel KSZ9031 Gigabit PHY] (mii_bus:phy_addr=2188000.ethernet:07, irq=-1)
+[   13.833209] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   16.783700] fec 2188000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+[   16.805766] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[   21.004634] random: nonblocking pool is initialized
+[  125.872312] usb 2-1: new high-speed USB device number 2 using ci_hdrc
+[  126.027136] usb 2-1: New USB device found, idVendor=0951, idProduct=1603
+[  126.033979] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  126.041573] usb 2-1: Product: DataTraveler 2.0
+[  126.049216] usb 2-1: Manufacturer: Kingston
+[  126.055412] usb 2-1: SerialNumber: 001000000000000000000018
+[  126.092616] usb-storage 2-1:1.0: USB Mass Storage device detected
+[  126.112584] scsi host0: usb-storage 2-1:1.0
+[  127.152863] scsi 0:0:0:0: Direct-Access     Kingston DataTraveler 2.0 1.00 PQ: 0 ANSI: 2
+[  127.212696] sd 0:0:0:0: [sda] 1952768 512-byte logical blocks: (1000 MB/954 MiB)
+[  127.258926] sd 0:0:0:0: [sda] Write Protect is off
+[  127.268193] sd 0:0:0:0: [sda] Mode Sense: 23 00 00 00
+[  127.269382] sd 0:0:0:0: [sda] No Caching mode page found
+[  127.285612] sd 0:0:0:0: [sda] Assuming drive cache: write through
+[  127.435370]  sda: sda1
+[  127.458661] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[  128.590433] FAT-fs (sda1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+ 11:04:24 up 2 min,  0 users,  load average: 0,57, 0,47, 0,20
+
+CPU-Belastung:
+
+USER       PID 𵵼PU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  4.2  0.6   4428  3176 ?        Ss   11:01   0:06 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    11:01   0:00 [kthreadd]
+root         3  0.1  0.0      0     0 ?        S    11:01   0:00 [ksoftirqd/0]
+root         4  0.0  0.0      0     0 ?        S    11:01   0:00 [kworker/0:0]
+root         5  0.0  0.0      0     0 ?        S<   11:01   0:00 [kworker/0:0H]
+root         6  0.6  0.0      0     0 ?        S    11:01   0:01 [kworker/u2:0]
+root         7  0.2  0.0      0     0 ?        S    11:01   0:00 [rcu_preempt]
+root         8  0.0  0.0      0     0 ?        S    11:01   0:00 [rcu_sched]
+root         9  0.0  0.0      0     0 ?        S    11:01   0:00 [rcu_bh]
+root        10  0.0  0.0      0     0 ?        S    11:01   0:00 [kdevtmpfs]
+root        11  0.0  0.0      0     0 ?        S<   11:01   0:00 [writeback]
+root        12  0.0  0.0      0     0 ?        S<   11:01   0:00 [crypto]
+root        13  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        14  0.0  0.0      0     0 ?        S<   11:01   0:00 [kblockd]
+root        15  0.0  0.0      0     0 ?        S<   11:01   0:00 [ata_sff]
+root        16  0.1  0.0      0     0 ?        S    11:01   0:00 [kworker/0:1]
+root        17  0.0  0.0      0     0 ?        S<   11:01   0:00 [cfg80211]
+root        18  0.0  0.0      0     0 ?        S<   11:01   0:00 [rpciod]
+root        19  0.1  0.0      0     0 ?        S    11:01   0:00 [kswapd0]
+root        20  0.0  0.0      0     0 ?        S<   11:01   0:00 [nfsiod]
+root        65  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        66  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        67  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        68  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        69  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        70  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        71  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        72  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        73  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        74  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        75  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        76  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        77  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        78  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        79  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        80  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        81  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        82  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        83  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        84  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        85  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        86  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        87  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        88  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        89  0.0  0.0      0     0 ?        S    11:01   0:00 [spi0]
+root        90  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root        91  0.0  0.0      0     0 ?        S    11:01   0:00 [spi1]
+root        92  0.1  0.0      0     0 ?        S    11:01   0:00 [kworker/u2:1]
+root        94  0.0  0.0      0     0 ?        S<   11:01   0:00 [ci_otg]
+root        95  0.0  0.0      0     0 ?        S<   11:01   0:00 [kpsmoused]
+root        96  0.5  0.0      0     0 ?        S    11:01   0:00 [irq/82-edt-ft5x]
+root        97  0.0  0.0      0     0 ?        S    11:01   0:00 [irq/291-mmc0]
+root        98  0.0  0.0      0     0 ?        S    11:01   0:00 [kworker/0:2]
+root        99  0.0  0.0      0     0 ?        S    11:01   0:00 [irq/292-mmc1]
+root       100  0.0  0.0      0     0 ?        S    11:01   0:00 [irq/205-2190000]
+root       101  0.0  0.0      0     0 ?        S    11:01   0:00 [irq/293-mmc2]
+root       102  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root       103  1.4  0.0      0     0 ?        S    11:01   0:02 [mmcqd/0]
+root       104  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root       105  0.0  0.0      0     0 ?        S    11:01   0:00 [mmcqd/0boot0]
+root       106  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root       107  0.0  0.0      0     0 ?        S    11:01   0:00 [mmcqd/0boot1]
+root       108  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root       109  0.0  0.0      0     0 ?        S    11:01   0:00 [mmcqd/0rpmb]
+root       110  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root       111  0.0  0.0      0     0 ?        S    11:01   0:00 [kworker/0:3]
+root       112  0.0  0.0      0     0 ?        S    11:01   0:00 [mmcqd/1]
+root       113  0.6  0.0      0     0 ?        S    11:01   0:01 [kworker/u2:2]
+root       114  0.0  0.0      0     0 ?        S<   11:01   0:00 [ipv6_addrconf]
+root       115  0.0  0.0      0     0 ?        S<   11:01   0:00 [krfcommd]
+root       116  0.0  0.0      0     0 ?        S<   11:01   0:00 [bioset]
+root       117  0.0  0.0      0     0 ?        S<   11:01   0:00 [deferwq]
+root       118  0.0  0.0      0     0 ?        S    11:01   0:00 [irq/17-imx_ther]
+root       120  0.1  0.0      0     0 ?        S<   11:01   0:00 [kworker/0:1H]
+root       121  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-worker]
+root       122  0.0  0.0      0     0 ?        S<   11:01   0:00 [kworker/u3:0]
+root       123  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-worker-hi]
+root       124  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-delalloc]
+root       125  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-flush_del]
+root       126  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-cache]
+root       127  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-submit]
+root       128  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-fixup]
+root       129  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio]
+root       130  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-met]
+root       131  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-met]
+root       132  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-rai]
+root       133  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-rep]
+root       134  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-rmw]
+root       135  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-wri]
+root       136  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-freespace]
+root       137  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-delayed-m]
+root       138  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-readahead]
+root       139  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-qgroup-re]
+root       140  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-extent-re]
+root       141  0.0  0.0      0     0 ?        S    11:01   0:00 [btrfs-cleaner]
+root       142  0.0  0.0      0     0 ?        S    11:01   0:00 [btrfs-transacti]
+root       156  0.8  0.0      0     0 ?        S    11:01   0:01 [kworker/u2:3]
+root       165  0.3  0.4   9692  2128 ?        Ss   11:01   0:00 /lib/systemd/systemd-udevd
+root       173  0.1  0.3   3272  1772 ?        Ss   11:01   0:00 /lib/systemd/systemd-journald
+root       257  0.0  0.0      0     0 ?        S<   11:01   0:00 [kworker/u3:1]
+root       268  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-worker]
+root       269  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-worker]
+root       270  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-worker-hi]
+root       271  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-worker-hi]
+root       272  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-delalloc]
+root       273  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-delalloc]
+root       274  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-flush_del]
+root       275  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-flush_del]
+root       276  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-cache]
+root       277  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-cache]
+root       278  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-submit]
+root       279  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-submit]
+root       280  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-fixup]
+root       281  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-fixup]
+root       282  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio]
+root       283  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio]
+root       284  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-met]
+root       285  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-met]
+root       286  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-met]
+root       287  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-met]
+root       288  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-rai]
+root       289  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-rai]
+root       290  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-rep]
+root       291  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-rep]
+root       292  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-rmw]
+root       293  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-rmw]
+root       294  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-wri]
+root       295  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-endio-wri]
+root       296  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-freespace]
+root       297  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-freespace]
+root       298  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-delayed-m]
+root       299  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-delayed-m]
+root       300  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-readahead]
+root       301  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-readahead]
+root       302  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-qgroup-re]
+root       303  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-qgroup-re]
+root       304  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-extent-re]
+root       305  0.0  0.0      0     0 ?        S<   11:01   0:00 [btrfs-extent-re]
+root       306  0.0  0.0      0     0 ?        S    11:01   0:00 [btrfs-cleaner]
+root       307  0.0  0.0      0     0 ?        S    11:01   0:00 [btrfs-cleaner]
+root       308  0.0  0.0      0     0 ?        S    11:01   0:00 [btrfs-transacti]
+root       309  0.0  0.0      0     0 ?        S    11:01   0:00 [btrfs-transacti]
+root       334  0.3  0.0      0     0 ?        S    11:01   0:00 [kworker/0:4]
+root       473  0.0  0.3   3660  1848 ?        Ss   11:02   0:00 /sbin/rpcbind -w
+statd      485  0.0  0.4   3860  2080 ?        Ss   11:02   0:00 /sbin/rpc.statd
+root       497  0.0  0.2   2356  1216 ?        Ss   11:02   0:00 /usr/sbin/rpc.idmapd
+root       500  0.0  0.7   6532  3832 ?        Ss   11:02   0:00 /usr/sbin/sshd -D
+root       501  0.0  0.4   4420  2004 ?        Ss   11:02   0:00 /usr/sbin/cron -f
+root       503  0.0  0.3   2676  1612 ?        Ss   11:02   0:00 /lib/systemd/systemd-logind
+avahi      506  0.2  0.4   3288  2052 ?        Ss   11:02   0:00 avahi-daemon: running [CS3-02365.local]
+message+   507  0.0  0.4   4576  2456 ?        Ss   11:02   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+avahi      510  0.0  0.2   3156  1364 ?        S    11:02   0:00 avahi-daemon: chroot helper
+root       518  1.4  3.5  29836 17700 tty2     Ss+  11:02   0:02 X
+root       522  0.0  0.5  30472  2616 ?        Ssl  11:02   0:00 /usr/sbin/rsyslogd -n
+root       544  0.0  0.2   3548  1396 tty1     Ss+  11:02   0:00 /sbin/agetty --noclear tty1 linux
+root       545  0.0  0.3   3368  1636 ?        Ss+  11:02   0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttymxc2 vt102
+cs3        569  0.2  2.0  60508  9952 ?        Sl   11:02   0:00 /usr/local/bin/cs3start can0
+root       574  0.0  0.0      0     0 ?        S    11:02   0:00 [kworker/u2:4]
+cs3        576  0.5  1.8  38212  9260 ?        S    11:02   0:00 database
+cs3        577  3.0  1.9  42192  9680 ?        S    11:02   0:04 event can0
+cs3        578  0.0  1.5  36772  7644 ?        S    11:02   0:00 supervisor
+cs3        579  0.1  1.9  41456  9484 ?        S    11:02   0:00 mfxmaster
+cs3        580  0.0  1.6  37188  8028 ?        S    11:02   0:00 sound Systemstart ...
+cs3        581  0.0  1.5  36648  7648 ?        S    11:02   0:00 automatic Systemstart
+cs3        582  0.0  1.9  46628  9488 ?        S    11:02   0:00 fileserver
+cs3        591  4.7 13.0 193516 64432 ?        Sl   11:02   0:06 gui
+cs3        592  0.5  1.7  50268  8812 ?        Dl   11:02   0:00 helper
+www-data   613  0.4  2.2  20684 10968 ?        Ss   11:02   0:00 /usr/bin/x11vnc -rc /home/cs3/cs3data/work/web/vnc/.cs3_vnc_config
+www-data   621  0.0  0.2   3232  1212 ?        Ss   11:02   0:00 nginx: master process /usr/local/bin/nginx
+www-data   622  0.0  0.3   3404  1512 ?        S    11:02   0:00 nginx: worker process
+www-data   623  0.0  0.3   3404  1512 ?        S    11:02   0:00 nginx: worker process
+www-data   624  0.0  0.2   3404  1448 ?        S    11:02   0:00 nginx: worker process
+www-data   625 15.5 11.3 157968 56108 ?        Ssl  11:02   0:20 /usr/local/bin/node --max-old-space-size=128 --max-semi-space-size=1 /srv/cs3_webserver/bin/www
+root       787  0.0  1.1   7768  5884 ?        Ss   11:02   0:00 dhclient -v -pf /run/dhclient.eth0.pid -lf /var/lib/dhcp/dhclient.eth0.leases eth0
+root       878  0.0  0.0      0     0 ?        S    11:03   0:00 [scsi_eh_0]
+root       879  0.0  0.0      0     0 ?        S<   11:03   0:00 [scsi_tmf_0]
+root       880  0.2  0.0      0     0 ?        S    11:03   0:00 [usb-storage]
+root       887  0.0  0.0      0     0 ?        S<   11:03   0:00 [bioset]
+cs3       1066  0.0  0.1   1432   948 ?        S    11:04   0:00 sh -c echo " CPU-Belastung: " >>/tmp/sys.cs3 ; ps aux >>/tmp/sys.cs3
+cs3       1067  0.0  0.3   4224  1748 ?        R    11:04   0:00 ps aux
+
+Speicher-Belastung:
+
+MemTotal:         494528 kB
+MemFree:          128908 kB
+MemAvailable:     371588 kB
+Buffers:             532 kB
+Cached:           231584 kB
+SwapCached:            0 kB
+Active:           149640 kB
+Inactive:         161288 kB
+Active(anon):      79100 kB
+Inactive(anon):     5044 kB
+Active(file):      70540 kB
+Inactive(file):   156244 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+HighTotal:             0 kB
+HighFree:              0 kB
+LowTotal:         494528 kB
+LowFree:          128908 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                24 kB
+Writeback:             0 kB
+AnonPages:         78824 kB
+Mapped:            86244 kB
+Shmem:              5336 kB
+Slab:              37096 kB
+SReclaimable:      27636 kB
+SUnreclaim:         9460 kB
+KernelStack:        1648 kB
+PageTables:         1788 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      247264 kB
+Committed_AS:     260796 kB
+VmallocTotal:    1556480 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+CmaTotal:         327680 kB
+CmaFree:          119212 kB
+
+Status der Kommunikationsschnittstellen:
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 100
+    link/can 
+3: can1: <NOARP,ECHO> mtu 16 qdisc noop state DOWN mode DEFAULT group default qlen 10
+    link/can 
+4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 00:1f:b2:05:69:69 brd ff:ff:ff:ff:ff:ff
+5: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1
+    link/sit 0.0.0.0 brd 0.0.0.0
+
+Status der Netzwerkschnittstelle:
+
+eth0      Link encap:Ethernet  Hardware Adresse 00:1f:b2:05:69:69  
+          inet Adresse:192.168.20.48  Bcast:192.168.20.255  Maske:255.255.255.0
+          inet6-Adresse: fe80::21f:b2ff:fe05:6969/64 Gültigkeitsbereich:Verbindung
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metrik:1
+          RX packets:388 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:199 errors:0 dropped:0 overruns:0 carrier:0
+          Kollisionen:0 Sendewarteschlangenlänge:1000 
+          RX bytes:131606 (128.5 KiB)  TX bytes:28732 (28.0 KiB)
+
+
+Status der Applikationsprozesse, CS3:
+
+● cs3-init.service - LSB: cs3 init script
+   Loaded: loaded (/etc/init.d/cs3-init.sh)
+   Active: active (running) since So 2022-05-08 11:02:09 UTC; 2min 14s ago
+  Process: 505 ExecStart=/etc/init.d/cs3-init.sh start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/cs3-init.service
+           ├─ 518 X
+           ├─ 569 /usr/local/bin/cs3start can0
+           ├─ 576 database
+           ├─ 577 event can0
+           ├─ 578 supervisor
+           ├─ 579 mfxmaster
+           ├─ 580 sound Systemstart ...
+           ├─ 581 automatic Systemstart
+           ├─ 582 fileserver
+           ├─ 591 gui
+           ├─ 592 helper
+           ├─1074 sh -c echo " Status der Applikationsprozesse, CS3: " >>/tmp/sys.cs3 ; systemctl status cs3 >>/tmp/sys.cs3
+           └─1075 systemctl status cs3
+
+Status der Applikationsprozesse, NGINX:
+
+● cs3web.service - CS3 Web App Starter
+   Loaded: loaded (/etc/systemd/system/cs3web.service; enabled)
+   Active: active (running) since So 2022-05-08 11:02:10 UTC; 2min 14s ago
+  Process: 616 ExecStart=/usr/local/bin/nginx (code=exited, status=0/SUCCESS)
+  Process: 612 ExecStartPre=/sbin/setcap cap_net_bind_service=+ep /usr/local/bin/nginx (code=exited, status=0/SUCCESS)
+ Main PID: 621 (nginx)
+   CGroup: /system.slice/cs3web.service
+           ├─621 nginx: master process /usr/local/bin/ngin
+           ├─622 nginx: worker proces
+           ├─623 nginx: worker proces
+           └─624 nginx: worker proces
+
+Status der Applikationsprozesse, NODE:
+
+● cs3node.service - CS3 Node Server
+   Loaded: loaded (/etc/systemd/system/cs3node.service; disabled)
+   Active: active (running) since So 2022-05-08 11:02:10 UTC; 2min 14s ago
+ Main PID: 625 (node)
+   CGroup: /system.slice/cs3node.service
+           └─625 /usr/local/bin/node --max-old-space-size=128 --max-semi-space-size=1 /srv/cs3_webserver/bin/www

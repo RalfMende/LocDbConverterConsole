@@ -1,0 +1,13 @@
+[conf]
+S#201
+ .dectyp=ein_alt
+ .id=6
+ .prot=mm
+ .schaltzeit=200
+ .typ=urc_lichtsignal_HP012_SH01
+S#202
+ .dectyp=ein_alt
+ .id=10
+ .prot=mm
+ .schaltzeit=200
+ .typ=urc_lichtsignal_HP012_SH01

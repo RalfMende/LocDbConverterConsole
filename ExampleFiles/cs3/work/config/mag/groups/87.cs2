@@ -1,0 +1,210 @@
+[conf]
+W#201
+ .dectyp=ein_alt
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2010
+ .dectyp=ein_alt
+ .id=18
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2011
+ .dectyp=ein_alt
+ .id=20
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2012
+ .dectyp=ein_alt
+ .id=22
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2013
+ .dectyp=ein_alt
+ .id=24
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2014
+ .dectyp=ein_alt
+ .id=26
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2015
+ .dectyp=ein_alt
+ .id=28
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2016
+ .dectyp=ein_alt
+ .id=30
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2017
+ .dectyp=ein_alt
+ .id=32
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2018
+ .dectyp=ein_alt
+ .id=34
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2019
+ .dectyp=ein_alt
+ .id=36
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#202
+ .dectyp=ein_alt
+ .id=2
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2020
+ .dectyp=ein_alt
+ .id=38
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2021
+ .dectyp=ein_alt
+ .id=40
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2022
+ .dectyp=ein_alt
+ .id=42
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2023
+ .dectyp=ein_alt
+ .id=44
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2024
+ .dectyp=ein_alt
+ .id=46
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2025
+ .dectyp=ein_alt
+ .id=48
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2026
+ .dectyp=ein_alt
+ .id=50
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2027
+ .dectyp=ein_alt
+ .id=52
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#203
+ .dectyp=ein_alt
+ .id=4
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2030
+ .dectyp=ein_alt
+ .id=58
+ .prot=mm
+ .schaltzeit=200
+ .typ=dkw_1antrieb
+W#2031
+ .dectyp=ein_alt
+ .id=60
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2032
+ .dectyp=ein_alt
+ .id=62
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2033
+ .dectyp=ein_alt
+ .id=64
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2034
+ .dectyp=ein_alt
+ .id=66
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#2035
+ .dectyp=ein_alt
+ .id=68
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2036
+ .dectyp=ein_alt
+ .id=70
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#2037
+ .dectyp=ein_alt
+ .id=72
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#204
+ .dectyp=ein_alt
+ .id=6
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#205
+ .dectyp=ein_alt
+ .id=8
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#206
+ .dectyp=ein_alt
+ .id=10
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#207
+ .dectyp=ein_alt
+ .id=12
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche
+W#208
+ .dectyp=ein_alt
+ .id=14
+ .prot=mm
+ .schaltzeit=200
+ .typ=rechtsweiche
+W#209
+ .dectyp=ein_alt
+ .id=16
+ .prot=mm
+ .schaltzeit=200
+ .typ=linksweiche

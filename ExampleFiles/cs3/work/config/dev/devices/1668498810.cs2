@@ -1,0 +1,83 @@
+[conf]
+artikelnr=60226
+kennung=0xffff
+name=GFP3-1
+queryInterval=5
+seriennr=2365
+typ=80
+typname=Central Station 3
+uid=0x6373457a
+kanal
+ .00
+ ..einheit=A
+ ..endWert=5.50
+ ..farbeGelb=240
+ ..farbeGruen=48
+ ..farbeMax=192
+ ..farbeRot=224
+ ..name=MAIN
+ ..nr=1
+ ..potenz=253
+ ..rangeGelb=576
+ ..rangeGruen=552
+ ..rangeMax=660
+ ..rangeRot=600
+ ..startWert=0.00
+ .01
+ ..einheit=A
+ ..endWert=2.30
+ ..farbeGelb=240
+ ..farbeGruen=48
+ ..farbeMax=192
+ ..farbeRot=224
+ ..name=PROG
+ ..nr=2
+ ..potenz=253
+ ..rangeGelb=363
+ ..rangeGruen=330
+ ..rangeMax=759
+ ..rangeRot=561
+ ..startWert=0.00
+ .02
+ ..einheit=V
+ ..endWert=27.00
+ ..farbeGelb=12
+ ..farbeGruen=192
+ ..farbeMax=192
+ ..farbeRot=48
+ ..name=VOLT
+ ..nr=3
+ ..potenz=253
+ ..rangeGelb=252
+ ..rangeGruen=194
+ ..rangeMax=659
+ ..rangeRot=543
+ ..startWert=10.00
+ .03
+ ..einheit=C
+ ..endWert=80.0
+ ..farbeGelb=8
+ ..farbeGruen=12
+ ..farbeMax=192
+ ..farbeRot=240
+ ..name=TEMP
+ ..nr=4
+ ..rangeGelb=145
+ ..rangeGruen=121
+ ..rangeMax=193
+ ..rangeRot=169
+ ..startWert=0.0
+ .04
+ ..auswahl=60061:60101:L51095
+ ..index=1
+ ..name=Netzteil:
+ ..nr=1
+ ..typ=1
+ .05
+ ..auswahl=norm:wide
+ ..name=6095 mix mode:
+ ..nr=2
+ ..typ=1
+version
+ .major=12
+ .minor=113

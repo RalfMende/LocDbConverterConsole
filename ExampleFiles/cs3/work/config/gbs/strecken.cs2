@@ -1,0 +1,74 @@
+[conf]
+name=strecken
+1
+ .name=W#208#3B0
+ .pt1
+ ..name=W#208
+ .pt2
+ ..name=W#207
+10
+ .name=_GX#201#3B0
+ .pt1
+ ..name=_GX#201
+ .pt2
+ ..an=1
+ ..name=W#204
+2
+ .name=W#206#3B2
+ .pt1
+ ..an=2
+ ..name=W#206
+ .pt2
+ ..an=2
+ ..name=W#204
+3
+ .name=W#205#3B0
+ .pt1
+ ..name=W#205
+ .pt2
+ ..name=W#206
+4
+ .name=W#205#3B2
+ .pt1
+ ..an=2
+ ..name=W#205
+ .pt2
+ ..an=2
+ ..name=W#208
+5
+ .name=W#205#3B1
+ .pt1
+ ..an=1
+ ..name=W#205
+ .pt2
+ ..name=W#204
+6
+ .name=W#207#3B1
+ .pt1
+ ..an=1
+ ..name=W#207
+ .pt2
+ ..an=1
+ ..name=W#206
+7
+ .name=W#208#3B1
+ .pt1
+ ..an=1
+ ..name=W#208
+ .pt2
+ ..an=2
+ ..name=W#207
+8
+ .name=W#203#3B2
+ .pt1
+ ..an=2
+ ..name=W#203
+ .pt2
+ ..name=W#202
+9
+ .name=_GX#201#3B1
+ .pt1
+ ..an=1
+ ..name=_GX#201
+ .pt2
+ ..name=W#201

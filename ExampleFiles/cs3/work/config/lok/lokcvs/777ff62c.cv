@@ -1,0 +1,326 @@
+[mfxcv]
+section
+ .name=Root - Info
+ .id=1
+ .item
+ ..type=7
+ ..acc=1
+ ..addr=1
+ ..name=Protokoll Version
+ ..values=1 0
+ .item
+ ..type=1
+ ..acc=1
+ ..addr=2
+ ..index=5
+ ..name=NMRA Hersteller ID
+ ..cvnr=8
+ ..values=131
+ .item
+ ..type=1
+ ..acc=1
+ ..addr=2
+ ..index=6
+ ..name=Artikelnummer
+ ..values=0 237 234
+ .item
+ ..type=9
+ ..acc=2
+ ..addr=3
+ ..name=Decodername
+ ..sync=2
+ ..values=66 82 32 49 56 32 52 55 56 0 32 83 32 51 47 54
+ .item
+ ..type=9
+ ..acc=2
+ ..addr=6
+ ..name=Benutzerdaten
+ ..values=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ .item
+ ..type=7
+ ..acc=1
+ ..addr=7
+ ..name=Decoder HerstellerID
+ ..values=0 0 0 131
+ .item
+ ..type=1
+ ..acc=1
+ ..addr=7
+ ..index=5
+ ..name=Decoder Teilenummer
+ ..values=0 4 204 201
+ .item
+ ..type=7
+ ..acc=1
+ ..addr=10
+ ..name=Bootloader Version
+ ..values=5 0 0 0
+ .item
+ ..type=7
+ ..acc=2
+ ..addr=11
+ ..name=Firmware Version
+ ..cvnr=- / 7
+ ..values=10 18 0 5
+ .item
+ ..type=1
+ ..acc=1
+ ..addr=11
+ ..index=5
+ ..name=Firmware Datum
+ ..values=1 52 20 104
+ .item
+ ..type=7
+ ..acc=1
+ ..addr=11
+ ..index=9
+ ..name=Firmware Info
+ ..values=238 0 0 2
+section
+ .name=Motor
+ .id=5
+ .item
+ ..type=1
+ ..acc=1
+ ..addr=77
+ ..name=Motorinformation
+ ..values=1
+ .item
+ ..type=3
+ ..acc=2
+ ..addr=78
+ ..name=Anfahrverzögerung
+ ..fmt=0:255
+ ..sync=8
+ ..cvnr=3
+ ..values=20
+ .item
+ ..type=3
+ ..acc=2
+ ..addr=78
+ ..index=2
+ ..name=Bremsverzögerung
+ ..fmt=0:255
+ ..sync=8
+ ..cvnr=4
+ ..values=15
+ .item
+ ..type=3
+ ..acc=2
+ ..addr=79
+ ..name=Mindestgeschwindigkeit
+ ..fmt=0:255
+ ..sync=1
+ ..cvnr=2
+ ..values=60
+ .item
+ ..type=3
+ ..acc=2
+ ..addr=79
+ ..index=2
+ ..name=Höchstgeschwindigkeit
+ ..fmt=0:255
+ ..sync=1
+ ..cvnr=5
+ ..values=180
+ .item
+ ..type=10
+ ..acc=2
+ ..addr=79
+ ..index=3
+ ..name=Geschwindigkeitstabelle
+ ..sync=1
+ ..cvnr=- / 67-94
+ ..values=9 19 28 38 47 57 66 76 85 94 104 113 123 132 142 151 160 170 179 189 198 208 217 227 236 245
+ .item
+ ..type=8
+ ..acc=2
+ ..addr=80
+ ..name=Fahrstufe / Tacho
+ ..fmt=0:600
+ ..sync=5
+ ..values=120 0
+ .item
+ ..type=3
+ ..acc=2
+ ..addr=81
+ ..name=Korrekturfaktor Vorw.
+ ..fmt=0:255
+ ..cvnr=- / 66
+ ..values=128
+ .item
+ ..type=3
+ ..acc=2
+ ..addr=81
+ ..index=2
+ ..name=Korrekturfaktor Rückw.
+ ..fmt=0:255
+ ..cvnr=- / 95
+ ..values=128
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=82
+ ..name=Bremsstrecke
+ ..fmt=::::3L/2L-»:3L/2L«-::
+ ..cvnr=27
+ ..values=48
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=83
+ ..name=Richtungsumkehr
+ ..fmt=Motor/Licht
+ ..cvnr=29.0
+ ..values=0
+section
+ .name=Formate
+ .id=7
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=126
+ ..name=AC Konfiguration
+ ..fmt=erlaubt
+ ..cvnr=29.2,50.0
+ ..values=1
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=127
+ ..name=AC aktive Funktionen F0 - F15
+ ..fmt=F0:F1:F2:F3:F4:F5:F6:F7:F8:F9:F10:F11:F12:F13:F14:F15
+ ..cvnr=- / 13,14
+ ..values=0 1
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=129
+ ..name=DC Konfiguration
+ ..fmt=erlaubt
+ ..cvnr=29.2,50.1
+ ..values=1
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=130
+ ..name=DC aktive Funktionen
+ ..fmt=F0:F1:F2:F3:F4:F5:F6:F7:F8:F9:F10:F11:F12:F13:F14:F15
+ ..cvnr=- / 13,14
+ ..values=0 1
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=132
+ ..name=MM2 Konfiguration
+ ..fmt=erlaubt:Halbstufen:2/4 Adr.:3/4 Adr.:Folge aus
+ ..cvnr=29,49 / 50.2
+ ..values=23
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=133
+ ..name=MM2 aktive Funktionen
+ ..fmt=F0:F1:F2:F3:F4:F5:F6:F7:F8:F9:F10:F11:F12:F13:F14:F15
+ ..values=0 0
+ .item
+ ..type=5
+ ..acc=2
+ ..addr=134
+ ..name=MM2 Adresse
+ ..cvnr=1 / -
+ ..values=193
+ .item
+ ..type=5
+ ..acc=2
+ ..addr=134
+ ..index=2
+ ..name=MM2 Folgeadresse
+ ..cvnr=75 / -
+ ..values=149
+ .item
+ ..type=5
+ ..acc=2
+ ..addr=134
+ ..index=3
+ ..name=MM2 3. Adresse
+ ..cvnr=17 / -
+ ..values=151
+ .item
+ ..type=5
+ ..acc=2
+ ..addr=134
+ ..index=4
+ ..name=MM2 4. Adresse
+ ..cvnr=18 / -
+ ..values=148
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=136
+ ..name=DCC Konfiguration
+ ..fmt=erlaubt:14/28:Power:::Ext Adr.::
+ ..cvnr=29,50.2 / 29
+ ..values=3
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=137
+ ..name=DCC Traktionsfunktionen
+ ..fmt=F1:F2:F3:F4:F5:F6:F7:F8:FL:F9:F10:F11:F12:F13:F14:F15
+ ..cvnr=- / 21,22
+ ..values=0 0
+ .item
+ ..type=1
+ ..acc=2
+ ..addr=138
+ ..name=DCC Adresse
+ ..cvnr=- / 1
+ ..values=29
+ .item
+ ..type=1
+ ..acc=2
+ ..addr=138
+ ..index=2
+ ..name=DCC Erweiterte Adresse 1
+ ..cvnr=- / 17
+ ..values=192
+ .item
+ ..type=1
+ ..acc=2
+ ..addr=138
+ ..index=3
+ ..name=DCC Erweiterte Adresse 2
+ ..cvnr=- / 18
+ ..values=128
+ .item
+ ..type=1
+ ..acc=2
+ ..addr=138
+ ..index=4
+ ..name=DCC Traktionsadresse
+ ..cvnr=- / 19
+ ..values=0
+section
+ .name=Sonstige
+ .id=9
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=145
+ ..name=Speicher A
+ ..fmt=Funktion:Geschw.:ABV:::::
+ ..cvnr=73 / 173
+ ..values=7
+ .item
+ ..type=4
+ ..acc=2
+ ..addr=146
+ ..name=Speicher B
+ ..fmt=Richtung:::::::
+ ..cvnr=74 / 174
+ ..values=1
+Mapping
+ .addrinput=16
+ .addrmapping=20
+ .addroutput=88
