@@ -43,6 +43,7 @@ namespace LocDbConverterConsole
             string exportPath;
             string userEntry;
             string[] userEntrySplit;
+            int number;
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
 
@@ -93,12 +94,12 @@ namespace LocDbConverterConsole
                 {
                     case "/help":
                         Console.WriteLine("The following commands are available");
-                        Console.WriteLine("\thelp                 \t- Help menu");
-                        Console.WriteLine("\tconvert <file>       \t- Converts a given locomotive config file from CS2/CS3-format to Z21-format");
-                        Console.WriteLine("\timport <file>/<path> \t- Imports a given locomotive config file in CS2/CS3-format to internal memory or checks path for these files");
-                        Console.WriteLine("\tlist                 \t- Lists all imported locomotive configurations");
-                        Console.WriteLine("\texport <No.> <path>  \t- Export a locomotive config file in Z21-format from internal memory by list entry (Defult path is applications folder)");
-                        Console.WriteLine("\texit                 \t- Exits the program");
+                        Console.WriteLine("\t/help                 \t- Help menu");
+                        Console.WriteLine("\t/convert <file>       \t- Converts a given locomotive config file from CS2/CS3-format to Z21-format");
+                        Console.WriteLine("\t/import <file>/<path> \t- Imports a given locomotive config file in CS2/CS3-format to internal memory");
+                        Console.WriteLine("\t/list                 \t- Lists all imported locomotive configurations");
+                        Console.WriteLine("\t/export <No.> <path>  \t- Export a locomotive config file in Z21-format from internal memory by list entry");
+                        Console.WriteLine("\t/exit                 \t- Exits the program");
                         break;
 
                     case "/convert":
@@ -123,34 +124,50 @@ namespace LocDbConverterConsole
                         break;
 
                     case "/list":
-                        for (int index = 0; index < LocomotiveList.SizeOf(); index++)
+                        number = LocomotiveList.SizeOf();
+                        if (number == 0)
                         {
-                            Console.WriteLine("\t[" + index + "] - " + LocomotiveList.Get(index).Name.ToString());
+                            Console.WriteLine("Internal list of locomotive configurations is empty.");
+                        }
+                        else
+                        {
+                            for (int index = 0; index < number; index++)
+                            {
+                                Console.WriteLine("\t[" + index + "] - " + LocomotiveList.Get(index).Name.ToString());
+                            }
                         }
                         break;
 
                     case "/export":
-                        int listIndex = Convert.ToInt32(userEntrySplit[1]);
-                        if (listIndex > -1 && listIndex < LocomotiveList.SizeOf())
+                        number = LocomotiveList.SizeOf();
+                        if (number == 0)
                         {
-                            if (userEntrySplit.Length > 1 && Directory.Exists(userEntrySplit[2]))
-                            {
-                                exportPath = userEntrySplit[2];
-                            }
-                            else
-                            {
-                                exportPath = AppContext.BaseDirectory;
-                            }
-                            returnValue = _z21.ExportConfiguration(listIndex, exportPath);
-                            if (returnValue > 0) Console.WriteLine("File exported to " + exportPath);
+                            Console.WriteLine("Internal list of locomotive configurations is empty.");
                         }
                         else
                         {
-                            Console.WriteLine("Error. Index not accepted.");
+                            int listIndex = Convert.ToInt32(userEntrySplit[1]);
+                            if (listIndex > -1 && listIndex < LocomotiveList.SizeOf())
+                            {
+                                if (userEntrySplit.Length > 1 && Directory.Exists(userEntrySplit[2]))
+                                {
+                                    exportPath = userEntrySplit[2];
+                                }
+                                else
+                                {
+                                    exportPath = AppContext.BaseDirectory;
+                                }
+                                returnValue = _z21.ExportConfiguration(listIndex, exportPath);
+                                if (returnValue > 0) Console.WriteLine("File exported to " + exportPath);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error. Index not accepted.");
+                            }
                         }
                         break;
 
-                    case "/quit":
+                    case "/exit":
                         quitProgram = true;
                         break;
 
