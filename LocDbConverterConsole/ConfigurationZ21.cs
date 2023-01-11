@@ -216,7 +216,7 @@ namespace LocDbConverterConsole
                 //while (!(Locomotives.Get(listIndex).functions[index].Type == FunctionTypeCS3.None)) //TODO: What if there is an empty function within between?
                 for (int index = 0; index < LocomotiveList.Get(listIndex).Functions.Length; index++)
                 {
-                    functionMapping = new FunctionTypeMapping() { Key = 0, Shortname = "Fkt " + index, Duration = 0, FunctionTypeIndexCS2 = 0, FunctionTypeZ21 = FunctionTypeZ21.None };
+                    //functionMapping = new FunctionTypeMapping() { Key = 0, Shortname = "Fkt " + index, Duration = 0, FunctionTypeIndexCS2 = 0, FunctionTypeZ21 = FunctionTypeZ21.None };
                     functionMapping = FunctionTypeMappingList.Find(x => x.Key == LocomotiveList.Get(listIndex).Functions[index]);
  
                     command = connection.CreateCommand();
