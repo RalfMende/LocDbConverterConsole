@@ -4,14 +4,14 @@
  * Copyright (c) 2023 Ralf Mende
  * 
  * 
- * This file is part of CS6021.
+ * This file is part of LocDbConverterConsole.
  * 
- * CS6021 is free software: you can redistribute it and/or modify it 
+ * LocDbConverterConsole is free software: you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the 
  * Free Software Foundation, either version 3 of the License, or (at your 
  * option) any later version.
  * 
- * CS6021 is distributed in the hope that it will be useful, but 
+ * LocDbConverterConsole is distributed in the hope that it will be useful, but 
  * WITHOUT ANY WARRANTY; without even the implied warranty of 
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  * See the GNU General Public License for more details.
@@ -29,6 +29,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO.Compression;
 
 namespace LocDbConverterConsole
 {
@@ -51,17 +52,23 @@ namespace LocDbConverterConsole
             if (fileOrDirectory.Substring(fileOrDirectory.Length - 4).Contains(".zip"))
             {
                 //  TODO: How to unzip https://docs.microsoft.com/en-us/dotnet/api/system.io.compression.ziparchive.getentry?view=netframework-4.5
-                //using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Update))
-                //  {
-                //      ZipArchiveEntry entry = archive.GetEntry("ExistingFile.txt");
-                //      using (StreamWriter writer = new StreamWriter(entry.Open()))
-                //      {
-                //          writer.BaseStream.Seek(0, SeekOrigin.End);
-                //          writer.WriteLine("append line to file");
-                //      }
-                //      entry.LastWriteTime = DateTimeOffset.UtcNow.LocalDateTime;
-                //  }
-                //  returnValue = 3;
+                //string zipPath = @"c:\example\result.zip";
+                //using (ZipArchive archive = ZipFile.Open(fileOrDirectory, ZipArchiveMode.Update))
+                //{
+                //    ZipArchiveEntry entry = archive
+                //         .Entries
+                //         .FirstOrDefault(e => e.Name == string.Format("{0}.cs2", archiveName));
+
+
+                //    ZipArchiveEntry entry = archive.GetEntry("ExistingFile.txt");
+                //    using (StreamWriter writer = new StreamWriter(entry.Open()))
+                //    {
+                //        writer.BaseStream.Seek(0, SeekOrigin.End);
+                //        writer.WriteLine("append line to file");
+                //    }
+                //    entry.LastWriteTime = DateTimeOffset.UtcNow.LocalDateTime;
+                //}
+                returnValue = 3;
             }
             else if (fileOrDirectory.Substring(fileOrDirectory.Length - 4).Contains(".cs2"))
             {

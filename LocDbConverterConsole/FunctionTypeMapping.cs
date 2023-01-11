@@ -32,7 +32,7 @@ namespace LocDbConverterConsole
     internal struct FunctionTypeMapping
     {
         public int Key { get; set; }
-        public string ShortName { get; set; }
+        public string Shortname { get; set; }
         public int Duration { get; set; } // duration   0: constantly, -1 momentary, else time    
         public int FunctionTypeIndexCS2 { get; set; }
         //public FunctionTypeCS3 FunctionTypeCS3 { get; set; }

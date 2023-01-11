@@ -64,8 +64,7 @@ namespace LocDbConverterConsole
             returnValue = ExportLocomotiveFile(templateFile, 0);
             
             string startPath = @"C:\Temp\z21\z21_template";
-            //string zipPath = @"C:\Temp\z21\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
-            string zipFileName = exportPath + LocomotiveList.Get(listIndex).Name + ".z21loco";
+            string zipFileName = exportPath + "\\\\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
             if(File.Exists(zipFileName))
             {
                 File.Delete(zipFileName); 
@@ -129,7 +128,7 @@ namespace LocDbConverterConsole
         /// </summary>
         /// <param name="file"></param>
         /// <param name="listIndex">Index of the locomotives list (0-based)</param>
-        /// <returns></returns>
+        /// <returns>0: Code not executed, Negative: Error, Positive: Ok</returns>
         /// <exception cref="Exception"></exception>
         private int ExportLocomotiveFile(string databaseFile, int listIndex)
         {
@@ -217,7 +216,7 @@ namespace LocDbConverterConsole
                 //while (!(Locomotives.Get(listIndex).functions[index].Type == FunctionTypeCS3.None)) //TODO: What if there is an empty function within between?
                 for (int index = 0; index < LocomotiveList.Get(listIndex).Functions.Length; index++)
                 {
-                    functionMapping = new FunctionTypeMapping() { Key = 0, ShortName = "Fkt " + index, Duration = 0, FunctionTypeIndexCS2 = 0, FunctionTypeZ21 = FunctionTypeZ21.none };
+                    functionMapping = new FunctionTypeMapping() { Key = 0, Shortname = "Fkt " + index, Duration = 0, FunctionTypeIndexCS2 = 0, FunctionTypeZ21 = FunctionTypeZ21.None };
                     functionMapping = FunctionTypeMappingList.Find(x => x.Key == LocomotiveList.Get(listIndex).Functions[index]);
  
                     command = connection.CreateCommand();
@@ -229,7 +228,7 @@ namespace LocDbConverterConsole
                     command.Parameters.AddWithValue("@vehicle_id", 1);
                     int buttonType = functionMapping.Duration;
                     command.Parameters.AddWithValue("@button_type", buttonType);
-                    string shortcut = functionMapping.ShortName;
+                    string shortcut = functionMapping.Shortname;
                     if (shortcut.Length > 10) shortcut = shortcut.Substring(0, 10);
                     command.Parameters.AddWithValue("@shortcut", shortcut);
                     command.Parameters.AddWithValue("@time", 0);
@@ -281,6 +280,8 @@ namespace LocDbConverterConsole
                 //    command.Parameters.AddWithValue("@to_database_version", 1);
                 //    command.ExecuteNonQuery();
                 //    command.Dispose();
+
+                returnValue = 1;
             }
             catch (Exception ex)
             {

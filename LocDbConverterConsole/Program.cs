@@ -21,13 +21,16 @@
  * <https://www.gnu.org/licenses/>.
 */
 
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace LocDbConverterConsole
 {
@@ -42,53 +45,40 @@ namespace LocDbConverterConsole
             string[] userEntrySplit;
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
-            
 
 
-            // Initialize mapping for functions -> TODO: Make this mapping editable via xml-file
+            // Initialize mapping for functions
             /*-------------------------------------------------------------------------------------------------------*/
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 0,    ShortName = "",             Duration = 0,   FunctionTypeIndexCS2 = (int)FunctionTypeCS2.None,           FunctionTypeZ21 = FunctionTypeZ21.none });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 1,    ShortName = "Lichtwechs",   Duration = 0,   FunctionTypeIndexCS2 = (int)FunctionTypeCS2.Lichtwechsel,   FunctionTypeZ21 = FunctionTypeZ21.light });
 
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 5,    ShortName = "Nachfassen",   Duration = 0,   FunctionTypeIndexCS2 = 5,   FunctionTypeZ21 = FunctionTypeZ21.rotate_right });
+            XmlTextReader reader = null;
+            try
+            {
+                // Load the reader with the data file and ignore all white space nodes.
+                reader = new XmlTextReader(@"\\Mac\\Home\\Documents\\GitHub\\LocDbConverterConsole\\LocDbConverterConsole\\Mapping.xml");
+                reader.WhitespaceHandling = WhitespaceHandling.None;
+                while (reader.Read())
+                {
+                    if (reader.Name == "mapping")
+                    {
+                        Enum.TryParse(reader.GetAttribute("FunctionTypeCS2"), out FunctionTypeCS2 _functionTypeCS2);
+                        Enum.TryParse(reader.GetAttribute("FunctionTypeZ21"), out FunctionTypeZ21 _functionTypeZ21);
 
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 7,    ShortName = "Rauch",        Duration = 0,   FunctionTypeIndexCS2 = 7,   FunctionTypeZ21 = FunctionTypeZ21.steam });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 8,    ShortName = "RangrGang",    Duration = 0,   FunctionTypeIndexCS2 = 8,   FunctionTypeZ21 = FunctionTypeZ21.hump_gear });
+                        FunctionTypeMappingList.Set(new FunctionTypeMapping() {
+                            Key = Convert.ToInt32(reader.GetAttribute("Id")), 
+                            Shortname = reader.GetAttribute("Shortname"), 
+                            Duration = Convert.ToInt32(reader.GetAttribute("Duration")),
+                            FunctionTypeIndexCS2 = (int)_functionTypeCS2, 
+                            FunctionTypeZ21 = _functionTypeZ21
+                        });
+                        
+                    }
+                }
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+            }
 
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 12,   ShortName = "PfeifeLng",    Duration = 0,   FunctionTypeIndexCS2 = 12,  FunctionTypeZ21 = FunctionTypeZ21.whistle_long });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 13,   ShortName = "Glocke",       Duration = 0,   FunctionTypeIndexCS2 = 13,  FunctionTypeZ21 = FunctionTypeZ21.bell });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 18,   ShortName = "ABV aus",      Duration = 0,   FunctionTypeIndexCS2 = 18,  FunctionTypeZ21 = FunctionTypeZ21.acc_delay });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 20,   ShortName = "BrmsQutAUS",   Duration = 0,   FunctionTypeIndexCS2 = 20,  FunctionTypeZ21 = FunctionTypeZ21.sound_brake });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 22,   ShortName = "Lichtmasch",   Duration = 0,   FunctionTypeIndexCS2 = 22,  FunctionTypeZ21 = FunctionTypeZ21.alternator });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 23,   ShortName = "Geräusch",     Duration = 0,   FunctionTypeIndexCS2 = 23,  FunctionTypeZ21 = FunctionTypeZ21.sound2 });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 26,   ShortName = "KohleShauf",   Duration = 0,   FunctionTypeIndexCS2 = 26,  FunctionTypeZ21 = FunctionTypeZ21.scoop_coal });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 36,   ShortName = "Kipprost",     Duration = 0,   FunctionTypeIndexCS2 = 36,  FunctionTypeZ21 = FunctionTypeZ21.shaking_grates });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 37,   ShortName = "SchienStos",   Duration = 0,   FunctionTypeIndexCS2 = 37,  FunctionTypeZ21 = FunctionTypeZ21.rail_kick });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 43,   ShortName = "Kuppeln",      Duration = 0,   FunctionTypeIndexCS2 = 43,  FunctionTypeZ21 = FunctionTypeZ21.couple });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 48,   ShortName = "FührStBel",    Duration = 0,   FunctionTypeIndexCS2 = 48,  FunctionTypeZ21 = FunctionTypeZ21.cabin_light });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 49,   ShortName = "Injektor",     Duration = 0,   FunctionTypeIndexCS2 = 49,  FunctionTypeZ21 = FunctionTypeZ21.injector });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 106,  ShortName = "LuftPumpe",    Duration = 0,   FunctionTypeIndexCS2 = 106, FunctionTypeZ21 = FunctionTypeZ21.air_pump });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 111,  ShortName = "WassPumpe",    Duration = 0,   FunctionTypeIndexCS2 = 111, FunctionTypeZ21 = FunctionTypeZ21.feed_pump });
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 112,  ShortName = "BrmsQutAN",    Duration = 0,   FunctionTypeIndexCS2 = 112, FunctionTypeZ21 = FunctionTypeZ21.sound_brake });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 118,  ShortName = "RangrLicht",   Duration = 0,   FunctionTypeIndexCS2 = 118, FunctionTypeZ21 = FunctionTypeZ21.all_round_light });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 140,  ShortName = "RangrPfiff",   Duration = -1,  FunctionTypeIndexCS2 = 140, FunctionTypeZ21 = FunctionTypeZ21.sound5 });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 219,  ShortName = "Dampfablss",   Duration = 0,   FunctionTypeIndexCS2 = 219, FunctionTypeZ21 = FunctionTypeZ21.dump_steam });
-
-            FunctionTypeMappingList.Set(new FunctionTypeMapping() { Key = 236,  ShortName = "Sanden",       Duration = 0,   FunctionTypeIndexCS2 = 236, FunctionTypeZ21 = FunctionTypeZ21.sanden });
-            
-            
 
             // Run the program            
             /*-------------------------------------------------------------------------------------------------------*/
@@ -112,6 +102,7 @@ namespace LocDbConverterConsole
                         break;
 
                     case "/convert":
+                        //if (userEntrySplit[1].Contains('"')) { userEntrySplit[1].Replace("\"", ""); }
                         if (File.Exists(userEntrySplit[1]) && userEntrySplit[1].Substring(userEntrySplit[1].Length - 4).Contains(".cs2"))
                         {
                             exportPath = Path.GetDirectoryName(userEntrySplit[1]);

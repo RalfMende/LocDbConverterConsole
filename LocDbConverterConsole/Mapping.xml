@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mappings>
+    <mapping Id="0" Shortname=""            Duration="0" FunctionTypeCS2="None"             FunctionTypeZ21="None" />
+    <mapping Id="1" Shortname="Lichtwchsl"  Duration="0" FunctionTypeCS2="Lichtwechsel"     FunctionTypeZ21="Light" />
+    <mapping Id="2" Shortname="Rauch"       Duration="0" FunctionTypeCS2="Rauchgenerator"   FunctionTypeZ21="Steam" />
+    <mapping Id="3" Shortname="PfeifeLng"   Duration="0" FunctionTypeCS2="Pfeife"           FunctionTypeZ21="Whistle_long" />
+    <mapping Id="4" Shortname="RangrGang"   Duration="0" FunctionTypeCS2="Rangiergang_ein" FunctionTypeZ21="Hump_gear" />
+    <mapping Id="5" Shortname="Geraeusch"   Duration="0" FunctionTypeCS2="Betriebsgeraeusch" FunctionTypeZ21="Sound2" />
+</mappings>
