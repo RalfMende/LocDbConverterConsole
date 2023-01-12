@@ -36,7 +36,7 @@ namespace LocDbConverterConsole
     {
         None,
 
-        // Light
+        /*--- Light ---*/
         Lichtwechsel = 1,
         Licht_an_Fuehrerstand_hinten_aus = 41,
         Licht_an_Fuehrerstand_vorne_aus = 42,
@@ -72,13 +72,13 @@ namespace LocDbConverterConsole
         Licht_Gepaeck = 224,
         Licht_Bar = 225,
 
-        // Sound 1
+        /*--- Sound 1 ---*/
         Betriebsgeraeusch = 5,
         Bremsenquietschen_aus = 20,
         Pantograph_Auf_Abbuegelgeraeusch = 101,
         Dampfstoss = 201,
         Kupplung_An_Abkuppelgeraeusch = 43,
-        Schienestoss = 37,
+        Schienenstoss = 37,
         Schaffnerpfiff = 11,
         Schaltstufen = 21,
         Zylinder_ausblasen_Dampf_ablassen = 91,
@@ -174,8 +174,8 @@ namespace LocDbConverterConsole
         Sound_Zahnrad = 242,
         Klackern_Tacho = 243,
         Sound_Wischer = 244,
-        
-        // Sound 2
+
+        /*--- Sound 2 ---*/
         Tanken = 226,
         Wasser = 227,
         Diesel = 228,
@@ -198,7 +198,7 @@ namespace LocDbConverterConsole
         Glocke_Bahnuebergang = 272,
         Rauchkammer = 279,
 
-        // Mechanics
+        /*--- Mechanics ---*/
         Rangiergang_ein = 8,
         Anfahr_Bremsverzoegerung_aus = 18,
         Anfahr_Bremsverzoegerung_ein = 102,
@@ -222,7 +222,7 @@ namespace LocDbConverterConsole
         Zahnrad_Antrieb = 245,
         Wischer = 246,
 
-        // Special Crane
+        /*--- Special Crane ---*/
         Kran = 93,
         KranBuehne_verfahren = 14,
         KranBuehne_neigen = 17,
@@ -238,8 +238,8 @@ namespace LocDbConverterConsole
         KranBuehne_rechts = 97,
         Kran_Ein_Umschalten_Fahrbetrieb_Funktionsbetrieb = 254,
         Kran_Aus_Grundstellung_anfahren = 255,
-        
-        // Sound Control
+
+        /*--- Sound Control ---*/
         Shift = 88,
         Mute_Fade = 109,
         Play = 213,
@@ -252,7 +252,7 @@ namespace LocDbConverterConsole
         Laut = 217,
         Leise = 218,
 
-        // Function Overall
+        /*--- Function Overall ---*/
         Funktion_0 = 50,
         Funktion_1 = 51,
         Funktion_2 = 52,
