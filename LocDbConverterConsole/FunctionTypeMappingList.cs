@@ -48,6 +48,11 @@ namespace LocDbConverterConsole
             return _list[index];
         }
 
+        public static int SizeOf()
+        {
+            return _list.Count();
+        }
+
         public static FunctionTypeMapping Find(Predicate<FunctionTypeMapping> matchCasing)
         {
             return _list.Find(matchCasing);

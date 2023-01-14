@@ -46,7 +46,7 @@ namespace LocDbConverterConsole
             int number;
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
-
+            
 
             // Initialize mapping for functions
             /*-------------------------------------------------------------------------------------------------------*/
@@ -61,14 +61,15 @@ namespace LocDbConverterConsole
                 {
                     if (reader.Name == "mapping")
                     {
-                        Enum.TryParse(reader.GetAttribute("FunctionTypeCS2"), out FunctionTypeCS2 _functionTypeCS2);
+                        //Enum.TryParse(reader.GetAttribute("FunctionTypeCS2"), out FunctionTypeCS2 _functionTypeCS2); -> Working with the CS2-Index from mapping.xml is more reliable
                         Enum.TryParse(reader.GetAttribute("FunctionTypeZ21"), out FunctionTypeZ21 _functionTypeZ21);
 
                         FunctionTypeMappingList.Set(new FunctionTypeMapping() {
                             Key = Convert.ToInt32(reader.GetAttribute("Id")), 
                             Shortname = reader.GetAttribute("Shortname"), 
                             Duration = Convert.ToInt32(reader.GetAttribute("Duration")),
-                            FunctionTypeIndexCS2 = (int)_functionTypeCS2, 
+                            //FunctionTypeIndexCS2 = (int)_functionTypeCS2, -> Working with the CS2-Index from mapping.xml is more reliable
+                            FunctionTypeIndexCS2 = Convert.ToInt32(reader.GetAttribute("FunctionTypeIndexCS2")),
                             FunctionTypeZ21 = _functionTypeZ21
                         });
                         
@@ -103,7 +104,10 @@ namespace LocDbConverterConsole
                         break;
 
                     case "/convert":
-                        //if (userEntrySplit[1].Contains('"')) { userEntrySplit[1].Replace("\"", ""); }
+                        //if (userEntrySplit[1].Contains('"'))
+                        //{
+                        //    userEntrySplit[1].Replace(((char)28).ToString(), "");
+                        //}
                         if (File.Exists(userEntrySplit[1]) && userEntrySplit[1].Substring(userEntrySplit[1].Length - 4).Contains(".cs2"))
                         {
                             exportPath = Path.GetDirectoryName(userEntrySplit[1]);
@@ -134,6 +138,28 @@ namespace LocDbConverterConsole
                             for (int index = 0; index < number; index++)
                             {
                                 Console.WriteLine("\t[" + index + "] - " + LocomotiveList.Get(index).Name.ToString());
+                            }
+                        }
+                        break;
+
+                    case "/list2":
+                        number = FunctionTypeMappingList.SizeOf();
+                        if (number == 0)
+                        {
+                            Console.WriteLine("Internal list of FunctionMappings configurations is empty.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\tKEY \tSHORTNAME \tDURATION \tFUNDCTIONTYPEINDEXCS2 \tFUNDCTIONTYPEZ21");
+                            for (int index = 0; index < number; index++)
+                            {
+                                Console.WriteLine(
+                                    "\t" + FunctionTypeMappingList.Get(index).Key.ToString() 
+                                    + "\t" + FunctionTypeMappingList.Get(index).Shortname.ToString()
+                                    + "\t" + FunctionTypeMappingList.Get(index).Duration.ToString()
+                                    + "\t" + FunctionTypeMappingList.Get(index).FunctionTypeIndexCS2.ToString()
+                                    + "\t" + FunctionTypeMappingList.Get(index).FunctionTypeZ21.ToString()
+                                    );
                             }
                         }
                         break;

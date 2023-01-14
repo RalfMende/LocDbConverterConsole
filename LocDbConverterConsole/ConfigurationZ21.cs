@@ -34,20 +34,6 @@ namespace LocDbConverterConsole
     public class ConfigurationZ21
     {
         /// <summary>
-        /// Imports a z21 description file to locomotive list entry
-        /// </summary>
-        /// <param name="fileOrDirectory">Path to get locomotive description files from</param>
-        /// <returns>0: Code not executed, Negative: Error, Positive: Number of config files found</returns>
-        public int ImportConfiguration(string fileOrDirectory)
-        {
-            int returnValue = 0;
-
-            //TODO
-
-            return returnValue;
-        }
-
-        /// <summary>
         /// Exports a z21 description file with the given locomotive list entry
         /// </summary>
         /// <param name="listIndex"></param>
@@ -56,14 +42,14 @@ namespace LocDbConverterConsole
         public int ExportConfiguration(int listIndex, string exportPath)
         {
             int returnValue = 0;
-            string templateFile = @"C:\Temp\z21\z21_template\export\New Folder\Loco.sqlite";
+            string templateFile = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template\export\New Folder\Loco.sqlite";
 
             //Guid myuuid = Guid.NewGuid();
             //string myuuidAsString = myuuid.ToString();
             //_z21.ExportLocomotiveFile(@"\\Mac\Home\Downloads\LokDbConverter_Data\z21\LocomotiveOnly\export\" + myuuidAsString + "\\Loco.sqlite", 0);
             returnValue = ExportLocomotiveFile(templateFile, 0);
             
-            string startPath = @"C:\Temp\z21\z21_template";
+            string startPath = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template";
             string zipFileName = exportPath + "\\\\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
             if(File.Exists(zipFileName))
             {
@@ -73,55 +59,6 @@ namespace LocDbConverterConsole
 
             return returnValue;
         }
-
-        /// <summary>
-        /// Imports a *.sqlite locomotive desciption file from Roco Z21 and parses it to internal list
-        /// </summary>
-        /// <param name="file">*.sqlite locomotive desciption file</param>
-        /// <returns>0: Code not executed, Negative: Error, Positive: Index of list where element was added</returns>
-        /*private int ImportLocomotiveFile(string file)
-        {
-            int returnValue = 0;
-            int tmpNumber = 0;  
-            Locomotive locomotive = new Locomotive();
-
-            var connection = new SqliteConnection("Data Source=" + file);
-            connection.Open();
-            var command = connection.CreateCommand();
-
-            // ---------- read table vehicles ----------
-            command.CommandText = @"SELECT * FROM vehicles";
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    locomotive.Address = Convert.ToInt32(reader["address"]);
-                    locomotive.Name = reader["name"].ToString();
-                    locomotive.SpeedometerMax = Convert.ToInt32(reader["max_speed"]);
-                    // ... = reader["decoder_type"]
-                }
-            }
-
-            // ---------- read table functions ----------
-            command.CommandText = @"SELECT * FROM functions";
-            using (var reader = command.ExecuteReader())
-            {
-                // Read the first result set
-                while (reader.Read())
-                {
-                    tmpNumber = Convert.ToInt32(reader["function"]);
-                    locomotive.functions[tmpNumber].Number = tmpNumber;
-
-
-
-
-                }
-                //reader.NextResult();
-                //while (reader.Read()) ...
-            }
-            returnValue = LocomotiveList.Set(locomotive);
-            return returnValue;
-        }*/
 
         /// <summary>
         /// Exports a *.sqlite locomotive desciption file for Rodo Z21 from internal list
@@ -166,19 +103,19 @@ namespace LocDbConverterConsole
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'dc_functions' ('id' INTEGER PRIMARY KEY, 'vehicle_id' INTEGER,'position' INTEGER,'time' TEXT,'image_name' TEXT, 'function' INTEGER, 'cab_function_description' TEXT, 'drivers_cab' TEXT, 'shortcut' TEXT NOT NULL Default '', button_type INT NOT NULL Default 0, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY  NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0, PRIMARY KEY('id'))";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'layout_data' ('id' INTEGER PRIMARY KEY  NOT NULL, 'name' TEXT, control_station_type TEXT DEFAULT 'free', control_station_theme TEXT DEFAULT 'free')";
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'layout_data' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, control_station_type TEXT DEFAULT 'free', control_station_theme TEXT DEFAULT 'free')";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'paired_z21_pro_links' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, 'mac' TEXT, 'last_seen_date' DATE, 'ip' TEXT, 'last_connected_device' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'traction_list' ('id' INTEGER PRIMARY KEY  NOT NULL, 'loco_id' INTEGER, 'regulation_step' INTEGER, 'time' REAL)";
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'traction_list' ('id' INTEGER PRIMARY KEY NOT NULL, 'loco_id' INTEGER, 'regulation_step' INTEGER, 'time' REAL)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'train_list' ('id' INTEGER PRIMARY KEY  NOT NULL, 'train_id' INTEGER, 'vehicle_id' INTEGER, 'position' INTEGER)";
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'train_list' ('id' INTEGER PRIMARY KEY NOT NULL, 'train_id' INTEGER, 'vehicle_id' INTEGER, 'position' INTEGER)";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'update_history' ('id' INTEGER PRIMARY KEY, 'os' TEXT, 'update_date' TEXT, 'build_version' TEXT, 'build_number' INTEGER, 'to_database_version' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'vehicles' ('id' INTEGER PRIMARY KEY  NOT NULL, 'name' TEXT, 'image_name' TEXT, 'type' INTEGER, 'max_speed' INTEGER,'address' INTEGER, 'active' INTEGER, 'position' INTEGER, 'drivers_cab' TEXT, 'full_name' TEXT, 'speed_display' INTEGER, 'railway' TEXT, 'buffer_lenght' TEXT, 'model_buffer_lenght' TEXT, 'service_weight' TEXT, 'model_weight' TEXT, 'rmin' TEXT, 'article_number' TEXT, 'decoder_type' TEXT, 'owner' TEXT, 'build_year' TEXT, 'owning_since' TEXT, 'traction_direction' INTEGER, 'description' TEXT, 'dummy' INTEGER, 'ip' TEXT, 'video' INTEGER, 'video_x' INTEGER, 'video_y' INTEGER, 'video_width' INTEGER, 'panorama_x' INTEGER, 'panorama_y' INTEGER, 'panorama_width' INTEGER, 'panoramaImage' TEXT, 'direct_steering' INTEGER, crane INTEGER DEFAULT 0)";
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'vehicles' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, 'image_name' TEXT, 'type' INTEGER, 'max_speed' INTEGER,'address' INTEGER, 'active' INTEGER, 'position' INTEGER, 'drivers_cab' TEXT, 'full_name' TEXT, 'speed_display' INTEGER, 'railway' TEXT, 'buffer_lenght' TEXT, 'model_buffer_lenght' TEXT, 'service_weight' TEXT, 'model_weight' TEXT, 'rmin' TEXT, 'article_number' TEXT, 'decoder_type' TEXT, 'owner' TEXT, 'build_year' TEXT, 'owning_since' TEXT, 'traction_direction' INTEGER, 'description' TEXT, 'dummy' INTEGER, 'ip' TEXT, 'video' INTEGER, 'video_x' INTEGER, 'video_y' INTEGER, 'video_width' INTEGER, 'panorama_x' INTEGER, 'panorama_y' INTEGER, 'panorama_width' INTEGER, 'panoramaImage' TEXT, 'direct_steering' INTEGER, crane INTEGER DEFAULT 0)";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'vehicles_to_categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER NOT NULL, 'category_id' INTEGER NOT NULL)";
                 command.ExecuteNonQuery();
@@ -194,13 +131,20 @@ namespace LocDbConverterConsole
 
                 command = connection.CreateCommand();
                 command.CommandText =
-                    "INSERT INTO vehicles ([id], [name], [max_speed], [address], [active]) " +
-                    "VALUES(@id, @name, @max_speed, @address, @active); ";
+                    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [direct_steering], [crane]) " +
+                    "VALUES(@id, @name, @type, @max_speed, @address, @active, @position, @speed_display, @traction_direction, @dummy, @direct_steering, @crane); ";
                 command.Parameters.AddWithValue("@id", 1);
                 command.Parameters.AddWithValue("@name", LocomotiveList.Get(listIndex).Name);
+                command.Parameters.AddWithValue("@type", 0);
                 command.Parameters.AddWithValue("@max_speed", LocomotiveList.Get(listIndex).SpeedometerMax);
                 command.Parameters.AddWithValue("@address", LocomotiveList.Get(listIndex).Address);
                 command.Parameters.AddWithValue("@active", 1);
+                command.Parameters.AddWithValue("@position", 1);
+                command.Parameters.AddWithValue("@speed_display", 0);
+                command.Parameters.AddWithValue("@traction_direction", 0);
+                command.Parameters.AddWithValue("@dummy", 0);
+                command.Parameters.AddWithValue("@direct_steering", 0);
+                command.Parameters.AddWithValue("@crane", 0);
                 command.ExecuteNonQuery();
                 command.Dispose();
 
@@ -216,7 +160,6 @@ namespace LocDbConverterConsole
                 //while (!(Locomotives.Get(listIndex).functions[index].Type == FunctionTypeCS3.None)) //TODO: What if there is an empty function within between?
                 for (int index = 0; index < LocomotiveList.Get(listIndex).Functions.Length; index++)
                 {
-                    //functionMapping = new FunctionTypeMapping() { Key = 0, Shortname = "Fkt " + index, Duration = 0, FunctionTypeIndexCS2 = 0, FunctionTypeZ21 = FunctionTypeZ21.None };
                     functionMapping = FunctionTypeMappingList.Find(x => x.Key == LocomotiveList.Get(listIndex).Functions[index]);
  
                     command = connection.CreateCommand();

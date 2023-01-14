@@ -201,11 +201,12 @@ namespace LocDbConverterConsole
                                 //case ".vorname": name before the last change -> not needed
 
                                 case ".dectyp": //accorting to documentation this should be .typ, but all demo-files show different sub key
-                                    if (value == "mm2_prg") locomotive.Decodertype = DecoderType.DCC;
-                                    else if (value == "mm2_dil8") locomotive.Decodertype = DecoderType.DCC;
+                                    if (value == "mm2_prg") locomotive.Decodertype = DecoderType.MM;
+                                    else if (value == "mm2_dil8") locomotive.Decodertype = DecoderType.MM;
                                     else if (value == "dcc") locomotive.Decodertype = DecoderType.DCC;
-                                    else if (value == "mfx") locomotive.Decodertype = DecoderType.DCC;
-                                    else if (value == "sx1") locomotive.Decodertype = DecoderType.DCC;
+                                    else if (value == "mfx") locomotive.Decodertype = DecoderType.MFX;
+                                    else if (value == "sx1") locomotive.Decodertype = DecoderType.MFX;
+                                    else locomotive.Decodertype = DecoderType.DCC;
                                     break;
 
                                 case ".adresse":
@@ -284,22 +285,6 @@ namespace LocDbConverterConsole
             numberOfFilesImported++;
             return returnValue;
         }
-
-        /// <summary>
-        /// Exports an *.cs2 locomotive desciption file for Maerklin CS3/CS2 from internal list
-        /// </summary>
-        /// <param name="listIndex">Index of the locomotives list (0-based)</param>
-        /// <returns></returns>
-        public int ExportLocomotiveFile(int listIndex)
-        {
-            int returnValue = 0;
-
-            //TODO
-
-            return returnValue;
-        }
-
-
 
     }
 }

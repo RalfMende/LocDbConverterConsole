@@ -1,235 +1,235 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <mappings>
     <mapping Id="0" Shortname="" Duration="0" FunctionTypeCS2="None" FunctionTypeZ21="none" />
-    <mapping Id="1" Shortname="Lchtwchsl" Duration="0" FunctionTypeCS2="Lichtwechsel" FunctionTypeZ21="main_beam2" />
-    <mapping Id="2" Shortname="Innnblchtn" Duration="0" FunctionTypeCS2="Innenbeleuchtung" FunctionTypeZ21="interior_light" />
-    <mapping Id="3" Shortname="Assnblchtn" Duration="0" FunctionTypeCS2="Aussenbeleuchtung_Schlusslicht" FunctionTypeZ21="back_light" />
-    <mapping Id="4" Shortname="Fernlicht" Duration="0" FunctionTypeCS2="Fernlicht" FunctionTypeZ21="main_beam" />
-    <mapping Id="5" Shortname="Btrbsgrsch" Duration="0" FunctionTypeCS2="Betriebsgeraeusch" FunctionTypeZ21="sound2" />
-    <mapping Id="6" Shortname="Pantograph" Duration="0" FunctionTypeCS2="Pantograph" FunctionTypeZ21="backward_take_power" />
-    <mapping Id="7" Shortname="Rchgnrtr" Duration="0" FunctionTypeCS2="Rauchgenerator" FunctionTypeZ21="steam" />
-    <mapping Id="8" Shortname="Rngrgng_n" Duration="0" FunctionTypeCS2="Rangiergang_ein" FunctionTypeZ21="hump_gear" />
-    <mapping Id="9" Shortname="Tlxkpplng" Duration="0" FunctionTypeCS2="Telexkupplung" FunctionTypeZ21="decouple" />
-    <mapping Id="10" Shortname="Hrn_Typhn" Duration="0" FunctionTypeCS2="Horn_Typhon" FunctionTypeZ21="bugle" />
-    <mapping Id="11" Shortname="Schffnrpff" Duration="0" FunctionTypeCS2="Schaffnerpfiff" FunctionTypeZ21="sound5" />
-    <mapping Id="12" Shortname="Pfeife" Duration="0" FunctionTypeCS2="Pfeife" FunctionTypeZ21="sound4" />
-    <mapping Id="13" Shortname="Glocke" Duration="0" FunctionTypeCS2="Glocke" FunctionTypeZ21="bell" />
-    <mapping Id="14" Shortname="KrnBhn_vrf" Duration="0" FunctionTypeCS2="KranBuehne_verfahren" FunctionTypeZ21="" />
-    <mapping Id="15" Shortname="KrnBhn_hbn" Duration="0" FunctionTypeCS2="KranBuehne_heben_senken" FunctionTypeZ21="" />
-    <mapping Id="16" Shortname="KrnBhn_drh" Duration="0" FunctionTypeCS2="KranBuehne_drehen_links" FunctionTypeZ21="" />
-    <mapping Id="17" Shortname="KrnBhn_ngn" Duration="0" FunctionTypeCS2="KranBuehne_neigen" FunctionTypeZ21="" />
-    <mapping Id="18" Shortname="Anfhr_Brms" Duration="0" FunctionTypeCS2="Anfahr_Bremsverzoegerung_aus" FunctionTypeZ21="acc_delay" />
-    <mapping Id="19" Shortname="Pumpe" Duration="0" FunctionTypeCS2="Pumpe" FunctionTypeZ21="feed_pump" />
-    <mapping Id="20" Shortname="Brmsnqtsch" Duration="0" FunctionTypeCS2="Bremsenquietschen_aus" FunctionTypeZ21="sound_brake" />
-    <mapping Id="21" Shortname="Schltstfn" Duration="0" FunctionTypeCS2="Schaltstufen" FunctionTypeZ21="diesel_regulation_step_up" />
-    <mapping Id="22" Shortname="Generator" Duration="0" FunctionTypeCS2="Generator" FunctionTypeZ21="generator" />
-    <mapping Id="23" Shortname="Fhrgrsch" Duration="0" FunctionTypeCS2="Fahrgeraeusch" FunctionTypeZ21="sound2" />
-    <mapping Id="24" Shortname="Mschn_vrsc" Duration="0" FunctionTypeCS2="Maschine_vorschmieren" FunctionTypeZ21="" />
-    <mapping Id="25" Shortname="Bhnhfsnsg" Duration="0" FunctionTypeCS2="Bahnhofsansage" FunctionTypeZ21="sound1" />
-    <mapping Id="26" Shortname="Khln_schfl" Duration="0" FunctionTypeCS2="Kohlen_schaufeln" FunctionTypeZ21="scoop_coal" />
-    <mapping Id="27" Shortname="Trn_schlss" Duration="0" FunctionTypeCS2="Tueren_schliessen" FunctionTypeZ21="" />
-    <mapping Id="28" Shortname="Trn_schlss" Duration="0" FunctionTypeCS2="Tueren_schliessen_Geraeusch" FunctionTypeZ21="door_close" />
-    <mapping Id="29" Shortname="Lftrgrsch" Duration="0" FunctionTypeCS2="Lueftergeraeusch" FunctionTypeZ21="sound4" />
-    <mapping Id="30" Shortname="Luefter" Duration="0" FunctionTypeCS2="Luefter" FunctionTypeZ21="" />
-    <mapping Id="31" Shortname="Frbchsnblc" Duration="0" FunctionTypeCS2="Feuerbuechsenbeleuchtung" FunctionTypeZ21="" />
-    <mapping Id="32" Shortname="Dcknblchtn" Duration="0" FunctionTypeCS2="Deckenbeleuchtung" FunctionTypeZ21="interior_light" />
-    <mapping Id="33" Shortname="Tschblchtn" Duration="0" FunctionTypeCS2="Tischbeleuchtung_EP4" FunctionTypeZ21="tish_lamp" />
-    <mapping Id="34" Shortname="Tschblchtn" Duration="0" FunctionTypeCS2="Tischbeleuchtung_EP3" FunctionTypeZ21="tish_lamp" />
-    <mapping Id="35" Shortname="Tschblchtn" Duration="0" FunctionTypeCS2="Tischbeleuchtung_EP2" FunctionTypeZ21="tish_lamp" />
-    <mapping Id="36" Shortname="Schttlrst" Duration="0" FunctionTypeCS2="Schuettelrost" FunctionTypeZ21="shaking_grates" />
-    <mapping Id="37" Shortname="Schnnstss" Duration="0" FunctionTypeCS2="Schienenstoss" FunctionTypeZ21="rail_kick" />
-    <mapping Id="38" Shortname="Nmmrnschld" Duration="0" FunctionTypeCS2="Nummernschildbeleuchtung" FunctionTypeZ21="licence_plate_light" />
-    <mapping Id="39" Shortname="Hntrgrndms" Duration="0" FunctionTypeCS2="Hintergrundmusik" FunctionTypeZ21="clef" />
-    <mapping Id="40" Shortname="Zglfschldb" Duration="0" FunctionTypeCS2="Zuglaufschildbeleuchtung" FunctionTypeZ21="destination_plate_light" />
-    <mapping Id="41" Shortname="Lcht_n_Fhr" Duration="0" FunctionTypeCS2="Licht_an_Fuehrerstand_hinten_aus" FunctionTypeZ21="cockpit_light_right" />
-    <mapping Id="42" Shortname="Lcht_n_Fhr" Duration="0" FunctionTypeCS2="Licht_an_Fuehrerstand_vorne_aus" FunctionTypeZ21="cockpit_light_left" />
-    <mapping Id="43" Shortname="Kpplng_An_" Duration="0" FunctionTypeCS2="Kupplung_An_Abkuppelgeraeusch" FunctionTypeZ21="decouple" />
-    <mapping Id="44" Shortname="Pffrstss" Duration="0" FunctionTypeCS2="Pufferstoss" FunctionTypeZ21="puffer_kick" />
-    <mapping Id="45" Shortname="Sprchsgb" Duration="0" FunctionTypeCS2="Sprachausgabe" FunctionTypeZ21="sound2" />
-    <mapping Id="46" Shortname="Krn_Dpplhk" Duration="0" FunctionTypeCS2="Kran_Doppelhaken" FunctionTypeZ21="" />
-    <mapping Id="47" Shortname="Warnlicht" Duration="0" FunctionTypeCS2="Warnlicht" FunctionTypeZ21="all_round_light" />
-    <mapping Id="48" Shortname="Fhrrstndsb" Duration="0" FunctionTypeCS2="Fuehrerstandsbeleuchtung" FunctionTypeZ21="cockpit_light_left" />
-    <mapping Id="49" Shortname="Injektor" Duration="0" FunctionTypeCS2="Injektor" FunctionTypeZ21="injector" />
-    <mapping Id="50" Shortname="Funktion_0" Duration="0" FunctionTypeCS2="Funktion_0" FunctionTypeZ21="neutral" />
-    <mapping Id="51" Shortname="Funktion_1" Duration="0" FunctionTypeCS2="Funktion_1" FunctionTypeZ21="neutral" />
-    <mapping Id="52" Shortname="Funktion_2" Duration="0" FunctionTypeCS2="Funktion_2" FunctionTypeZ21="neutral" />
-    <mapping Id="53" Shortname="Funktion_3" Duration="0" FunctionTypeCS2="Funktion_3" FunctionTypeZ21="neutral" />
-    <mapping Id="54" Shortname="Funktion_4" Duration="0" FunctionTypeCS2="Funktion_4" FunctionTypeZ21="neutral" />
-    <mapping Id="55" Shortname="Funktion_5" Duration="0" FunctionTypeCS2="Funktion_5" FunctionTypeZ21="neutral" />
-    <mapping Id="56" Shortname="Funktion_6" Duration="0" FunctionTypeCS2="Funktion_6" FunctionTypeZ21="neutral" />
-    <mapping Id="57" Shortname="Funktion_7" Duration="0" FunctionTypeCS2="Funktion_7" FunctionTypeZ21="neutral" />
-    <mapping Id="58" Shortname="Funktion_8" Duration="0" FunctionTypeCS2="Funktion_8" FunctionTypeZ21="neutral" />
-    <mapping Id="59" Shortname="Funktion_9" Duration="0" FunctionTypeCS2="Funktion_9" FunctionTypeZ21="neutral" />
-    <mapping Id="60" Shortname="Fnktn_10" Duration="0" FunctionTypeCS2="Funktion_10" FunctionTypeZ21="neutral" />
-    <mapping Id="61" Shortname="Fnktn_11" Duration="0" FunctionTypeCS2="Funktion_11" FunctionTypeZ21="neutral" />
-    <mapping Id="62" Shortname="Fnktn_12" Duration="0" FunctionTypeCS2="Funktion_12" FunctionTypeZ21="neutral" />
-    <mapping Id="63" Shortname="Fnktn_13" Duration="0" FunctionTypeCS2="Funktion_13" FunctionTypeZ21="neutral" />
-    <mapping Id="64" Shortname="Fnktn_14" Duration="0" FunctionTypeCS2="Funktion_14" FunctionTypeZ21="neutral" />
-    <mapping Id="65" Shortname="Fnktn_15" Duration="0" FunctionTypeCS2="Funktion_15" FunctionTypeZ21="neutral" />
-    <mapping Id="66" Shortname="Fnktn_16" Duration="0" FunctionTypeCS2="Funktion_16" FunctionTypeZ21="neutral" />
-    <mapping Id="67" Shortname="Fnktn_17" Duration="0" FunctionTypeCS2="Funktion_17" FunctionTypeZ21="neutral" />
-    <mapping Id="68" Shortname="Fnktn_18" Duration="0" FunctionTypeCS2="Funktion_18" FunctionTypeZ21="neutral" />
-    <mapping Id="69" Shortname="Fnktn_19" Duration="0" FunctionTypeCS2="Funktion_19" FunctionTypeZ21="neutral" />
-    <mapping Id="70" Shortname="Fnktn_20" Duration="0" FunctionTypeCS2="Funktion_20" FunctionTypeZ21="neutral" />
-    <mapping Id="71" Shortname="Fnktn_21" Duration="0" FunctionTypeCS2="Funktion_21" FunctionTypeZ21="neutral" />
-    <mapping Id="72" Shortname="Fnktn_22" Duration="0" FunctionTypeCS2="Funktion_22" FunctionTypeZ21="neutral" />
-    <mapping Id="73" Shortname="Fnktn_23" Duration="0" FunctionTypeCS2="Funktion_23" FunctionTypeZ21="neutral" />
-    <mapping Id="74" Shortname="Fnktn_24" Duration="0" FunctionTypeCS2="Funktion_24" FunctionTypeZ21="neutral" />
-    <mapping Id="75" Shortname="Fnktn_25" Duration="0" FunctionTypeCS2="Funktion_25" FunctionTypeZ21="neutral" />
-    <mapping Id="76" Shortname="Fnktn_26" Duration="0" FunctionTypeCS2="Funktion_26" FunctionTypeZ21="neutral" />
-    <mapping Id="77" Shortname="Fnktn_27" Duration="0" FunctionTypeCS2="Funktion_27" FunctionTypeZ21="neutral" />
-    <mapping Id="78" Shortname="Fnktn_28" Duration="0" FunctionTypeCS2="Funktion_28" FunctionTypeZ21="neutral" />
-    <mapping Id="79" Shortname="Fnktn_29" Duration="0" FunctionTypeCS2="Funktion_29" FunctionTypeZ21="neutral" />
-    <mapping Id="80" Shortname="Fnktn_30" Duration="0" FunctionTypeCS2="Funktion_30" FunctionTypeZ21="neutral" />
-    <mapping Id="81" Shortname="Fnktn_31" Duration="0" FunctionTypeCS2="Funktion_31" FunctionTypeZ21="neutral" />
-    <mapping Id="82" Shortname="Tlxkpplng_" Duration="0" FunctionTypeCS2="Telexkupplung_hinten" FunctionTypeZ21="decouple" />
-    <mapping Id="83" Shortname="Tlxkpplng_" Duration="0" FunctionTypeCS2="Telexkupplung_vorn" FunctionTypeZ21="decouple" />
-    <mapping Id="84" Shortname="Pntgrph_hn" Duration="0" FunctionTypeCS2="Pantograph_hinten" FunctionTypeZ21="backward_take_power" />
-    <mapping Id="85" Shortname="Pntgrph_vr" Duration="0" FunctionTypeCS2="Pantograph_vorne" FunctionTypeZ21="forward_take_power" />
-    <mapping Id="86" Shortname="Frnlcht_hn" Duration="0" FunctionTypeCS2="Fernlicht_hinten" FunctionTypeZ21="main_beam" />
-    <mapping Id="87" Shortname="Frnlcht_vr" Duration="0" FunctionTypeCS2="Fernlicht_vorn" FunctionTypeZ21="main_beam" />
-    <mapping Id="88" Shortname="Shift" Duration="0" FunctionTypeCS2="Shift" FunctionTypeZ21="" />
-    <mapping Id="89" Shortname="Vkmpmp" Duration="0" FunctionTypeCS2="Vakuumpumpe" FunctionTypeZ21="" />
-    <mapping Id="90" Shortname="Trbwrksblc" Duration="0" FunctionTypeCS2="Triebwerksbeleuchtung" FunctionTypeZ21="" />
-    <mapping Id="91" Shortname="Zylndr_sbl" Duration="0" FunctionTypeCS2="Zylinder_ausblasen_Dampf_ablassen" FunctionTypeZ21="dump_steam" />
-    <mapping Id="92" Shortname="Drcklft_bl" Duration="0" FunctionTypeCS2="Druckluft_ablassen" FunctionTypeZ21="" />
-    <mapping Id="93" Shortname="Kran" Duration="0" FunctionTypeCS2="Kran" FunctionTypeZ21="" />
-    <mapping Id="94" Shortname="KrnBhn_f" Duration="0" FunctionTypeCS2="KranBuehne_auf" FunctionTypeZ21="" />
-    <mapping Id="95" Shortname="KrnBhn_b" Duration="0" FunctionTypeCS2="KranBuehne_ab" FunctionTypeZ21="" />
-    <mapping Id="96" Shortname="KrnBhn_lnk" Duration="0" FunctionTypeCS2="KranBuehne_links" FunctionTypeZ21="" />
-    <mapping Id="97" Shortname="KrnBhn_rch" Duration="0" FunctionTypeCS2="KranBuehne_rechts" FunctionTypeZ21="" />
-    <mapping Id="98" Shortname="KrnBhn_drh" Duration="0" FunctionTypeCS2="KranBuehne_drehen_rechts" FunctionTypeZ21="" />
-    <mapping Id="99" Shortname="Krn_Mgnt" Duration="0" FunctionTypeCS2="Kran_Magnet" FunctionTypeZ21="" />
-    <mapping Id="100" Shortname="Fhrtfrgb" Duration="0" FunctionTypeCS2="Fahrtfreigabe" FunctionTypeZ21="" />
-    <mapping Id="101" Shortname="Pntgrph_Af" Duration="0" FunctionTypeCS2="Pantograph_Auf_Abbuegelgeraeusch" FunctionTypeZ21="" />
-    <mapping Id="102" Shortname="Anfhr_Brms" Duration="0" FunctionTypeCS2="Anfahr_Bremsverzoegerung_ein" FunctionTypeZ21="" />
-    <mapping Id="103" Shortname="Fnkgsprch" Duration="0" FunctionTypeCS2="Funkgespraech" FunctionTypeZ21="hump_funk" />
-    <mapping Id="104" Shortname="Abfhrtsdrc" Duration="0" FunctionTypeCS2="Abfahrtsdurchsage" FunctionTypeZ21="sound1" />
-    <mapping Id="105" Shortname="Assnblchtn" Duration="0" FunctionTypeCS2="Aussenbeleuchtung_Frontlicht" FunctionTypeZ21="" />
-    <mapping Id="106" Shortname="Luftpumpe" Duration="0" FunctionTypeCS2="Luftpumpe" FunctionTypeZ21="air_pump" />
-    <mapping Id="107" Shortname="Untrhltng_" Duration="0" FunctionTypeCS2="Unterhaltung_Allgemein" FunctionTypeZ21="" />
-    <mapping Id="108" Shortname="Sanden" Duration="0" FunctionTypeCS2="Sanden" FunctionTypeZ21="sanden" />
-    <mapping Id="109" Shortname="Mute_Fade" Duration="0" FunctionTypeCS2="Mute_Fade" FunctionTypeZ21="mute" />
-    <mapping Id="110" Shortname="Trttstfnbl" Duration="0" FunctionTypeCS2="Trittstufenbeleuchtung" FunctionTypeZ21="" />
-    <mapping Id="111" Shortname="Spswssrpmp" Duration="0" FunctionTypeCS2="Speisewasserpumpe" FunctionTypeZ21="" />
-    <mapping Id="112" Shortname="Brmsnqtsch" Duration="0" FunctionTypeCS2="Bremsenquietschen_ein" FunctionTypeZ21="" />
-    <mapping Id="113" Shortname="Oelpumpe" Duration="0" FunctionTypeCS2="Oelpumpe" FunctionTypeZ21="" />
-    <mapping Id="114" Shortname="Schmrpmp" Duration="0" FunctionTypeCS2="Schmierpumpe" FunctionTypeZ21="" />
-    <mapping Id="115" Shortname="Dslpmp" Duration="0" FunctionTypeCS2="Dieselpumpe" FunctionTypeZ21="" />
-    <mapping Id="116" Shortname="Kompressor" Duration="0" FunctionTypeCS2="Kompressor" FunctionTypeZ21="compressor" />
-    <mapping Id="117" Shortname="Knslnblcht" Duration="0" FunctionTypeCS2="Konsolenbeleuchtung" FunctionTypeZ21="" />
-    <mapping Id="118" Shortname="Rngrblchtn" Duration="0" FunctionTypeCS2="Rangierbeleuchtung" FunctionTypeZ21="sidelights" />
-    <mapping Id="119" Shortname="Prtyblchtn" Duration="0" FunctionTypeCS2="Partybeleuchtung" FunctionTypeZ21="" />
-    <mapping Id="120" Shortname="Wrtnd_Pssg" Duration="0" FunctionTypeCS2="Wartende_Passagiere" FunctionTypeZ21="" />
-    <mapping Id="121" Shortname="Anknft_Zln" Duration="0" FunctionTypeCS2="Ankunft_Zielansage" FunctionTypeZ21="sound1" />
-    <mapping Id="122" Shortname="Zgnsg_Schf" Duration="0" FunctionTypeCS2="Zugansage_Schaffener" FunctionTypeZ21="sound3" />
-    <mapping Id="123" Shortname="Schrhtsvnt" Duration="0" FunctionTypeCS2="Sicherheitsventil" FunctionTypeZ21="" />
-    <mapping Id="124" Shortname="Ksslhzng" Duration="0" FunctionTypeCS2="Kesselheizung" FunctionTypeZ21="" />
-    <mapping Id="125" Shortname="Hlfsggrgt_" Duration="0" FunctionTypeCS2="Hilfsaggregat_Hilfsdiesel" FunctionTypeZ21="" />
-    <mapping Id="126" Shortname="Mschnnrmbl" Duration="0" FunctionTypeCS2="Maschinenraumbeleuchtung" FunctionTypeZ21="cycle_light" />
-    <mapping Id="127" Shortname="Partymusik" Duration="0" FunctionTypeCS2="Partymusik" FunctionTypeZ21="clef" />
-    <mapping Id="128" Shortname="Krvngrsch" Duration="0" FunctionTypeCS2="Kurvengeraeusch" FunctionTypeZ21="curve_sound" />
-    <mapping Id="129" Shortname="Blinker" Duration="0" FunctionTypeCS2="Blinker" FunctionTypeZ21="" />
-    <mapping Id="130" Shortname="Ablssvntl" Duration="0" FunctionTypeCS2="Ablassventil" FunctionTypeZ21="drain_valve" />
-    <mapping Id="131" Shortname="Wrnmldngn" Duration="0" FunctionTypeCS2="Warnmeldungen" FunctionTypeZ21="" />
-    <mapping Id="132" Shortname="Fhrrstndsg" Duration="0" FunctionTypeCS2="Fuehrerstandsgespraech" FunctionTypeZ21="" />
-    <mapping Id="133" Shortname="Infrmtnsdr" Duration="0" FunctionTypeCS2="Informationsdurchsage" FunctionTypeZ21="" />
-    <mapping Id="134" Shortname="Snstg_Pmp" Duration="0" FunctionTypeCS2="Sonstige_Pumpe" FunctionTypeZ21="" />
-    <mapping Id="135" Shortname="Kmbntn_sch" Duration="0" FunctionTypeCS2="Kombination_schaufeln_Feuerbuechse" FunctionTypeZ21="" />
-    <mapping Id="136" Shortname="Bwglchr_Sc" Duration="0" FunctionTypeCS2="Beweglicher_Schaffner" FunctionTypeZ21="" />
-    <mapping Id="137" Shortname="Fnstr_f_z" Duration="0" FunctionTypeCS2="Fenster_auf_zu" FunctionTypeZ21="" />
-    <mapping Id="138" Shortname="Grsch_Fnst" Duration="0" FunctionTypeCS2="Geraeusch_Fenster_auf_zu" FunctionTypeZ21="" />
-    <mapping Id="139" Shortname="Drchsg_Trn" Duration="0" FunctionTypeCS2="Durchsage_Tueren_schlissen_rechts" FunctionTypeZ21="" />
-    <mapping Id="140" Shortname="Ambnt_Stdt" Duration="0" FunctionTypeCS2="Ambiente_Stadt" FunctionTypeZ21="" />
-    <mapping Id="141" Shortname="Ambnt_Tnnl" Duration="0" FunctionTypeCS2="Ambiente_Tunnel" FunctionTypeZ21="" />
-    <mapping Id="142" Shortname="Ambnt_Sthl" Duration="0" FunctionTypeCS2="Ambiente_Stahlbruecke" FunctionTypeZ21="" />
-    <mapping Id="143" Shortname="Ambnt_Btnb" Duration="0" FunctionTypeCS2="Ambiente_Betonbruecke" FunctionTypeZ21="" />
-    <mapping Id="144" Shortname="Grsch_Klpp" Duration="0" FunctionTypeCS2="Geraeusch_Klapptuere" FunctionTypeZ21="" />
-    <mapping Id="145" Shortname="Grsch_Tr" Duration="0" FunctionTypeCS2="Geraeusch_Tuere" FunctionTypeZ21="" />
-    <mapping Id="146" Shortname="Grsch_Fllt" Duration="0" FunctionTypeCS2="Geraeusch_Falltuere" FunctionTypeZ21="" />
-    <mapping Id="147" Shortname="Glck_krz" Duration="0" FunctionTypeCS2="Glocke_kurz" FunctionTypeZ21="" />
-    <mapping Id="148" Shortname="Grsch_Rllt" Duration="0" FunctionTypeCS2="Geraeusch_Rolltor" FunctionTypeZ21="" />
-    <mapping Id="149" Shortname="Grsch_Schb" Duration="0" FunctionTypeCS2="Geraeusch_Schiebetuer" FunctionTypeZ21="" />
-    <mapping Id="150" Shortname="Dampfstoss" Duration="0" FunctionTypeCS2="Dampfstoss" FunctionTypeZ21="" />
-    <mapping Id="151" Shortname="Dslhzng" Duration="0" FunctionTypeCS2="Dieselheizung" FunctionTypeZ21="" />
-    <mapping Id="152" Shortname="Zugheizung" Duration="0" FunctionTypeCS2="Zugheizung" FunctionTypeZ21="" />
-    <mapping Id="153" Shortname="Segeln" Duration="0" FunctionTypeCS2="Segeln" FunctionTypeZ21="" />
-    <mapping Id="154" Shortname="Zg_Infnsg" Duration="0" FunctionTypeCS2="Zug_Infoansage" FunctionTypeZ21="sound1" />
-    <mapping Id="155" Shortname="Sndrnsg" Duration="0" FunctionTypeCS2="Sonderansage" FunctionTypeZ21="" />
-    <mapping Id="156" Shortname="Wrtnd_Pssg" Duration="0" FunctionTypeCS2="Wartende_Passagiere_am_Bahnhof" FunctionTypeZ21="" />
-    <mapping Id="157" Shortname="Bocksprung" Duration="0" FunctionTypeCS2="Bocksprung" FunctionTypeZ21="" />
-    <mapping Id="158" Shortname="Drchsg_Trn" Duration="0" FunctionTypeCS2="Durchsage_Tueren_schlissen_links" FunctionTypeZ21="" />
-    <mapping Id="159" Shortname="Zuggattung" Duration="0" FunctionTypeCS2="Zuggattung" FunctionTypeZ21="" />
-    <mapping Id="160" Shortname="Zgdrchsg" Duration="0" FunctionTypeCS2="Zugdurchsage" FunctionTypeZ21="" />
-    <mapping Id="161" Shortname="Wrnblnklch" Duration="0" FunctionTypeCS2="Warnblinklicht" FunctionTypeZ21="all_round_light" />
-    <mapping Id="162" Shortname="Play" Duration="0" FunctionTypeCS2="Play" FunctionTypeZ21="" />
-    <mapping Id="163" Shortname="Pause" Duration="0" FunctionTypeCS2="Pause" FunctionTypeZ21="" />
-    <mapping Id="164" Shortname="Vor" Duration="0" FunctionTypeCS2="Vor" FunctionTypeZ21="" />
-    <mapping Id="165" Shortname="Zurueck" Duration="0" FunctionTypeCS2="Zurueck" FunctionTypeZ21="" />
-    <mapping Id="166" Shortname="Laut" Duration="0" FunctionTypeCS2="Laut" FunctionTypeZ21="louder" />
-    <mapping Id="167" Shortname="Leise" Duration="0" FunctionTypeCS2="Leise" FunctionTypeZ21="quieter" />
-    <mapping Id="168" Shortname="Lcht_Abtl" Duration="0" FunctionTypeCS2="Licht_Abteile" FunctionTypeZ21="" />
-    <mapping Id="169" Shortname="Licht_Gang" Duration="0" FunctionTypeCS2="Licht_Gang" FunctionTypeZ21="" />
-    <mapping Id="170" Shortname="Lcht_Kch" Duration="0" FunctionTypeCS2="Licht_Kueche" FunctionTypeZ21="" />
-    <mapping Id="171" Shortname="Lcht_Gpck" Duration="0" FunctionTypeCS2="Licht_Gepaeck" FunctionTypeZ21="" />
-    <mapping Id="172" Shortname="Licht_Bar" Duration="0" FunctionTypeCS2="Licht_Bar" FunctionTypeZ21="" />
-    <mapping Id="173" Shortname="Tanken" Duration="0" FunctionTypeCS2="Tanken" FunctionTypeZ21="" />
-    <mapping Id="174" Shortname="Wasser" Duration="0" FunctionTypeCS2="Wasser" FunctionTypeZ21="" />
-    <mapping Id="175" Shortname="Diesel" Duration="0" FunctionTypeCS2="Diesel" FunctionTypeZ21="" />
-    <mapping Id="176" Shortname="Kohle" Duration="0" FunctionTypeCS2="Kohle" FunctionTypeZ21="" />
-    <mapping Id="177" Shortname="Khlstb_2" Duration="0" FunctionTypeCS2="Kohlestaub_2" FunctionTypeZ21="" />
-    <mapping Id="178" Shortname="Oel" Duration="0" FunctionTypeCS2="Oel" FunctionTypeZ21="" />
-    <mapping Id="179" Shortname="Sand" Duration="0" FunctionTypeCS2="Sand" FunctionTypeZ21="" />
-    <mapping Id="180" Shortname="Schwzr_Lch" Duration="0" FunctionTypeCS2="Schweizer_Lichtwechsel" FunctionTypeZ21="coach_side_light_off" />
-    <mapping Id="181" Shortname="Ansg_Pfff_" Duration="0" FunctionTypeCS2="Ansage_Pfiff_mit_Tuerschliessen" FunctionTypeZ21="" />
-    <mapping Id="182" Shortname="Zufall_Aus" Duration="0" FunctionTypeCS2="Zufall_Aus" FunctionTypeZ21="" />
-    <mapping Id="183" Shortname="Sifataster" Duration="0" FunctionTypeCS2="Sifataster" FunctionTypeZ21="" />
-    <mapping Id="184" Shortname="Not_Aus" Duration="0" FunctionTypeCS2="Not_Aus" FunctionTypeZ21="" />
-    <mapping Id="185" Shortname="Schalter" Duration="0" FunctionTypeCS2="Schalter" FunctionTypeZ21="" />
-    <mapping Id="186" Shortname="Kppschltr" Duration="0" FunctionTypeCS2="Kippschlater" FunctionTypeZ21="" />
-    <mapping Id="187" Shortname="Drhschltr" Duration="0" FunctionTypeCS2="Drehschalter" FunctionTypeZ21="" />
-    <mapping Id="188" Shortname="Not_Halt" Duration="0" FunctionTypeCS2="Not_Halt" FunctionTypeZ21="" />
-    <mapping Id="189" Shortname="Snd_Zhnrd" Duration="0" FunctionTypeCS2="Sound_Zahnrad" FunctionTypeZ21="" />
-    <mapping Id="190" Shortname="Klckrn_Tch" Duration="0" FunctionTypeCS2="Klackern_Tacho" FunctionTypeZ21="" />
-    <mapping Id="191" Shortname="Snd_Wschr" Duration="0" FunctionTypeCS2="Sound_Wischer" FunctionTypeZ21="" />
-    <mapping Id="192" Shortname="Zhnrd_Antr" Duration="0" FunctionTypeCS2="Zahnrad_Antrieb" FunctionTypeZ21="" />
-    <mapping Id="193" Shortname="Wischer" Duration="0" FunctionTypeCS2="Wischer" FunctionTypeZ21="" />
-    <mapping Id="194" Shortname="Abschlmmn_" Duration="0" FunctionTypeCS2="Abschlammen_Schlaemmen" FunctionTypeZ21="" />
-    <mapping Id="195" Shortname="Glck_lng" Duration="0" FunctionTypeCS2="Glocke_lang" FunctionTypeZ21="" />
-    <mapping Id="196" Shortname="Horn_kurz" Duration="0" FunctionTypeCS2="Horn_kurz" FunctionTypeZ21="horn_high" />
-    <mapping Id="197" Shortname="Horn_lang" Duration="0" FunctionTypeCS2="Horn_lang" FunctionTypeZ21="horn_low" />
-    <mapping Id="198" Shortname="Pff_krz" Duration="0" FunctionTypeCS2="Pfeife_kurz" FunctionTypeZ21="whistle_short" />
-    <mapping Id="199" Shortname="Pff_lng" Duration="0" FunctionTypeCS2="Pfeife_lang" FunctionTypeZ21="whistle_long" />
-    <mapping Id="200" Shortname="Krn_En_Ums" Duration="0" FunctionTypeCS2="Kran_Ein_Umschalten_Fahrbetrieb_Funktionsbetrieb" FunctionTypeZ21="" />
-    <mapping Id="201" Shortname="Krn_As_Grn" Duration="0" FunctionTypeCS2="Kran_Aus_Grundstellung_anfahren" FunctionTypeZ21="" />
-    <mapping Id="202" Shortname="Kran_Haken" Duration="0" FunctionTypeCS2="Kran_Haken" FunctionTypeZ21="" />
-    <mapping Id="203" Shortname="Hammer" Duration="0" FunctionTypeCS2="Hammer" FunctionTypeZ21="" />
-    <mapping Id="204" Shortname="Saege" Duration="0" FunctionTypeCS2="Saege" FunctionTypeZ21="" />
-    <mapping Id="205" Shortname="Bhrmschn_B" Duration="0" FunctionTypeCS2="Bohrmaschine_Bohrer" FunctionTypeZ21="" />
-    <mapping Id="206" Shortname="Schwssgrt_" Duration="0" FunctionTypeCS2="Schweissgeraet_Schweissen" FunctionTypeZ21="" />
-    <mapping Id="207" Shortname="Schlfblck_" Duration="0" FunctionTypeCS2="Schleifblock_Schleifen" FunctionTypeZ21="" />
-    <mapping Id="208" Shortname="Drhtbrst_B" Duration="0" FunctionTypeCS2="Drahtbuerste_Buersten" FunctionTypeZ21="" />
-    <mapping Id="209" Shortname="Kettenzug" Duration="0" FunctionTypeCS2="Kettenzug" FunctionTypeZ21="" />
-    <mapping Id="210" Shortname="Trnnschlfr" Duration="0" FunctionTypeCS2="Trennschleifer_Flex" FunctionTypeZ21="" />
-    <mapping Id="211" Shortname="Schaufel" Duration="0" FunctionTypeCS2="Schaufel" FunctionTypeZ21="" />
-    <mapping Id="212" Shortname="Ldn_Enldn_" Duration="0" FunctionTypeCS2="Laden_Einladen_Ausladen" FunctionTypeZ21="" />
-    <mapping Id="213" Shortname="Prsslfthmm" Duration="0" FunctionTypeCS2="Presslufthammer_Hämmern" FunctionTypeZ21="" />
-    <mapping Id="214" Shortname="Stop" Duration="0" FunctionTypeCS2="Stop" FunctionTypeZ21="" />
-    <mapping Id="215" Shortname="Naechstes" Duration="0" FunctionTypeCS2="Naechstes" FunctionTypeZ21="" />
-    <mapping Id="216" Shortname="Letztes" Duration="0" FunctionTypeCS2="Letztes" FunctionTypeZ21="" />
-    <mapping Id="217" Shortname="Bhnbrgng" Duration="0" FunctionTypeCS2="Bahnuebergang" FunctionTypeZ21="" />
-    <mapping Id="218" Shortname="Glck_Bhnbr" Duration="0" FunctionTypeCS2="Glocke_Bahnuebergang" FunctionTypeZ21="" />
-    <mapping Id="219" Shortname="Strklftn" Duration="0" FunctionTypeCS2="Starklueften" FunctionTypeZ21="fan_strong" />
-    <mapping Id="220" Shortname="Schwchlftn" Duration="0" FunctionTypeCS2="Schwachlueften" FunctionTypeZ21="fan" />
-    <mapping Id="221" Shortname="Tlx_Wlzr" Duration="0" FunctionTypeCS2="Telex_Walzer" FunctionTypeZ21="decouple" />
-    <mapping Id="222" Shortname="Lcht_Gnrtr" Duration="0" FunctionTypeCS2="Licht_Generator_Sound" FunctionTypeZ21="alternator" />
-    <mapping Id="223" Shortname="Rchkmmr" Duration="0" FunctionTypeCS2="Rauchkammer" FunctionTypeZ21="" />
-    <mapping Id="224" Shortname="Kohlestaub" Duration="0" FunctionTypeCS2="Kohlestaub" FunctionTypeZ21="" />
-    <mapping Id="225" Shortname="Frnlcht_vr" Duration="0" FunctionTypeCS2="Fernlicht_vorne_hinten" FunctionTypeZ21="" />
-    <mapping Id="226" Shortname="Strnlcht_v" Duration="0" FunctionTypeCS2="Stirnlicht_vorne_hinten" FunctionTypeZ21="" />
-    <mapping Id="227" Shortname="Lcht_Gnrtr" Duration="0" FunctionTypeCS2="Licht_Generator_Sound_hinten" FunctionTypeZ21="" />
-    <mapping Id="228" Shortname="Tlx_Wlzr_v" Duration="0" FunctionTypeCS2="Telex_Walzer_vorne" FunctionTypeZ21="decouple" />
-    <mapping Id="229" Shortname="Tlx_Wlzr_h" Duration="0" FunctionTypeCS2="Telex_Walzer_hinten" FunctionTypeZ21="decouple" />
-    <mapping Id="230" Shortname="Lcht_Gnrtr" Duration="0" FunctionTypeCS2="Licht_Generator_Sound_vorne" FunctionTypeZ21="" />
-    <mapping Id="231" Shortname="Krbln_Snd" Duration="0" FunctionTypeCS2="Kurbeln_Sound" FunctionTypeZ21="" />
+    <mapping Id="1" Shortname="Lichtwsl" Duration="0" FunctionTypeIndexCS2="1" FunctionTypeCS2="Lichtwechsel" FunctionTypeZ21="main_beam2" />
+    <mapping Id="2" Shortname="Innnblchtn" Duration="0" FunctionTypeIndexCS2="2" FunctionTypeCS2="Innenbeleuchtung" FunctionTypeZ21="interior_light" />
+    <mapping Id="3" Shortname="Aussenbel" Duration="0" FunctionTypeIndexCS2="3" FunctionTypeCS2="Aussenbeleuchtung_Schlusslicht" FunctionTypeZ21="back_light" />
+    <mapping Id="4" Shortname="Fernlicht" Duration="0" FunctionTypeIndexCS2="4" FunctionTypeCS2="Fernlicht" FunctionTypeZ21="main_beam" />
+    <mapping Id="5" Shortname="Btrbsgrsch" Duration="0" FunctionTypeIndexCS2="5" FunctionTypeCS2="Betriebsgeraeusch" FunctionTypeZ21="sound2" />
+    <mapping Id="6" Shortname="Pantograph" Duration="0" FunctionTypeIndexCS2="6" FunctionTypeCS2="Pantograph" FunctionTypeZ21="backward_take_power" />
+    <mapping Id="7" Shortname="Rauch" Duration="0" FunctionTypeIndexCS2="7" FunctionTypeCS2="Rauchgenerator" FunctionTypeZ21="steam" />
+    <mapping Id="8" Shortname="Rngrgng_n" Duration="0" FunctionTypeIndexCS2="8" FunctionTypeCS2="Rangiergang_ein" FunctionTypeZ21="hump_gear" />
+    <mapping Id="9" Shortname="Tlxkpplng" Duration="0" FunctionTypeIndexCS2="9" FunctionTypeCS2="Telexkupplung" FunctionTypeZ21="decouple" />
+    <mapping Id="10" Shortname="Hrn_Typhn" Duration="0" FunctionTypeIndexCS2="10" FunctionTypeCS2="Horn_Typhon" FunctionTypeZ21="bugle" />
+    <mapping Id="11" Shortname="Schffnrpff" Duration="0" FunctionTypeIndexCS2="11" FunctionTypeCS2="Schaffnerpfiff" FunctionTypeZ21="sound5" />
+    <mapping Id="12" Shortname="Pfeife" Duration="0" FunctionTypeIndexCS2="12" FunctionTypeCS2="Pfeife" FunctionTypeZ21="sound4" />
+    <mapping Id="13" Shortname="Glocke" Duration="0" FunctionTypeIndexCS2="13" FunctionTypeCS2="Glocke" FunctionTypeZ21="bell" />
+    <mapping Id="14" Shortname="KrnBhn_vrf" Duration="0" FunctionTypeIndexCS2="14" FunctionTypeCS2="KranBuehne_verfahren" FunctionTypeZ21="" />
+    <mapping Id="15" Shortname="KrnBhn_hbn" Duration="0" FunctionTypeIndexCS2="15" FunctionTypeCS2="KranBuehne_heben_senken" FunctionTypeZ21="" />
+    <mapping Id="16" Shortname="KrnBhn_drh" Duration="0" FunctionTypeIndexCS2="16" FunctionTypeCS2="KranBuehne_drehen_links" FunctionTypeZ21="" />
+    <mapping Id="17" Shortname="KrnBhn_ngn" Duration="0" FunctionTypeIndexCS2="17" FunctionTypeCS2="KranBuehne_neigen" FunctionTypeZ21="" />
+    <mapping Id="18" Shortname="ABV_Aus" Duration="0" FunctionTypeIndexCS2="18" FunctionTypeCS2="Anfahr_Bremsverzoegerung_aus" FunctionTypeZ21="acc_delay" />
+    <mapping Id="19" Shortname="Pumpe" Duration="0" FunctionTypeIndexCS2="19" FunctionTypeCS2="Pumpe" FunctionTypeZ21="feed_pump" />
+    <mapping Id="20" Shortname="Brmsnqtsch" Duration="0" FunctionTypeIndexCS2="20" FunctionTypeCS2="Bremsenquietschen_aus" FunctionTypeZ21="sound_brake" />
+    <mapping Id="21" Shortname="Schltstfn" Duration="0" FunctionTypeIndexCS2="21" FunctionTypeCS2="Schaltstufen" FunctionTypeZ21="diesel_regulation_step_up" />
+    <mapping Id="22" Shortname="Generator" Duration="0" FunctionTypeIndexCS2="22" FunctionTypeCS2="Generator" FunctionTypeZ21="generator" />
+    <mapping Id="23" Shortname="Fhrgrsch" Duration="0" FunctionTypeIndexCS2="23" FunctionTypeCS2="Fahrgeraeusch" FunctionTypeZ21="sound2" />
+    <mapping Id="24" Shortname="Mschn_vrsc" Duration="0" FunctionTypeIndexCS2="24" FunctionTypeCS2="Maschine_vorschmieren" FunctionTypeZ21="" />
+    <mapping Id="25" Shortname="Bhnhfsnsg" Duration="0" FunctionTypeIndexCS2="25" FunctionTypeCS2="Bahnhofsansage" FunctionTypeZ21="sound1" />
+    <mapping Id="26" Shortname="Khln_schfl" Duration="0" FunctionTypeIndexCS2="26" FunctionTypeCS2="Kohlen_schaufeln" FunctionTypeZ21="scoop_coal" />
+    <mapping Id="27" Shortname="Trn_schlss" Duration="0" FunctionTypeIndexCS2="27" FunctionTypeCS2="Tueren_schliessen" FunctionTypeZ21="" />
+    <mapping Id="28" Shortname="Trn_schlss" Duration="0" FunctionTypeIndexCS2="28" FunctionTypeCS2="Tueren_schliessen_Geraeusch" FunctionTypeZ21="door_close" />
+    <mapping Id="29" Shortname="Lftrgrsch" Duration="0" FunctionTypeIndexCS2="29" FunctionTypeCS2="Lueftergeraeusch" FunctionTypeZ21="sound4" />
+    <mapping Id="30" Shortname="Luefter" Duration="0" FunctionTypeIndexCS2="30" FunctionTypeCS2="Luefter" FunctionTypeZ21="" />
+    <mapping Id="31" Shortname="Frbchsnblc" Duration="0" FunctionTypeIndexCS2="31" FunctionTypeCS2="Feuerbuechsenbeleuchtung" FunctionTypeZ21="" />
+    <mapping Id="32" Shortname="Dcknblchtn" Duration="0" FunctionTypeIndexCS2="32" FunctionTypeCS2="Deckenbeleuchtung" FunctionTypeZ21="interior_light" />
+    <mapping Id="33" Shortname="Tschblchtn" Duration="0" FunctionTypeIndexCS2="33" FunctionTypeCS2="Tischbeleuchtung_EP4" FunctionTypeZ21="tish_lamp" />
+    <mapping Id="34" Shortname="Tschblchtn" Duration="0" FunctionTypeIndexCS2="34" FunctionTypeCS2="Tischbeleuchtung_EP3" FunctionTypeZ21="tish_lamp" />
+    <mapping Id="35" Shortname="Tschblchtn" Duration="0" FunctionTypeIndexCS2="35" FunctionTypeCS2="Tischbeleuchtung_EP2" FunctionTypeZ21="tish_lamp" />
+    <mapping Id="36" Shortname="Schttlrst" Duration="0" FunctionTypeIndexCS2="36" FunctionTypeCS2="Schuettelrost" FunctionTypeZ21="shaking_grates" />
+    <mapping Id="37" Shortname="Schnnstss" Duration="0" FunctionTypeIndexCS2="37" FunctionTypeCS2="Schienenstoss" FunctionTypeZ21="rail_kick" />
+    <mapping Id="38" Shortname="Nmmrnschld" Duration="0" FunctionTypeIndexCS2="38" FunctionTypeCS2="Nummernschildbeleuchtung" FunctionTypeZ21="licence_plate_light" />
+    <mapping Id="39" Shortname="Hntrgrndms" Duration="0" FunctionTypeIndexCS2="39" FunctionTypeCS2="Hintergrundmusik" FunctionTypeZ21="clef" />
+    <mapping Id="40" Shortname="Zglfschldb" Duration="0" FunctionTypeIndexCS2="40" FunctionTypeCS2="Zuglaufschildbeleuchtung" FunctionTypeZ21="destination_plate_light" />
+    <mapping Id="41" Shortname="Lcht_n_Fhr" Duration="0" FunctionTypeIndexCS2="41" FunctionTypeCS2="Licht_an_Fuehrerstand_hinten_aus" FunctionTypeZ21="cockpit_light_right" />
+    <mapping Id="42" Shortname="Lcht_n_Fhr" Duration="0" FunctionTypeIndexCS2="42" FunctionTypeCS2="Licht_an_Fuehrerstand_vorne_aus" FunctionTypeZ21="cockpit_light_left" />
+    <mapping Id="43" Shortname="Kpplng_An_" Duration="0" FunctionTypeIndexCS2="43" FunctionTypeCS2="Kupplung_An_Abkuppelgeraeusch" FunctionTypeZ21="decouple" />
+    <mapping Id="44" Shortname="Pffrstss" Duration="0" FunctionTypeIndexCS2="44" FunctionTypeCS2="Pufferstoss" FunctionTypeZ21="puffer_kick" />
+    <mapping Id="45" Shortname="Sprchsgb" Duration="0" FunctionTypeIndexCS2="45" FunctionTypeCS2="Sprachausgabe" FunctionTypeZ21="sound2" />
+    <mapping Id="46" Shortname="Krn_Dpplhk" Duration="0" FunctionTypeIndexCS2="46" FunctionTypeCS2="Kran_Doppelhaken" FunctionTypeZ21="" />
+    <mapping Id="47" Shortname="Warnlicht" Duration="0" FunctionTypeIndexCS2="47" FunctionTypeCS2="Warnlicht" FunctionTypeZ21="all_round_light" />
+    <mapping Id="48" Shortname="Fhrrstndsb" Duration="0" FunctionTypeIndexCS2="48" FunctionTypeCS2="Fuehrerstandsbeleuchtung" FunctionTypeZ21="cockpit_light_left" />
+    <mapping Id="49" Shortname="Injektor" Duration="0" FunctionTypeIndexCS2="49" FunctionTypeCS2="Injektor" FunctionTypeZ21="injector" />
+    <mapping Id="50" Shortname="Funktion_0" Duration="0" FunctionTypeIndexCS2="50" FunctionTypeCS2="Funktion_0" FunctionTypeZ21="neutral" />
+    <mapping Id="51" Shortname="Funktion_1" Duration="0" FunctionTypeIndexCS2="51" FunctionTypeCS2="Funktion_1" FunctionTypeZ21="neutral" />
+    <mapping Id="52" Shortname="Funktion_2" Duration="0" FunctionTypeIndexCS2="52" FunctionTypeCS2="Funktion_2" FunctionTypeZ21="neutral" />
+    <mapping Id="53" Shortname="Funktion_3" Duration="0" FunctionTypeIndexCS2="53" FunctionTypeCS2="Funktion_3" FunctionTypeZ21="neutral" />
+    <mapping Id="54" Shortname="Funktion_4" Duration="0" FunctionTypeIndexCS2="54" FunctionTypeCS2="Funktion_4" FunctionTypeZ21="neutral" />
+    <mapping Id="55" Shortname="Funktion_5" Duration="0" FunctionTypeIndexCS2="55" FunctionTypeCS2="Funktion_5" FunctionTypeZ21="neutral" />
+    <mapping Id="56" Shortname="Funktion_6" Duration="0" FunctionTypeIndexCS2="56" FunctionTypeCS2="Funktion_6" FunctionTypeZ21="neutral" />
+    <mapping Id="57" Shortname="Funktion_7" Duration="0" FunctionTypeIndexCS2="57" FunctionTypeCS2="Funktion_7" FunctionTypeZ21="neutral" />
+    <mapping Id="58" Shortname="Funktion_8" Duration="0" FunctionTypeIndexCS2="58" FunctionTypeCS2="Funktion_8" FunctionTypeZ21="neutral" />
+    <mapping Id="59" Shortname="Funktion_9" Duration="0" FunctionTypeIndexCS2="59" FunctionTypeCS2="Funktion_9" FunctionTypeZ21="neutral" />
+    <mapping Id="60" Shortname="Fnktn_10" Duration="0" FunctionTypeIndexCS2="60" FunctionTypeCS2="Funktion_10" FunctionTypeZ21="neutral" />
+    <mapping Id="61" Shortname="Fnktn_11" Duration="0" FunctionTypeIndexCS2="61" FunctionTypeCS2="Funktion_11" FunctionTypeZ21="neutral" />
+    <mapping Id="62" Shortname="Fnktn_12" Duration="0" FunctionTypeIndexCS2="62" FunctionTypeCS2="Funktion_12" FunctionTypeZ21="neutral" />
+    <mapping Id="63" Shortname="Fnktn_13" Duration="0" FunctionTypeIndexCS2="63" FunctionTypeCS2="Funktion_13" FunctionTypeZ21="neutral" />
+    <mapping Id="64" Shortname="Fnktn_14" Duration="0" FunctionTypeIndexCS2="64" FunctionTypeCS2="Funktion_14" FunctionTypeZ21="neutral" />
+    <mapping Id="65" Shortname="Fnktn_15" Duration="0" FunctionTypeIndexCS2="65" FunctionTypeCS2="Funktion_15" FunctionTypeZ21="neutral" />
+    <mapping Id="66" Shortname="Fnktn_16" Duration="0" FunctionTypeIndexCS2="66" FunctionTypeCS2="Funktion_16" FunctionTypeZ21="neutral" />
+    <mapping Id="67" Shortname="Fnktn_17" Duration="0" FunctionTypeIndexCS2="67" FunctionTypeCS2="Funktion_17" FunctionTypeZ21="neutral" />
+    <mapping Id="68" Shortname="Fnktn_18" Duration="0" FunctionTypeIndexCS2="68" FunctionTypeCS2="Funktion_18" FunctionTypeZ21="neutral" />
+    <mapping Id="69" Shortname="Fnktn_19" Duration="0" FunctionTypeIndexCS2="69" FunctionTypeCS2="Funktion_19" FunctionTypeZ21="neutral" />
+    <mapping Id="70" Shortname="Fnktn_20" Duration="0" FunctionTypeIndexCS2="70" FunctionTypeCS2="Funktion_20" FunctionTypeZ21="neutral" />
+    <mapping Id="71" Shortname="Fnktn_21" Duration="0" FunctionTypeIndexCS2="71" FunctionTypeCS2="Funktion_21" FunctionTypeZ21="neutral" />
+    <mapping Id="72" Shortname="Fnktn_22" Duration="0" FunctionTypeIndexCS2="72" FunctionTypeCS2="Funktion_22" FunctionTypeZ21="neutral" />
+    <mapping Id="73" Shortname="Fnktn_23" Duration="0" FunctionTypeIndexCS2="73" FunctionTypeCS2="Funktion_23" FunctionTypeZ21="neutral" />
+    <mapping Id="74" Shortname="Fnktn_24" Duration="0" FunctionTypeIndexCS2="74" FunctionTypeCS2="Funktion_24" FunctionTypeZ21="neutral" />
+    <mapping Id="75" Shortname="Fnktn_25" Duration="0" FunctionTypeIndexCS2="75" FunctionTypeCS2="Funktion_25" FunctionTypeZ21="neutral" />
+    <mapping Id="76" Shortname="Fnktn_26" Duration="0" FunctionTypeIndexCS2="76" FunctionTypeCS2="Funktion_26" FunctionTypeZ21="neutral" />
+    <mapping Id="77" Shortname="Fnktn_27" Duration="0" FunctionTypeIndexCS2="77" FunctionTypeCS2="Funktion_27" FunctionTypeZ21="neutral" />
+    <mapping Id="78" Shortname="Fnktn_28" Duration="0" FunctionTypeIndexCS2="78" FunctionTypeCS2="Funktion_28" FunctionTypeZ21="neutral" />
+    <mapping Id="79" Shortname="Fnktn_29" Duration="0" FunctionTypeIndexCS2="79" FunctionTypeCS2="Funktion_29" FunctionTypeZ21="neutral" />
+    <mapping Id="80" Shortname="Fnktn_30" Duration="0" FunctionTypeIndexCS2="80" FunctionTypeCS2="Funktion_30" FunctionTypeZ21="neutral" />
+    <mapping Id="81" Shortname="Fnktn_31" Duration="0" FunctionTypeIndexCS2="81" FunctionTypeCS2="Funktion_31" FunctionTypeZ21="neutral" />
+    <mapping Id="82" Shortname="Tlxkpplng_" Duration="0" FunctionTypeIndexCS2="82" FunctionTypeCS2="Telexkupplung_hinten" FunctionTypeZ21="decouple" />
+    <mapping Id="83" Shortname="Tlxkpplng_" Duration="0" FunctionTypeIndexCS2="83" FunctionTypeCS2="Telexkupplung_vorn" FunctionTypeZ21="decouple" />
+    <mapping Id="84" Shortname="Pntgrph_hn" Duration="0" FunctionTypeIndexCS2="84" FunctionTypeCS2="Pantograph_hinten" FunctionTypeZ21="backward_take_power" />
+    <mapping Id="85" Shortname="Pntgrph_vr" Duration="0" FunctionTypeIndexCS2="85" FunctionTypeCS2="Pantograph_vorne" FunctionTypeZ21="forward_take_power" />
+    <mapping Id="86" Shortname="Frnlcht_hn" Duration="0" FunctionTypeIndexCS2="86" FunctionTypeCS2="Fernlicht_hinten" FunctionTypeZ21="main_beam" />
+    <mapping Id="87" Shortname="Frnlcht_vr" Duration="0" FunctionTypeIndexCS2="87" FunctionTypeCS2="Fernlicht_vorn" FunctionTypeZ21="main_beam" />
+    <mapping Id="88" Shortname="Shift" Duration="0" FunctionTypeIndexCS2="88" FunctionTypeCS2="Shift" FunctionTypeZ21="" />
+    <mapping Id="89" Shortname="Vkmpmp" Duration="0" FunctionTypeIndexCS2="89" FunctionTypeCS2="Vakuumpumpe" FunctionTypeZ21="" />
+    <mapping Id="90" Shortname="Trbwrksblc" Duration="0" FunctionTypeIndexCS2="90" FunctionTypeCS2="Triebwerksbeleuchtung" FunctionTypeZ21="" />
+    <mapping Id="91" Shortname="Zylndr_sbl" Duration="0" FunctionTypeIndexCS2="91" FunctionTypeCS2="Zylinder_ausblasen_Dampf_ablassen" FunctionTypeZ21="dump_steam" />
+    <mapping Id="92" Shortname="Drcklft_bl" Duration="0" FunctionTypeIndexCS2="92" FunctionTypeCS2="Druckluft_ablassen" FunctionTypeZ21="" />
+    <mapping Id="93" Shortname="Kran" Duration="0" FunctionTypeIndexCS2="93" FunctionTypeCS2="Kran" FunctionTypeZ21="" />
+    <mapping Id="94" Shortname="KrnBhn_f" Duration="0" FunctionTypeIndexCS2="94" FunctionTypeCS2="KranBuehne_auf" FunctionTypeZ21="" />
+    <mapping Id="95" Shortname="KrnBhn_b" Duration="0" FunctionTypeIndexCS2="95" FunctionTypeCS2="KranBuehne_ab" FunctionTypeZ21="" />
+    <mapping Id="96" Shortname="KrnBhn_lnk" Duration="0" FunctionTypeIndexCS2="96" FunctionTypeCS2="KranBuehne_links" FunctionTypeZ21="" />
+    <mapping Id="97" Shortname="KrnBhn_rch" Duration="0" FunctionTypeIndexCS2="97" FunctionTypeCS2="KranBuehne_rechts" FunctionTypeZ21="" />
+    <mapping Id="98" Shortname="KrnBhn_drh" Duration="0" FunctionTypeIndexCS2="98" FunctionTypeCS2="KranBuehne_drehen_rechts" FunctionTypeZ21="" />
+    <mapping Id="99" Shortname="Krn_Mgnt" Duration="0" FunctionTypeIndexCS2="99" FunctionTypeCS2="Kran_Magnet" FunctionTypeZ21="" />
+    <mapping Id="100" Shortname="Fhrtfrgb" Duration="0" FunctionTypeIndexCS2="100" FunctionTypeCS2="Fahrtfreigabe" FunctionTypeZ21="" />
+    <mapping Id="101" Shortname="Pntgrph_Af" Duration="0" FunctionTypeIndexCS2="101" FunctionTypeCS2="Pantograph_Auf_Abbuegelgeraeusch" FunctionTypeZ21="" />
+    <mapping Id="102" Shortname="ABV_Ein" Duration="0" FunctionTypeIndexCS2="102" FunctionTypeCS2="Anfahr_Bremsverzoegerung_ein" FunctionTypeZ21="" />
+    <mapping Id="103" Shortname="Fnkgsprch" Duration="0" FunctionTypeIndexCS2="103" FunctionTypeCS2="Funkgespraech" FunctionTypeZ21="hump_funk" />
+    <mapping Id="104" Shortname="Abfhrtsdrc" Duration="0" FunctionTypeIndexCS2="104" FunctionTypeCS2="Abfahrtsdurchsage" FunctionTypeZ21="sound1" />
+    <mapping Id="105" Shortname="Assnblchtn" Duration="0" FunctionTypeIndexCS2="105" FunctionTypeCS2="Aussenbeleuchtung_Frontlicht" FunctionTypeZ21="" />
+    <mapping Id="106" Shortname="Luftpumpe" Duration="0" FunctionTypeIndexCS2="106" FunctionTypeCS2="Luftpumpe" FunctionTypeZ21="air_pump" />
+    <mapping Id="107" Shortname="Untrhltng_" Duration="0" FunctionTypeIndexCS2="107" FunctionTypeCS2="Unterhaltung_Allgemein" FunctionTypeZ21="" />
+    <mapping Id="108" Shortname="Sanden" Duration="0" FunctionTypeIndexCS2="108" FunctionTypeCS2="Sanden" FunctionTypeZ21="sanden" />
+    <mapping Id="109" Shortname="Mute_Fade" Duration="0" FunctionTypeIndexCS2="109" FunctionTypeCS2="Mute_Fade" FunctionTypeZ21="mute" />
+    <mapping Id="110" Shortname="Trttstfnbl" Duration="0" FunctionTypeIndexCS2="110" FunctionTypeCS2="Trittstufenbeleuchtung" FunctionTypeZ21="" />
+    <mapping Id="111" Shortname="Spswssrpmp" Duration="0" FunctionTypeIndexCS2="111" FunctionTypeCS2="Speisewasserpumpe" FunctionTypeZ21="" />
+    <mapping Id="112" Shortname="Brmsnqtsch" Duration="0" FunctionTypeIndexCS2="112" FunctionTypeCS2="Bremsenquietschen_ein" FunctionTypeZ21="" />
+    <mapping Id="113" Shortname="Oelpumpe" Duration="0" FunctionTypeIndexCS2="113" FunctionTypeCS2="Oelpumpe" FunctionTypeZ21="" />
+    <mapping Id="114" Shortname="Schmrpmp" Duration="0" FunctionTypeIndexCS2="114" FunctionTypeCS2="Schmierpumpe" FunctionTypeZ21="" />
+    <mapping Id="115" Shortname="Dslpmp" Duration="0" FunctionTypeIndexCS2="115" FunctionTypeCS2="Dieselpumpe" FunctionTypeZ21="" />
+    <mapping Id="116" Shortname="Kompressor" Duration="0" FunctionTypeIndexCS2="116" FunctionTypeCS2="Kompressor" FunctionTypeZ21="compressor" />
+    <mapping Id="117" Shortname="Knslnblcht" Duration="0" FunctionTypeIndexCS2="117" FunctionTypeCS2="Konsolenbeleuchtung" FunctionTypeZ21="" />
+    <mapping Id="118" Shortname="Rngrblchtn" Duration="0" FunctionTypeIndexCS2="118" FunctionTypeCS2="Rangierbeleuchtung" FunctionTypeZ21="sidelights" />
+    <mapping Id="119" Shortname="Prtyblchtn" Duration="0" FunctionTypeIndexCS2="119" FunctionTypeCS2="Partybeleuchtung" FunctionTypeZ21="" />
+    <mapping Id="120" Shortname="Wrtnd_Pssg" Duration="0" FunctionTypeIndexCS2="120" FunctionTypeCS2="Wartende_Passagiere" FunctionTypeZ21="" />
+    <mapping Id="121" Shortname="Anknft_Zln" Duration="0" FunctionTypeIndexCS2="121" FunctionTypeCS2="Ankunft_Zielansage" FunctionTypeZ21="sound1" />
+    <mapping Id="122" Shortname="Zgnsg_Schf" Duration="0" FunctionTypeIndexCS2="122" FunctionTypeCS2="Zugansage_Schaffener" FunctionTypeZ21="sound3" />
+    <mapping Id="123" Shortname="Schrhtsvnt" Duration="0" FunctionTypeIndexCS2="123" FunctionTypeCS2="Sicherheitsventil" FunctionTypeZ21="" />
+    <mapping Id="124" Shortname="Ksslhzng" Duration="0" FunctionTypeIndexCS2="124" FunctionTypeCS2="Kesselheizung" FunctionTypeZ21="" />
+    <mapping Id="125" Shortname="Hlfsggrgt_" Duration="0" FunctionTypeIndexCS2="125" FunctionTypeCS2="Hilfsaggregat_Hilfsdiesel" FunctionTypeZ21="" />
+    <mapping Id="126" Shortname="Mschnnrmbl" Duration="0" FunctionTypeIndexCS2="126" FunctionTypeCS2="Maschinenraumbeleuchtung" FunctionTypeZ21="cycle_light" />
+    <mapping Id="127" Shortname="Partymusik" Duration="0" FunctionTypeIndexCS2="128" FunctionTypeCS2="Partymusik" FunctionTypeZ21="clef" />
+    <mapping Id="128" Shortname="Krvngrsch" Duration="0" FunctionTypeIndexCS2="129" FunctionTypeCS2="Kurvengeraeusch" FunctionTypeZ21="curve_sound" />
+    <mapping Id="129" Shortname="Blinker" Duration="0" FunctionTypeIndexCS2="130" FunctionTypeCS2="Blinker" FunctionTypeZ21="" />
+    <mapping Id="130" Shortname="Ablssvntl" Duration="0" FunctionTypeIndexCS2="131" FunctionTypeCS2="Ablassventil" FunctionTypeZ21="drain_valve" />
+    <mapping Id="131" Shortname="Wrnmldngn" Duration="0" FunctionTypeIndexCS2="132" FunctionTypeCS2="Warnmeldungen" FunctionTypeZ21="" />
+    <mapping Id="132" Shortname="Fhrrstndsg" Duration="0" FunctionTypeIndexCS2="133" FunctionTypeCS2="Fuehrerstandsgespraech" FunctionTypeZ21="" />
+    <mapping Id="133" Shortname="Infrmtnsdr" Duration="0" FunctionTypeIndexCS2="134" FunctionTypeCS2="Informationsdurchsage" FunctionTypeZ21="" />
+    <mapping Id="134" Shortname="Snstg_Pmp" Duration="0" FunctionTypeIndexCS2="135" FunctionTypeCS2="Sonstige_Pumpe" FunctionTypeZ21="" />
+    <mapping Id="135" Shortname="Kmbntn_sch" Duration="0" FunctionTypeIndexCS2="136" FunctionTypeCS2="Kombination_schaufeln_Feuerbuechse" FunctionTypeZ21="" />
+    <mapping Id="136" Shortname="Bwglchr_Sc" Duration="0" FunctionTypeIndexCS2="137" FunctionTypeCS2="Beweglicher_Schaffner" FunctionTypeZ21="" />
+    <mapping Id="137" Shortname="Fnstr_f_z" Duration="0" FunctionTypeIndexCS2="138" FunctionTypeCS2="Fenster_auf_zu" FunctionTypeZ21="" />
+    <mapping Id="138" Shortname="Grsch_Fnst" Duration="0" FunctionTypeIndexCS2="139" FunctionTypeCS2="Geraeusch_Fenster_auf_zu" FunctionTypeZ21="" />
+    <mapping Id="139" Shortname="Drchsg_Trn" Duration="0" FunctionTypeIndexCS2="140" FunctionTypeCS2="Durchsage_Tueren_schlissen_rechts" FunctionTypeZ21="" />
+    <mapping Id="140" Shortname="Ambnt_Stdt" Duration="0" FunctionTypeIndexCS2="141" FunctionTypeCS2="Ambiente_Stadt" FunctionTypeZ21="" />
+    <mapping Id="141" Shortname="Ambnt_Tnnl" Duration="0" FunctionTypeIndexCS2="142" FunctionTypeCS2="Ambiente_Tunnel" FunctionTypeZ21="" />
+    <mapping Id="142" Shortname="Ambnt_Sthl" Duration="0" FunctionTypeIndexCS2="143" FunctionTypeCS2="Ambiente_Stahlbruecke" FunctionTypeZ21="" />
+    <mapping Id="143" Shortname="Ambnt_Btnb" Duration="0" FunctionTypeIndexCS2="144" FunctionTypeCS2="Ambiente_Betonbruecke" FunctionTypeZ21="" />
+    <mapping Id="144" Shortname="Grsch_Klpp" Duration="0" FunctionTypeIndexCS2="145" FunctionTypeCS2="Geraeusch_Klapptuere" FunctionTypeZ21="" />
+    <mapping Id="145" Shortname="Grsch_Tr" Duration="0" FunctionTypeIndexCS2="146" FunctionTypeCS2="Geraeusch_Tuere" FunctionTypeZ21="" />
+    <mapping Id="146" Shortname="Grsch_Fllt" Duration="0" FunctionTypeIndexCS2="147" FunctionTypeCS2="Geraeusch_Falltuere" FunctionTypeZ21="" />
+    <mapping Id="147" Shortname="Grsch_Rllt" Duration="0" FunctionTypeIndexCS2="148" FunctionTypeCS2="Geraeusch_Rolltor" FunctionTypeZ21="" />
+    <mapping Id="148" Shortname="Grsch_Rllt" Duration="0" FunctionTypeIndexCS2="148" FunctionTypeCS2="Geraeusch_Rolltor" FunctionTypeZ21="" />
+    <mapping Id="149" Shortname="Grsch_Schb" Duration="0" FunctionTypeIndexCS2="149" FunctionTypeCS2="Geraeusch_Schiebetuer" FunctionTypeZ21="" />
+    <mapping Id="150" Shortname="Dampfstoss" Duration="0" FunctionTypeIndexCS2="201" FunctionTypeCS2="Dampfstoss" FunctionTypeZ21="" />
+    <mapping Id="151" Shortname="Dslhzng" Duration="0" FunctionTypeIndexCS2="202" FunctionTypeCS2="Dieselheizung" FunctionTypeZ21="" />
+    <mapping Id="152" Shortname="Zugheizung" Duration="0" FunctionTypeIndexCS2="203" FunctionTypeCS2="Zugheizung" FunctionTypeZ21="" />
+    <mapping Id="153" Shortname="Segeln" Duration="0" FunctionTypeIndexCS2="204" FunctionTypeCS2="Segeln" FunctionTypeZ21="" />
+    <mapping Id="154" Shortname="Zg_Infnsg" Duration="0" FunctionTypeIndexCS2="205" FunctionTypeCS2="Zug_Infoansage" FunctionTypeZ21="sound1" />
+    <mapping Id="155" Shortname="Sndrnsg" Duration="0" FunctionTypeIndexCS2="206" FunctionTypeCS2="Sonderansage" FunctionTypeZ21="" />
+    <mapping Id="156" Shortname="Wrtnd_Pssg" Duration="0" FunctionTypeIndexCS2="207" FunctionTypeCS2="Wartende_Passagiere_am_Bahnhof" FunctionTypeZ21="" />
+    <mapping Id="157" Shortname="Bocksprung" Duration="0" FunctionTypeIndexCS2="208" FunctionTypeCS2="Bocksprung" FunctionTypeZ21="" />
+    <mapping Id="158" Shortname="Drchsg_Trn" Duration="0" FunctionTypeIndexCS2="209" FunctionTypeCS2="Durchsage_Tueren_schlissen_links" FunctionTypeZ21="" />
+    <mapping Id="159" Shortname="Zuggattung" Duration="0" FunctionTypeIndexCS2="210" FunctionTypeCS2="Zuggattung" FunctionTypeZ21="" />
+    <mapping Id="160" Shortname="Zgdrchsg" Duration="0" FunctionTypeIndexCS2="211" FunctionTypeCS2="Zugdurchsage" FunctionTypeZ21="" />
+    <mapping Id="161" Shortname="Wrnblnklch" Duration="0" FunctionTypeIndexCS2="212" FunctionTypeCS2="Warnblinklicht" FunctionTypeZ21="all_round_light" />
+    <mapping Id="162" Shortname="Play" Duration="0" FunctionTypeIndexCS2="213" FunctionTypeCS2="Play" FunctionTypeZ21="" />
+    <mapping Id="163" Shortname="Pause" Duration="0" FunctionTypeIndexCS2="214" FunctionTypeCS2="Pause" FunctionTypeZ21="" />
+    <mapping Id="164" Shortname="Vor" Duration="0" FunctionTypeIndexCS2="215" FunctionTypeCS2="Vor" FunctionTypeZ21="" />
+    <mapping Id="165" Shortname="Zurueck" Duration="0" FunctionTypeIndexCS2="216" FunctionTypeCS2="Zurueck" FunctionTypeZ21="" />
+    <mapping Id="166" Shortname="Laut" Duration="0" FunctionTypeIndexCS2="217" FunctionTypeCS2="Laut" FunctionTypeZ21="louder" />
+    <mapping Id="167" Shortname="Leise" Duration="0" FunctionTypeIndexCS2="218" FunctionTypeCS2="Leise" FunctionTypeZ21="quieter" />
+    <mapping Id="168" Shortname="Lcht_Abtl" Duration="0" FunctionTypeIndexCS2="221" FunctionTypeCS2="Licht_Abteile" FunctionTypeZ21="" />
+    <mapping Id="169" Shortname="Licht_Gang" Duration="0" FunctionTypeIndexCS2="222" FunctionTypeCS2="Licht_Gang" FunctionTypeZ21="" />
+    <mapping Id="170" Shortname="Lcht_Kch" Duration="0" FunctionTypeIndexCS2="223" FunctionTypeCS2="Licht_Kueche" FunctionTypeZ21="" />
+    <mapping Id="171" Shortname="Lcht_Gpck" Duration="0" FunctionTypeIndexCS2="224" FunctionTypeCS2="Licht_Gepaeck" FunctionTypeZ21="" />
+    <mapping Id="172" Shortname="Licht_Bar" Duration="0" FunctionTypeIndexCS2="225" FunctionTypeCS2="Licht_Bar" FunctionTypeZ21="" />
+    <mapping Id="173" Shortname="Tanken" Duration="0" FunctionTypeIndexCS2="226" FunctionTypeCS2="Tanken" FunctionTypeZ21="" />
+    <mapping Id="174" Shortname="Wasser" Duration="0" FunctionTypeIndexCS2="227" FunctionTypeCS2="Wasser" FunctionTypeZ21="" />
+    <mapping Id="175" Shortname="Diesel" Duration="0" FunctionTypeIndexCS2="228" FunctionTypeCS2="Diesel" FunctionTypeZ21="" />
+    <mapping Id="176" Shortname="Kohle" Duration="0" FunctionTypeIndexCS2="229" FunctionTypeCS2="Kohle" FunctionTypeZ21="" />
+    <mapping Id="177" Shortname="Khlstb_2" Duration="0" FunctionTypeIndexCS2="230" FunctionTypeCS2="Kohlestaub_2" FunctionTypeZ21="" />
+    <mapping Id="178" Shortname="Oel" Duration="0" FunctionTypeIndexCS2="231" FunctionTypeCS2="Oel" FunctionTypeZ21="" />
+    <mapping Id="179" Shortname="Sand" Duration="0" FunctionTypeIndexCS2="232" FunctionTypeCS2="Sand" FunctionTypeZ21="" />
+    <mapping Id="180" Shortname="Schwzr_Lch" Duration="0" FunctionTypeIndexCS2="233" FunctionTypeCS2="Schweizer_Lichtwechsel" FunctionTypeZ21="coach_side_light_off" />
+    <mapping Id="181" Shortname="Ansg_Pfff_" Duration="0" FunctionTypeIndexCS2="234" FunctionTypeCS2="Ansage_Pfiff_mit_Tuerschliessen" FunctionTypeZ21="" />
+    <mapping Id="182" Shortname="Zufall_Aus" Duration="0" FunctionTypeIndexCS2="235" FunctionTypeCS2="Zufall_Aus" FunctionTypeZ21="" />
+    <mapping Id="183" Shortname="Sifataster" Duration="0" FunctionTypeIndexCS2="236" FunctionTypeCS2="Sifataster" FunctionTypeZ21="" />
+    <mapping Id="184" Shortname="Not_Aus" Duration="0" FunctionTypeIndexCS2="237" FunctionTypeCS2="Not_Aus" FunctionTypeZ21="" />
+    <mapping Id="185" Shortname="Schalter" Duration="0" FunctionTypeIndexCS2="238" FunctionTypeCS2="Schalter" FunctionTypeZ21="" />
+    <mapping Id="186" Shortname="Kppschltr" Duration="0" FunctionTypeIndexCS2="239" FunctionTypeCS2="Kippschlater" FunctionTypeZ21="" />
+    <mapping Id="187" Shortname="Drhschltr" Duration="0" FunctionTypeIndexCS2="240" FunctionTypeCS2="Drehschalter" FunctionTypeZ21="" />
+    <mapping Id="188" Shortname="Not_Halt" Duration="0" FunctionTypeIndexCS2="241" FunctionTypeCS2="Not_Halt" FunctionTypeZ21="" />
+    <mapping Id="189" Shortname="Snd_Zhnrd" Duration="0" FunctionTypeIndexCS2="242" FunctionTypeCS2="Sound_Zahnrad" FunctionTypeZ21="" />
+    <mapping Id="190" Shortname="Klckrn_Tch" Duration="0" FunctionTypeIndexCS2="243" FunctionTypeCS2="Klackern_Tacho" FunctionTypeZ21="" />
+    <mapping Id="191" Shortname="Snd_Wschr" Duration="0" FunctionTypeIndexCS2="244" FunctionTypeCS2="Sound_Wischer" FunctionTypeZ21="" />
+    <mapping Id="192" Shortname="Zhnrd_Antr" Duration="0" FunctionTypeIndexCS2="245" FunctionTypeCS2="Zahnrad_Antrieb" FunctionTypeZ21="" />
+    <mapping Id="193" Shortname="Wischer" Duration="0" FunctionTypeIndexCS2="246" FunctionTypeCS2="Wischer" FunctionTypeZ21="" />
+    <mapping Id="194" Shortname="Abschlmmn_" Duration="0" FunctionTypeIndexCS2="247" FunctionTypeCS2="Abschlammen_Schlaemmen" FunctionTypeZ21="" />
+    <mapping Id="195" Shortname="Glck_lng" Duration="0" FunctionTypeIndexCS2="249" FunctionTypeCS2="Glocke_lang" FunctionTypeZ21="" />
+    <mapping Id="196" Shortname="Horn_kurz" Duration="0" FunctionTypeIndexCS2="250" FunctionTypeCS2="Horn_kurz" FunctionTypeZ21="horn_high" />
+    <mapping Id="197" Shortname="Horn_lang" Duration="0" FunctionTypeIndexCS2="251" FunctionTypeCS2="Horn_lang" FunctionTypeZ21="horn_low" />
+    <mapping Id="198" Shortname="Pff_krz" Duration="0" FunctionTypeIndexCS2="252" FunctionTypeCS2="Pfeife_kurz" FunctionTypeZ21="whistle_short" />
+    <mapping Id="199" Shortname="Pff_lng" Duration="0" FunctionTypeIndexCS2="253" FunctionTypeCS2="Pfeife_lang" FunctionTypeZ21="whistle_long" />
+    <mapping Id="200" Shortname="Krn_En_Ums" Duration="0" FunctionTypeIndexCS2="254" FunctionTypeCS2="Kran_Ein_Umschalten_Fahrbetrieb_Funktionsbetrieb" FunctionTypeZ21="" />
+    <mapping Id="201" Shortname="Krn_As_Grn" Duration="0" FunctionTypeIndexCS2="255" FunctionTypeCS2="Kran_Aus_Grundstellung_anfahren" FunctionTypeZ21="" />
+    <mapping Id="202" Shortname="Kran_Haken" Duration="0" FunctionTypeIndexCS2="256" FunctionTypeCS2="Kran_Haken" FunctionTypeZ21="" />
+    <mapping Id="203" Shortname="Hammer" Duration="0" FunctionTypeIndexCS2="257" FunctionTypeCS2="Hammer" FunctionTypeZ21="" />
+    <mapping Id="204" Shortname="Saege" Duration="0" FunctionTypeIndexCS2="258" FunctionTypeCS2="Saege" FunctionTypeZ21="" />
+    <mapping Id="205" Shortname="Bhrmschn_B" Duration="0" FunctionTypeIndexCS2="259" FunctionTypeCS2="Bohrmaschine_Bohrer" FunctionTypeZ21="" />
+    <mapping Id="206" Shortname="Schwssgrt_" Duration="0" FunctionTypeIndexCS2="260" FunctionTypeCS2="Schweissgeraet_Schweissen" FunctionTypeZ21="" />
+    <mapping Id="207" Shortname="Schlfblck_" Duration="0" FunctionTypeIndexCS2="261" FunctionTypeCS2="Schleifblock_Schleifen" FunctionTypeZ21="" />
+    <mapping Id="208" Shortname="Drhtbrst_B" Duration="0" FunctionTypeIndexCS2="262" FunctionTypeCS2="Drahtbuerste_Buersten" FunctionTypeZ21="" />
+    <mapping Id="209" Shortname="Kettenzug" Duration="0" FunctionTypeIndexCS2="263" FunctionTypeCS2="Kettenzug" FunctionTypeZ21="" />
+    <mapping Id="210" Shortname="Trnnschlfr" Duration="0" FunctionTypeIndexCS2="264" FunctionTypeCS2="Trennschleifer_Flex" FunctionTypeZ21="" />
+    <mapping Id="211" Shortname="Schaufel" Duration="0" FunctionTypeIndexCS2="265" FunctionTypeCS2="Schaufel" FunctionTypeZ21="" />
+    <mapping Id="212" Shortname="Ldn_Enldn_" Duration="0" FunctionTypeIndexCS2="266" FunctionTypeCS2="Laden_Einladen_Ausladen" FunctionTypeZ21="" />
+    <mapping Id="213" Shortname="Prsslfthmm" Duration="0" FunctionTypeIndexCS2="267" FunctionTypeCS2="Presslufthammer_Hämmern" FunctionTypeZ21="" />
+    <mapping Id="214" Shortname="Stop" Duration="0" FunctionTypeIndexCS2="268" FunctionTypeCS2="Stop" FunctionTypeZ21="" />
+    <mapping Id="215" Shortname="Naechstes" Duration="0" FunctionTypeIndexCS2="269" FunctionTypeCS2="Naechstes" FunctionTypeZ21="" />
+    <mapping Id="216" Shortname="Letztes" Duration="0" FunctionTypeIndexCS2="270" FunctionTypeCS2="Letztes" FunctionTypeZ21="" />
+    <mapping Id="217" Shortname="Bhnbrgng" Duration="0" FunctionTypeIndexCS2="271" FunctionTypeCS2="Bahnuebergang" FunctionTypeZ21="" />
+    <mapping Id="218" Shortname="Glck_Bhnbr" Duration="0" FunctionTypeIndexCS2="272" FunctionTypeCS2="Glocke_Bahnuebergang" FunctionTypeZ21="" />
+    <mapping Id="219" Shortname="Strklftn" Duration="0" FunctionTypeIndexCS2="273" FunctionTypeCS2="Starklueften" FunctionTypeZ21="fan_strong" />
+    <mapping Id="220" Shortname="Schwchlftn" Duration="0" FunctionTypeIndexCS2="274" FunctionTypeCS2="Schwachlueften" FunctionTypeZ21="fan" />
+    <mapping Id="221" Shortname="Tlx_Wlzr" Duration="0" FunctionTypeIndexCS2="277" FunctionTypeCS2="Telex_Walzer" FunctionTypeZ21="decouple" />
+    <mapping Id="222" Shortname="Lcht_Gnrtr" Duration="0" FunctionTypeIndexCS2="278" FunctionTypeCS2="Licht_Generator_Sound" FunctionTypeZ21="alternator" />
+    <mapping Id="223" Shortname="Rchkmmr" Duration="0" FunctionTypeIndexCS2="279" FunctionTypeCS2="Rauchkammer" FunctionTypeZ21="" />
+    <mapping Id="224" Shortname="Kohlestaub" Duration="0" FunctionTypeIndexCS2="280" FunctionTypeCS2="Kohlestaub" FunctionTypeZ21="" />
+    <mapping Id="225" Shortname="Frnlcht_vr" Duration="0" FunctionTypeIndexCS2="281" FunctionTypeCS2="Fernlicht_vorne_hinten" FunctionTypeZ21="" />
+    <mapping Id="226" Shortname="Strnlcht_v" Duration="0" FunctionTypeIndexCS2="282" FunctionTypeCS2="Stirnlicht_vorne_hinten" FunctionTypeZ21="" />
+    <mapping Id="227" Shortname="Lcht_Gnrtr" Duration="0" FunctionTypeIndexCS2="291" FunctionTypeCS2="Licht_Generator_Sound_hinten" FunctionTypeZ21="" />
+    <mapping Id="228" Shortname="Tlx_Wlzr_v" Duration="0" FunctionTypeIndexCS2="292" FunctionTypeCS2="Telex_Walzer_vorne" FunctionTypeZ21="decouple" />
+    <mapping Id="229" Shortname="Tlx_Wlzr_h" Duration="0" FunctionTypeIndexCS2="293" FunctionTypeCS2="Telex_Walzer_hinten" FunctionTypeZ21="decouple" />
+    <mapping Id="230" Shortname="Lcht_Gnrtr" Duration="0" FunctionTypeIndexCS2="294" FunctionTypeCS2="Licht_Generator_Sound_vorne" FunctionTypeZ21="" />
+    <mapping Id="231" Shortname="Krbln_Snd" Duration="0" FunctionTypeIndexCS2="295" FunctionTypeCS2="Kurbeln_Sound" FunctionTypeZ21="" />
 </mappings>
