@@ -97,7 +97,7 @@ namespace LocDbConverterConsole
                         Console.WriteLine("The following commands are available");
                         Console.WriteLine("\t/help                 \t- Help menu");
                         Console.WriteLine("\t/convert <file>       \t- Converts a given locomotive config file from CS2/CS3-format to Z21-format");
-                        Console.WriteLine("\t/import <file>/<path> \t- Imports a given locomotive config file in CS2/CS3-format to internal memory");
+                        Console.WriteLine("\t/import <file>        \t- Imports a given locomotive config file in CS2/CS3-format to internal memory");
                         Console.WriteLine("\t/list                 \t- Lists all imported locomotive configurations");
                         Console.WriteLine("\t/export <No.> <path>  \t- Export a locomotive config file in Z21-format from internal memory by list entry");
                         Console.WriteLine("\t/exit                 \t- Exits the program");
@@ -198,6 +198,7 @@ namespace LocDbConverterConsole
                         break;
 
                     default:
+                        Console.WriteLine("Unknown command. Use /help to get a list of available commands.");
                         break;
                 }
             }
