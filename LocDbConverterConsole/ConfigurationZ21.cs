@@ -43,30 +43,28 @@ namespace LocDbConverterConsole
         public int ExportConfiguration(int listIndex, string exportPath)
         {
             int returnValue = 0;
-            
-            string databaseFile = exportPath + "\\temp\\export\\New Folder\\Loco.sqlite";
-            Directory.CreateDirectory(exportPath + "\\temp\\export\\New Folder");
 
-            /* workaround as functions are not loaded correctly if I generate my own file */
+            //string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
+
+            string tmpPath = exportPath + "\\temp";
+            string databaseFile = tmpPath + "\\export\\New Folder\\Loco.sqlite";
+            Directory.CreateDirectory(tmpPath + "\\export\\New Folder");
+
+            /* workaround as functions are not loaded correctly if I generate a new sqlite file */
             string templateFile = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template\Loco.sqlite";
             System.IO.File.Copy(templateFile, databaseFile, true);
             /* end woraround */
             
-            /* uuid would only be needed in case pictures would be saved */
-            //Guid myuuid = Guid.NewGuid();
-            //string myuuidAsString = myuuid.ToString();
-            //_z21.ExportLocomotiveFile(@"\\Mac\Home\Downloads\LokDbConverter_Data\z21\LocomotiveOnly\export\" + myuuidAsString + "\\Loco.sqlite", 0);
             returnValue = ExportLocomotiveFile(databaseFile, listIndex);
             
-            string startPath = exportPath + "\\temp";
             string zipFileName = exportPath + "\\\\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
             if(File.Exists(zipFileName))
             {
                 File.Delete(zipFileName); 
             }
-            ZipFile.CreateFromDirectory(startPath, zipFileName);
+            ZipFile.CreateFromDirectory(tmpPath, zipFileName);
 
-            var directory = new DirectoryInfo(exportPath + "\\temp");
+            var directory = new DirectoryInfo(tmpPath);
             directory.Delete(true);
 
             return returnValue;
@@ -115,8 +113,7 @@ namespace LocDbConverterConsole
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'dc_functions' ('id' INTEGER PRIMARY KEY, 'vehicle_id' INTEGER,'position' INTEGER,'time' TEXT,'image_name' TEXT, 'function' INTEGER, 'cab_function_description' TEXT, 'drivers_cab' TEXT, 'shortcut' TEXT NOT NULL Default '', button_type INT NOT NULL Default 0, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0, PRIMARY KEY('id'))";
-                //command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'layout_data' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, control_station_type TEXT DEFAULT 'free', control_station_theme TEXT DEFAULT 'free')";
                 command.ExecuteNonQuery();
@@ -144,18 +141,26 @@ namespace LocDbConverterConsole
 
                 command = connection.CreateCommand();
                 command.CommandText =
-                    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [direct_steering], [crane]) " +
-                    "VALUES(@id, @name, @type, @max_speed, @address, @active, @position, @speed_display, @traction_direction, @dummy, @direct_steering, @crane); ";
+                    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [ip], [video], [video_x], [video_y], [video_width], [panorama_x], [panorama_y], [panorama_width], [direct_steering], [crane]) " +
+                    "VALUES(@id, @name, @type, @max_speed, @address, @active, @position, @speed_display, @traction_direction, @dummy, @ip, @video, @video_x, @video_y, @video_width, @panorama_x, @panorama_y, @panorama_width, @direct_steering, @crane); ";
                 command.Parameters.AddWithValue("@id", 1);
                 command.Parameters.AddWithValue("@name", LocomotiveList.Get(listIndex).Name);
                 command.Parameters.AddWithValue("@type", 0);
                 command.Parameters.AddWithValue("@max_speed", LocomotiveList.Get(listIndex).SpeedometerMax);
                 command.Parameters.AddWithValue("@address", LocomotiveList.Get(listIndex).Address);
                 command.Parameters.AddWithValue("@active", 1);
-                command.Parameters.AddWithValue("@position", 1);
+                command.Parameters.AddWithValue("@position", 0);
                 command.Parameters.AddWithValue("@speed_display", 0);
                 command.Parameters.AddWithValue("@traction_direction", 0);
                 command.Parameters.AddWithValue("@dummy", 0);
+                command.Parameters.AddWithValue("@ip", "192.168.15.2");
+                command.Parameters.AddWithValue("@video", 0);
+                command.Parameters.AddWithValue("@video_x", 0);
+                command.Parameters.AddWithValue("@video_y", 0);
+                command.Parameters.AddWithValue("@video_width", 768);
+                command.Parameters.AddWithValue("@panorama_x", 0);
+                command.Parameters.AddWithValue("@panorama_y", 0);
+                command.Parameters.AddWithValue("@panorama_width", 1024);
                 command.Parameters.AddWithValue("@direct_steering", 0);
                 command.Parameters.AddWithValue("@crane", 0);
                 command.ExecuteNonQuery();
@@ -169,25 +174,22 @@ namespace LocDbConverterConsole
                 command.ExecuteNonQuery();
                 command.Dispose();
 
-                //int index = 0;
-                //while (!(Locomotives.Get(listIndex).functions[index].Type == FunctionTypeCS3.None)) //TODO: What if there is an empty function within between?
                 for (int index = 0; index < LocomotiveList.Get(listIndex).Functions.Length; index++)
                 {
                     functionMapping = FunctionTypeMappingList.Find(x => x.Key == LocomotiveList.Get(listIndex).Functions[index]);
  
                     command = connection.CreateCommand();
-
                     command.CommandText =
                         "INSERT INTO functions ([id], [vehicle_id], [button_type], [shortcut], [time], [position], [image_name], [function], [show_function_number], [is_configured]) " +
                         "VALUES(@id, @vehicle_id, @button_type, @shortcut, @time, @position, @image_name, @function, @show_function_number, @is_configured); ";
-                    command.Parameters.AddWithValue("@id", index + 1);
+                    command.Parameters.AddWithValue("@id", index + 80);//+1
                     command.Parameters.AddWithValue("@vehicle_id", 1);
                     int buttonType = functionMapping.Duration;
                     command.Parameters.AddWithValue("@button_type", buttonType);
                     string shortcut = functionMapping.Shortname;
                     if (shortcut.Length > 10) shortcut = shortcut.Substring(0, 10);
                     command.Parameters.AddWithValue("@shortcut", shortcut);
-                    command.Parameters.AddWithValue("@time", 0);
+                    command.Parameters.AddWithValue("@time", "0.000000");
                     command.Parameters.AddWithValue("@position", index);
                     string imageName = functionMapping.FunctionTypeZ21.ToString();
                     command.Parameters.AddWithValue("@image_name", imageName);
@@ -196,46 +198,48 @@ namespace LocDbConverterConsole
                     command.Parameters.AddWithValue("@is_configured", 0);
                     command.ExecuteNonQuery();
                     command.Dispose();
-                    //index++;
                 }
 
 
                 // ---------- fill table layout_data ----------
 
-                //command = connection.CreateCommand();
-                //command.CommandText = "DELETE FROM layout_data";
-                //command.ExecuteNonQuery();
+                command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM layout_data";
+                command.ExecuteNonQuery();
+                command.Dispose();
 
-                //command = connection.CreateCommand();
-                //command.CommandText =
-                //    "INSERT INTO layout_data ([id], [name], [control_station_type], [control_station_theme]) " +
-                //    "VALUES(@id, @name, @control_station_type, @control_station_theme); ";
-                //command.Parameters.AddWithValue("@id", 1);
-                //command.Parameters.AddWithValue("@name", "Neue Anlage");
-                //command.Parameters.AddWithValue("@control_station_type", "schematic");
-                //command.Parameters.AddWithValue("@control_station_theme", "default");
-                //command.ExecuteNonQuery();
-                //command.Dispose();
+                command = connection.CreateCommand();
+                command.CommandText =
+                    "INSERT INTO layout_data ([id], [name], [control_station_type], [control_station_theme]) " +
+                    "VALUES(@id, @name, @control_station_type, @control_station_theme); ";
+                command.Parameters.AddWithValue("@id", 1);
+                command.Parameters.AddWithValue("@name", "Neue Anlage");
+                command.Parameters.AddWithValue("@control_station_type", "schematic");
+                command.Parameters.AddWithValue("@control_station_theme", "default");
+                command.ExecuteNonQuery();
+                command.Dispose();
 
 
                 // ---------- fill table update_history ----------
 
-                //command = connection.CreateCommand();
-                //command.CommandText = "DELETE FROM update_history";
-                //command.ExecuteNonQuery();
 
-                //command = connection.CreateCommand();
-                //command.CommandText =
-                //    "INSERT INTO update_history ([id], [os], [update_date], [build_version], [build_number], [to_database_version]) " +
-                //    "VALUES(@id, @os, @update_date, @build_version, @build_number, @to_database_version); ";
-                //command.Parameters.AddWithValue("@id", 1);
-                //command.Parameters.AddWithValue("@ios", 13); //Todo
-                //command.Parameters.AddWithValue("@update_date", "23.12.22, 21:08:39 Mitteleuropäische Normalzeit"); //Todo
-                //command.Parameters.AddWithValue("@build_version", "1.4.6");
-                //command.Parameters.AddWithValue("@build_number", 6076);
-                //command.Parameters.AddWithValue("@to_database_version", 1);
-                //command.ExecuteNonQuery();
-                //command.Dispose();
+                command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM update_history";
+                command.ExecuteNonQuery();
+                command.Dispose();
+
+                command = connection.CreateCommand();
+                command.CommandText =
+                    "INSERT INTO update_history ([id], [os], [update_date], [build_version], [build_number], [to_database_version]) " +
+                    "VALUES(@id, @os, @update_date, @build_version, @build_number, @to_database_version); ";
+                command.Parameters.AddWithValue("@id", 1);
+                command.Parameters.AddWithValue("@os", "ios");
+                command.Parameters.AddWithValue("@update_date", DateTime.Now.ToString("dd/MM/yy, hh:mm:ss") + " Mitteleuropäische Normalzeit"); //i.e. "23.12.22, 21:08:39 Mitteleuropäische Normalzeit"
+                command.Parameters.AddWithValue("@build_version", "1.0.3"); //1.4.7
+                command.Parameters.AddWithValue("@build_number", 3568); //6142
+                command.Parameters.AddWithValue("@to_database_version", 6);
+                command.ExecuteNonQuery();
+                command.Dispose();
 
                 returnValue = 1;
             }
