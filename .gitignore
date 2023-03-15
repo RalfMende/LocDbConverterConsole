@@ -20,3 +20,9 @@ LocDbConverterConsole/obj/**
 *.v2
 *.vsidx
 .vs/LocDbConverterConsole/v17/.suo
+*.vsidx
+.vs/LocDbConverterConsole/DesignTimeBuild/.dtbcache.v2
+.vs/LocDbConverterConsole/v17/.futdcache.v2
+.vs/LocDbConverterConsole/v17/.suo
+.vs/ProjectEvaluation/locdbconverterconsole.metadata.v6.1
+.vs/ProjectEvaluation/locdbconverterconsole.projects.v6.1

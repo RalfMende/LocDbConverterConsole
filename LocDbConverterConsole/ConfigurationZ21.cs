@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
@@ -42,20 +43,31 @@ namespace LocDbConverterConsole
         public int ExportConfiguration(int listIndex, string exportPath)
         {
             int returnValue = 0;
-            string templateFile = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template\export\New Folder\Loco.sqlite";
+            
+            string databaseFile = exportPath + "\\temp\\export\\New Folder\\Loco.sqlite";
+            Directory.CreateDirectory(exportPath + "\\temp\\export\\New Folder");
 
+            /* workaround as functions are not loaded correctly if I generate my own file */
+            string templateFile = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template\Loco.sqlite";
+            System.IO.File.Copy(templateFile, databaseFile, true);
+            /* end woraround */
+            
+            /* uuid would only be needed in case pictures would be saved */
             //Guid myuuid = Guid.NewGuid();
             //string myuuidAsString = myuuid.ToString();
             //_z21.ExportLocomotiveFile(@"\\Mac\Home\Downloads\LokDbConverter_Data\z21\LocomotiveOnly\export\" + myuuidAsString + "\\Loco.sqlite", 0);
-            returnValue = ExportLocomotiveFile(templateFile, 0);
+            returnValue = ExportLocomotiveFile(databaseFile, listIndex);
             
-            string startPath = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template";
+            string startPath = exportPath + "\\temp";
             string zipFileName = exportPath + "\\\\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
             if(File.Exists(zipFileName))
             {
                 File.Delete(zipFileName); 
             }
             ZipFile.CreateFromDirectory(startPath, zipFileName);
+
+            var directory = new DirectoryInfo(exportPath + "\\temp");
+            directory.Delete(true);
 
             return returnValue;
         }
@@ -104,6 +116,7 @@ namespace LocDbConverterConsole
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'dc_functions' ('id' INTEGER PRIMARY KEY, 'vehicle_id' INTEGER,'position' INTEGER,'time' TEXT,'image_name' TEXT, 'function' INTEGER, 'cab_function_description' TEXT, 'drivers_cab' TEXT, 'shortcut' TEXT NOT NULL Default '', button_type INT NOT NULL Default 0, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0, PRIMARY KEY('id'))";
+                //command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'layout_data' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, control_station_type TEXT DEFAULT 'free', control_station_theme TEXT DEFAULT 'free')";
                 command.ExecuteNonQuery();
@@ -189,40 +202,40 @@ namespace LocDbConverterConsole
 
                 // ---------- fill table layout_data ----------
 
-                //    command = connection.CreateCommand();
-                //    command.CommandText = "DELETE FROM layout_data";
-                //    command.ExecuteNonQuery();
+                //command = connection.CreateCommand();
+                //command.CommandText = "DELETE FROM layout_data";
+                //command.ExecuteNonQuery();
 
-                //    command = connection.CreateCommand();
-                //    command.CommandText =
-                //        "INSERT INTO layout_data ([id], [name], [control_station_type], [control_station_theme]) " +
-                //        "VALUES(@id, @name, @control_station_type, @control_station_theme); ";
-                //    command.Parameters.AddWithValue("@id", 1);
-                //    command.Parameters.AddWithValue("@name", "Neue Anlage");
-                //    command.Parameters.AddWithValue("@control_station_type", "schematic");
-                //    command.Parameters.AddWithValue("@control_station_theme", "default");
-                //    command.ExecuteNonQuery();
-                //    command.Dispose();
+                //command = connection.CreateCommand();
+                //command.CommandText =
+                //    "INSERT INTO layout_data ([id], [name], [control_station_type], [control_station_theme]) " +
+                //    "VALUES(@id, @name, @control_station_type, @control_station_theme); ";
+                //command.Parameters.AddWithValue("@id", 1);
+                //command.Parameters.AddWithValue("@name", "Neue Anlage");
+                //command.Parameters.AddWithValue("@control_station_type", "schematic");
+                //command.Parameters.AddWithValue("@control_station_theme", "default");
+                //command.ExecuteNonQuery();
+                //command.Dispose();
 
 
                 // ---------- fill table update_history ----------
 
-                //    command = connection.CreateCommand();
-                //    command.CommandText = "DELETE FROM update_history";
-                //    command.ExecuteNonQuery();
-                //
-                //    command = connection.CreateCommand();
-                //    command.CommandText =
-                //        "INSERT INTO update_history ([id], [os], [update_date], [build_version], [build_number], [to_database_version]) " +
-                //        "VALUES(@id, @os, @update_date, @build_version, @build_number, @to_database_version); ";
-                //    command.Parameters.AddWithValue("@id", 1);
-                //    command.Parameters.AddWithValue("@ios", 13); //Todo
-                //    command.Parameters.AddWithValue("@update_date", "23.12.22, 21:08:39 Mitteleuropäische Normalzeit"); //Todo
-                //    command.Parameters.AddWithValue("@build_version", "1.4.6");
-                //    command.Parameters.AddWithValue("@build_number", 6076);
-                //    command.Parameters.AddWithValue("@to_database_version", 1);
-                //    command.ExecuteNonQuery();
-                //    command.Dispose();
+                //command = connection.CreateCommand();
+                //command.CommandText = "DELETE FROM update_history";
+                //command.ExecuteNonQuery();
+
+                //command = connection.CreateCommand();
+                //command.CommandText =
+                //    "INSERT INTO update_history ([id], [os], [update_date], [build_version], [build_number], [to_database_version]) " +
+                //    "VALUES(@id, @os, @update_date, @build_version, @build_number, @to_database_version); ";
+                //command.Parameters.AddWithValue("@id", 1);
+                //command.Parameters.AddWithValue("@ios", 13); //Todo
+                //command.Parameters.AddWithValue("@update_date", "23.12.22, 21:08:39 Mitteleuropäische Normalzeit"); //Todo
+                //command.Parameters.AddWithValue("@build_version", "1.4.6");
+                //command.Parameters.AddWithValue("@build_number", 6076);
+                //command.Parameters.AddWithValue("@to_database_version", 1);
+                //command.ExecuteNonQuery();
+                //command.Dispose();
 
                 returnValue = 1;
             }

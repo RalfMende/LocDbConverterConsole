@@ -104,15 +104,16 @@ namespace LocDbConverterConsole
                         break;
 
                     case "/convert":
-                        //if (userEntrySplit[1].Contains('"'))
-                        //{
-                        //    userEntrySplit[1].Replace(((char)28).ToString(), "");
-                        //}
+                        if (userEntrySplit[1].StartsWith("\""))
+                        {
+                            userEntrySplit[1] = userEntrySplit[1].Replace("\"", "");
+                        }
                         if (File.Exists(userEntrySplit[1]) && userEntrySplit[1].Substring(userEntrySplit[1].Length - 4).Contains(".cs2"))
                         {
                             exportPath = Path.GetDirectoryName(userEntrySplit[1]);
                             returnValue = _cs2.ImportConfiguration(userEntrySplit[1]);
-                            if (returnValue > 0) returnValue = _z21.ExportConfiguration(LocomotiveList.SizeOf() - 1, exportPath);
+                            int listIndex = LocomotiveList.SizeOf() - 1;
+                            if (returnValue > 0) returnValue = _z21.ExportConfiguration(listIndex, exportPath);
                             if (returnValue > 0) Console.WriteLine("File exported to " + exportPath);
                         }
                         else
