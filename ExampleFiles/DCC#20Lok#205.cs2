@@ -1,0 +1,14 @@
+[lokomotive]
+lokomotive
+ .name=DCC#20Lok#205
+ .uid=0xc005
+ .dectyp=dcc
+ .icon=leere#20Lok
+ .symbol=1
+ .vmax=255
+ .tachomax=120
+ .volume=64
+ .spa=0
+ .funktionen
+ ..nr=0
+ ..typ=1
