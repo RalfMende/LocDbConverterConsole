@@ -4,14 +4,14 @@
  * Copyright (c) 2023 Ralf Mende
  * 
  * 
- * This file is part of CS6021.
+ * This file is part of LocDbConverterConsole.
  * 
- * CS6021 is free software: you can redistribute it and/or modify it 
+ * LocDbConverterConsole is free software: you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the 
  * Free Software Foundation, either version 3 of the License, or (at your 
  * option) any later version.
  * 
- * CS6021 is distributed in the hope that it will be useful, but 
+ * LocDbConverterConsole is distributed in the hope that it will be useful, but 
  * WITHOUT ANY WARRANTY; without even the implied warranty of 
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  * See the GNU General Public License for more details.
@@ -50,11 +50,6 @@ namespace LocDbConverterConsole
             string databaseFile = tmpPath + "\\export\\New Folder\\Loco.sqlite";
             Directory.CreateDirectory(tmpPath + "\\export\\New Folder");
 
-            /* workaround as functions are not loaded correctly if I generate a new sqlite file */
-            string templateFile = @"\\Mac\Home\Documents\GitHub\LocDbConverterConsole\z21_template\Loco.sqlite";
-            System.IO.File.Copy(templateFile, databaseFile, true);
-            /* end woraround */
-            
             returnValue = ExportLocomotiveFile(databaseFile, listIndex);
             
             string zipFileName = exportPath + "\\\\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
@@ -88,7 +83,11 @@ namespace LocDbConverterConsole
             try
             {
                 // ---------- create tables ----------
+                command.CommandText = "PRAGMA user_version = 15";
+                command.ExecuteNonQuery();
 
+
+                // ---------- create tables ----------
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT)";
                 command.ExecuteNonQuery();
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_control_states' ('id' INTEGER PRIMARY KEY, 'control_id' INTEGER, 'state' INTEGER, 'address1_value' INTEGER, 'address2_value' INTEGER, 'address3_value' INTEGER)";
@@ -182,7 +181,7 @@ namespace LocDbConverterConsole
                     command.CommandText =
                         "INSERT INTO functions ([id], [vehicle_id], [button_type], [shortcut], [time], [position], [image_name], [function], [show_function_number], [is_configured]) " +
                         "VALUES(@id, @vehicle_id, @button_type, @shortcut, @time, @position, @image_name, @function, @show_function_number, @is_configured); ";
-                    command.Parameters.AddWithValue("@id", index + 80);//+1
+                    command.Parameters.AddWithValue("@id", index + 1);
                     command.Parameters.AddWithValue("@vehicle_id", 1);
                     int buttonType = functionMapping.Duration;
                     command.Parameters.AddWithValue("@button_type", buttonType);
@@ -235,9 +234,9 @@ namespace LocDbConverterConsole
                 command.Parameters.AddWithValue("@id", 1);
                 command.Parameters.AddWithValue("@os", "ios");
                 command.Parameters.AddWithValue("@update_date", DateTime.Now.ToString("dd/MM/yy, hh:mm:ss") + " Mitteleuropäische Normalzeit"); //i.e. "23.12.22, 21:08:39 Mitteleuropäische Normalzeit"
-                command.Parameters.AddWithValue("@build_version", "1.0.3"); //1.4.7
-                command.Parameters.AddWithValue("@build_number", 3568); //6142
-                command.Parameters.AddWithValue("@to_database_version", 6);
+                command.Parameters.AddWithValue("@build_version", "1.4.7");
+                command.Parameters.AddWithValue("@build_number", 6142);
+                command.Parameters.AddWithValue("@to_database_version", 15);
                 command.ExecuteNonQuery();
                 command.Dispose();
 
