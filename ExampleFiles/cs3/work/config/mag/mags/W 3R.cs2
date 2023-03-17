@@ -1,8 +1,0 @@
-[magnetartikel]
-artikel
- .name=W 3R
- .typ=rechtsweiche
- .id=3
- .schaltzeit=200
- .prot=mm
- .decoder=ein_alt

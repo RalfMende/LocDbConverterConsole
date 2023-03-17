@@ -1,8 +1,0 @@
-[magnetartikel]
-artikel
- .name=S 2
- .typ=urc_lichtsignal_HP012_SH01
- .id=6
- .schaltzeit=200
- .prot=mm
- .decoder=ein_alt

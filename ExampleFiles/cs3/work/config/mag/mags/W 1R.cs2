@@ -1,8 +1,0 @@
-[magnetartikel]
-artikel
- .name=W 1R
- .typ=rechtsweiche
- .id=1
- .schaltzeit=200
- .prot=mm
- .decoder=ein_alt
