@@ -43,7 +43,7 @@ namespace LocDbConverterConsole
         public int ExportConfiguration(int listIndex, string exportPath)
         {
             int returnValue = 0;
-
+            
             //string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
 
             string tmpPath = exportPath + "\\temp";
@@ -75,68 +75,66 @@ namespace LocDbConverterConsole
         private int ExportLocomotiveFile(string databaseFile, int listIndex)
         {
             int returnValue = 0;
+            FunctionTypeMapping functionMapping;
+
             var connection = new SqliteConnection("Data Source=" + databaseFile);
             connection.Open();
             var command = connection.CreateCommand();
-            FunctionTypeMapping functionMapping;
-
+            
             try
             {
-                // ---------- create tables ----------
+                // ---------- set missing PRAGMAs ----------
                 command.CommandText = "PRAGMA user_version = 15";
                 command.ExecuteNonQuery();
-
+                command.Dispose();
 
                 // ---------- create tables ----------
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT)";
+
+                command = connection.CreateCommand();
+                command.CommandText = @"CREATE TABLE 'categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_control_states' ('id' INTEGER PRIMARY KEY, 'control_id' INTEGER, 'state' INTEGER, 'address1_value' INTEGER, 'address2_value' INTEGER, 'address3_value' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'control_station_control_states' ('id' INTEGER PRIMARY KEY, 'control_id' INTEGER, 'state' INTEGER, 'address1_value' INTEGER, 'address2_value' INTEGER, 'address3_value' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_controls' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'x' INTEGER, 'y' INTEGER, 'angle' REAL, 'type' INTEGER, 'address1' INTEGER, 'address2' INTEGER, 'address3' INTEGER, button_type INTEGER DEFAULT 0, time REAL DEFAULT 0)";
+                command.CommandText = @"CREATE TABLE 'control_station_controls' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'x' INTEGER, 'y' INTEGER, 'angle' REAL, 'type' INTEGER, 'address1' INTEGER, 'address2' INTEGER, 'address3' INTEGER, button_type INTEGER DEFAULT 0, time REAL DEFAULT 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_images' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'image_name' TEXT)";
+                command.CommandText = @"CREATE TABLE 'control_station_images' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'image_name' TEXT)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_notes' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'x' INTEGER, 'y' INTEGER, 'text' TEXT, 'font_size' INTEGER, angle INTEGER DEFAULT 0, type INTEGER DEFAULT 1)";
+                command.CommandText = @"CREATE TABLE 'control_station_notes' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'x' INTEGER, 'y' INTEGER, 'text' TEXT, 'font_size' INTEGER, angle INTEGER DEFAULT 0, type INTEGER DEFAULT 1)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_pages' ('id' INTEGER PRIMARY KEY, 'position' INTEGER, 'name' TEXT,'thumb' TEXT)";
+                command.CommandText = @"CREATE TABLE 'control_station_pages' ('id' INTEGER PRIMARY KEY, 'position' INTEGER, 'name' TEXT,'thumb' TEXT)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_rails' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'left_control_id' INTEGER, 'right_control_id' INTEGER, 'left_outlet' INTEGER, 'right_outlet' INTEGER, 'value' REAL, left_response_module_id INTEGER DEFAULT 0, right_response_module_id INTEGER DEFAULT 0)";
+                command.CommandText = @"CREATE TABLE 'control_station_rails' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'left_control_id' INTEGER, 'right_control_id' INTEGER, 'left_outlet' INTEGER, 'right_outlet' INTEGER, 'value' REAL, left_response_module_id INTEGER DEFAULT 0, right_response_module_id INTEGER DEFAULT 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_response_modules' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'type' INTEGER, 'address' INTEGER, 'report_address' INTEGER, 'afterglow' INTEGER,  'x' INTEGER, 'y' INTEGER, 'angle' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'control_station_response_modules' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'type' INTEGER, 'address' INTEGER, 'report_address' INTEGER, 'afterglow' INTEGER,  'x' INTEGER, 'y' INTEGER, 'angle' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_route_list' ('id' INTEGER PRIMARY KEY, 'route_id' INTEGER, 'control_id' TEXT, 'state_id' INTEGER, 'position' INTEGER, 'wait_time' INTEGER, type INTEGER DEFAULT 0, signal_id INTEGER DEFAULT 0, signal_aspect INTEGER DEFAULT 0)";
+                command.CommandText = @"CREATE TABLE 'control_station_route_list' ('id' INTEGER PRIMARY KEY, 'route_id' INTEGER, 'control_id' TEXT, 'state_id' INTEGER, 'position' INTEGER, 'wait_time' INTEGER, type INTEGER DEFAULT 0, signal_id INTEGER DEFAULT 0, signal_aspect INTEGER DEFAULT 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_routes' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'name' TEXT, 'x' INTEGER, 'y' INTEGER, 'angle' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'control_station_routes' ('id' INTEGER PRIMARY KEY, 'page_id' INTEGER, 'name' TEXT, 'x' INTEGER, 'y' INTEGER, 'angle' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'control_station_signals' ('id' INTEGER PRIMARY KEY NOT NULL, 'page_id' INTEGER, 'x' INTEGER, 'y' INTEGER, 'angle' REAL, 'signal_id' INTEGER, 'signal_graph' INTEGER, 'address' INTEGER, 'active_aspects' TEXT, 'communication' INTEGER, 'z21_pro_link_id' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'control_station_signals' ('id' INTEGER PRIMARY KEY NOT NULL, 'page_id' INTEGER, 'x' INTEGER, 'y' INTEGER, 'angle' REAL, 'signal_id' INTEGER, 'signal_graph' INTEGER, 'address' INTEGER, 'active_aspects' TEXT, 'communication' INTEGER, 'z21_pro_link_id' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'dc_functions' ('id' INTEGER PRIMARY KEY, 'vehicle_id' INTEGER,'position' INTEGER,'time' TEXT,'image_name' TEXT, 'function' INTEGER, 'cab_function_description' TEXT, 'drivers_cab' TEXT, 'shortcut' TEXT NOT NULL Default '', button_type INT NOT NULL Default 0, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
+                command.CommandText = @"CREATE TABLE 'dc_functions' ('id' INTEGER PRIMARY KEY, 'vehicle_id' INTEGER,'position' INTEGER,'time' TEXT,'image_name' TEXT, 'function' INTEGER, 'cab_function_description' TEXT, 'drivers_cab' TEXT, 'shortcut' TEXT NOT NULL Default '', button_type INT NOT NULL Default 0, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
+                command.CommandText = @"CREATE TABLE 'functions' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER, 'button_type' INTEGER NOT NULL Default 0, 'shortcut' TEXT NOT NULL Default '', 'time' TEXT, 'position' INTEGER, 'image_name' TEXT, 'function' INTEGER, 'show_function_number' INTEGER NOT NULL Default 1, 'is_configured' INTEGER NOT NULL Default 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'layout_data' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, control_station_type TEXT DEFAULT 'free', control_station_theme TEXT DEFAULT 'free')";
+                command.CommandText = @"CREATE TABLE 'layout_data' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, control_station_type TEXT DEFAULT 'free', control_station_theme TEXT DEFAULT 'free')";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'paired_z21_pro_links' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, 'mac' TEXT, 'last_seen_date' DATE, 'ip' TEXT, 'last_connected_device' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'paired_z21_pro_links' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, 'mac' TEXT, 'last_seen_date' DATE, 'ip' TEXT, 'last_connected_device' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'traction_list' ('id' INTEGER PRIMARY KEY NOT NULL, 'loco_id' INTEGER, 'regulation_step' INTEGER, 'time' REAL)";
+                command.CommandText = @"CREATE TABLE 'traction_list' ('id' INTEGER PRIMARY KEY NOT NULL, 'loco_id' INTEGER, 'regulation_step' INTEGER, 'time' REAL)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'train_list' ('id' INTEGER PRIMARY KEY NOT NULL, 'train_id' INTEGER, 'vehicle_id' INTEGER, 'position' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'train_list' ('id' INTEGER PRIMARY KEY NOT NULL, 'train_id' INTEGER, 'vehicle_id' INTEGER, 'position' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'update_history' ('id' INTEGER PRIMARY KEY, 'os' TEXT, 'update_date' TEXT, 'build_version' TEXT, 'build_number' INTEGER, 'to_database_version' INTEGER)";
+                command.CommandText = @"CREATE TABLE 'update_history' ('id' INTEGER PRIMARY KEY, 'os' TEXT, 'update_date' TEXT, 'build_version' TEXT, 'build_number' INTEGER, 'to_database_version' INTEGER)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'vehicles' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, 'image_name' TEXT, 'type' INTEGER, 'max_speed' INTEGER,'address' INTEGER, 'active' INTEGER, 'position' INTEGER, 'drivers_cab' TEXT, 'full_name' TEXT, 'speed_display' INTEGER, 'railway' TEXT, 'buffer_lenght' TEXT, 'model_buffer_lenght' TEXT, 'service_weight' TEXT, 'model_weight' TEXT, 'rmin' TEXT, 'article_number' TEXT, 'decoder_type' TEXT, 'owner' TEXT, 'build_year' TEXT, 'owning_since' TEXT, 'traction_direction' INTEGER, 'description' TEXT, 'dummy' INTEGER, 'ip' TEXT, 'video' INTEGER, 'video_x' INTEGER, 'video_y' INTEGER, 'video_width' INTEGER, 'panorama_x' INTEGER, 'panorama_y' INTEGER, 'panorama_width' INTEGER, 'panoramaImage' TEXT, 'direct_steering' INTEGER, crane INTEGER DEFAULT 0)";
+                command.CommandText = @"CREATE TABLE 'vehicles' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT, 'image_name' TEXT, 'type' INTEGER, 'max_speed' INTEGER,'address' INTEGER, 'active' INTEGER, 'position' INTEGER, 'drivers_cab' TEXT, 'full_name' TEXT, 'speed_display' INTEGER, 'railway' TEXT, 'buffer_lenght' TEXT, 'model_buffer_lenght' TEXT, 'service_weight' TEXT, 'model_weight' TEXT, 'rmin' TEXT, 'article_number' TEXT, 'decoder_type' TEXT, 'owner' TEXT, 'build_year' TEXT, 'owning_since' TEXT, 'traction_direction' INTEGER, 'description' TEXT, 'dummy' INTEGER, 'ip' TEXT, 'video' INTEGER, 'video_x' INTEGER, 'video_y' INTEGER, 'video_width' INTEGER, 'panorama_x' INTEGER, 'panorama_y' INTEGER, 'panorama_width' INTEGER, 'panoramaImage' TEXT, 'direct_steering' INTEGER, crane INTEGER DEFAULT 0)";
                 command.ExecuteNonQuery();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 'vehicles_to_categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER NOT NULL, 'category_id' INTEGER NOT NULL)";
+                command.CommandText = @"CREATE TABLE 'vehicles_to_categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'vehicle_id' INTEGER NOT NULL, 'category_id' INTEGER NOT NULL)";
                 command.ExecuteNonQuery();
                 command.Dispose();
 
                 
                 // ----------fill table vehicles ----------
-                
-                command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM vehicles";
-                command.ExecuteNonQuery();
-                command.Dispose();
 
                 command = connection.CreateCommand();
                 command.CommandText =
@@ -168,11 +166,6 @@ namespace LocDbConverterConsole
 
                 // ---------- fill table functions ----------
 
-                command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM functions";
-                command.ExecuteNonQuery();
-                command.Dispose();
-
                 for (int index = 0; index < LocomotiveList.Get(listIndex).Functions.Length; index++)
                 {
                     functionMapping = FunctionTypeMappingList.Find(x => x.Key == LocomotiveList.Get(listIndex).Functions[index]);
@@ -203,11 +196,6 @@ namespace LocDbConverterConsole
                 // ---------- fill table layout_data ----------
 
                 command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM layout_data";
-                command.ExecuteNonQuery();
-                command.Dispose();
-
-                command = connection.CreateCommand();
                 command.CommandText =
                     "INSERT INTO layout_data ([id], [name], [control_station_type], [control_station_theme]) " +
                     "VALUES(@id, @name, @control_station_type, @control_station_theme); ";
@@ -221,19 +209,13 @@ namespace LocDbConverterConsole
 
                 // ---------- fill table update_history ----------
 
-
-                command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM update_history";
-                command.ExecuteNonQuery();
-                command.Dispose();
-
                 command = connection.CreateCommand();
                 command.CommandText =
                     "INSERT INTO update_history ([id], [os], [update_date], [build_version], [build_number], [to_database_version]) " +
                     "VALUES(@id, @os, @update_date, @build_version, @build_number, @to_database_version); ";
                 command.Parameters.AddWithValue("@id", 1);
                 command.Parameters.AddWithValue("@os", "ios");
-                command.Parameters.AddWithValue("@update_date", DateTime.Now.ToString("dd/MM/yy, hh:mm:ss") + " Mitteleuropäische Normalzeit"); //i.e. "23.12.22, 21:08:39 Mitteleuropäische Normalzeit"
+                command.Parameters.AddWithValue("@update_date", DateTime.Now.ToString("dd/MM/yy, hh:mm:ss") + " Mitteleuropäische Normalzeit");
                 command.Parameters.AddWithValue("@build_version", "1.4.7");
                 command.Parameters.AddWithValue("@build_number", 6142);
                 command.Parameters.AddWithValue("@to_database_version", 15);
