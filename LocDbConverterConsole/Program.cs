@@ -164,7 +164,7 @@ namespace LocDbConverterConsole
                             }
                             else
                             {
-                                Console.WriteLine("\tKEY \tSHORTNAME \tDURATION \tFUNDCTIONTYPEINDEXCS2 \tFUNDCTIONTYPEZ21");
+                                Console.WriteLine("\tKEY \tSHORTNAME \tDURATION \tFUNCTIONTYPEINDEXCS2 \tFUNCTIONTYPEZ21");
                                 for (int index = 0; index < number; index++)
                                 {
                                     Console.WriteLine(

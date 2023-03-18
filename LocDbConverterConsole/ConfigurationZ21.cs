@@ -48,6 +48,11 @@ namespace LocDbConverterConsole
 
             string tmpPath = exportPath + "\\temp";
             string databaseFile = tmpPath + "\\export\\New Folder\\Loco.sqlite";
+            var directory = new DirectoryInfo(tmpPath);
+            if (Directory.Exists(tmpPath))
+            {
+                Directory.Delete(tmpPath, true);
+            }
             Directory.CreateDirectory(tmpPath + "\\export\\New Folder");
 
             returnValue = ExportLocomotiveFile(databaseFile, listIndex);
@@ -59,7 +64,6 @@ namespace LocDbConverterConsole
             }
             ZipFile.CreateFromDirectory(tmpPath, zipFileName);
 
-            var directory = new DirectoryInfo(tmpPath);
             directory.Delete(true);
 
             return returnValue;
