@@ -21,9 +21,11 @@
  * <https://www.gnu.org/licenses/>.
 */
 
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Linq;
@@ -45,7 +47,7 @@ namespace LocDbConverterConsole
             string userEntry;
             string[] userEntrySplit;
             int number;
-            string locomotiveList = @"\\Mac\Home\Documents\Maerklin\CS2\lokomotive.cs2";
+            string locomotiveList = System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPath"];
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
 
@@ -247,6 +249,7 @@ namespace LocDbConverterConsole
                             break;*/
 
                         case "/exit":
+                            System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPath"] = locomotiveList; // TODO: Does this always need to be set?
                             quitProgram = true;
                             break;
 
