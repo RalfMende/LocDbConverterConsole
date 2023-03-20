@@ -45,6 +45,7 @@ namespace LocDbConverterConsole
             string userEntry;
             string[] userEntrySplit;
             int number;
+            string locomotiveList = @"\\Mac\Home\Documents\Maerklin\CS2\lokomotive.cs2";
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
 
@@ -109,11 +110,14 @@ namespace LocDbConverterConsole
                             Console.WriteLine("The following commands are available");
                             Console.WriteLine("\t/help                 \t- Help menu");
                             Console.WriteLine("\t/convert <file>       \t- Converts a given locomotive config file from CS2/CS3-format to Z21-format");
-                            Console.WriteLine("\t/import <file>        \t- Imports a given locomotive config file in CS2/CS3-format to internal memory");
+                            Console.WriteLine("\t/set <file>           \t- Sets the path of the Locomotive List File of your CS2");
+                            Console.WriteLine("\t/update               \t- Generates config files in Z21-format only for updated/new locomotives in Locomotive List File of your CS2");
+                            Console.WriteLine("\t/updateall            \t- Generates config files in Z21-format only for all locomotives in Locomotive List File of your CS2");
+                            //Console.WriteLine("\t/import <file>        \t- Imports a given locomotive config file in CS2/CS3-format to internal memory");
                             Console.WriteLine("\t/list                 \t- Lists all imported locomotive configurations");
-                            Console.WriteLine("\t/export <No.> <path>  \t- Export a locomotive config file in Z21-format from internal memory by list entry");
+                            //Console.WriteLine("\t/export <No.> <path>  \t- Export a locomotive config file in Z21-format from internal memory by list entry");
                             Console.WriteLine("\t/exit                 \t- Exits the program");
-                            Console.WriteLine("Or just simply drag'n'drop the *.cs2 locomotive config file onto the LocDbConverterConsole.exe");
+                            //Console.WriteLine("Or just simply drag'n'drop the *.cs2 locomotive config file onto the LocDbConverterConsole.exe");
                             break;
 
                         case "/convert":
@@ -135,11 +139,46 @@ namespace LocDbConverterConsole
                             }
                             break;
 
-                        case "/import":
+                        case "/set":
+                            if (File.Exists(userEntrySplit[1]) && userEntrySplit[1].Substring(userEntrySplit[1].Length - 4).Contains(".cs2"))
+                            {
+                                locomotiveList = userEntrySplit[1];
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error. Could not find *.cs2 locomotive List file.");
+                            }
+                            break;
+
+                        case "/update":
+                            returnValue = _cs2.ImportUpdateLocomotiveList(locomotiveList, false);
+                            if (returnValue > 0)
+                            {
+                                int listIndex = LocomotiveList.SizeOf() - returnValue;
+                                returnValue = _z21.ExportConfiguration(listIndex, Path.GetDirectoryName(locomotiveList));
+                            }
+                            if (returnValue > 0) Console.WriteLine("Updated all Z21 Files sucessfully to " + Path.GetDirectoryName(locomotiveList));
+                            break;
+
+                        case "/updateall":
+                            returnValue = _cs2.ImportUpdateLocomotiveList(locomotiveList, true);
+                            if (returnValue > 0)
+                            {
+                                number = LocomotiveList.SizeOf();
+                                for (int index = 0; index < number; index++)
+                                {
+                                    returnValue = _z21.ExportConfiguration(index, Path.GetDirectoryName(locomotiveList));
+                                }
+                            }
+                            if (returnValue > 0) Console.WriteLine("Updated all Z21 Files sucessfully to " + Path.GetDirectoryName(locomotiveList));
+                            break;
+                            break;
+
+                        /*case "/import":
                             returnValue = _cs2.ImportConfiguration(userEntrySplit[1]);
                             if (returnValue > 0) Console.WriteLine("Job done.");
                             else Console.WriteLine("Error. Could not find *.cs2 locomotive configuration file.");
-                            break;
+                            break;*/
 
                         case "/list":
                             number = LocomotiveList.SizeOf();
@@ -178,7 +217,7 @@ namespace LocDbConverterConsole
                             }
                             break;
 
-                        case "/export":
+                        /*case "/export":
                             number = LocomotiveList.SizeOf();
                             if (number == 0)
                             {
@@ -205,7 +244,7 @@ namespace LocDbConverterConsole
                                     Console.WriteLine("Error. Index not accepted.");
                                 }
                             }
-                            break;
+                            break;*/
 
                         case "/exit":
                             quitProgram = true;

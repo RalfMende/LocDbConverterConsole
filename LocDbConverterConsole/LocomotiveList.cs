@@ -49,6 +49,23 @@ namespace LocDbConverterConsole
             return _list[index];
         }
 
+        public static bool Contains(Locomotive loc)
+        {
+            return _list.Contains(loc);
+        }
+
+        public static bool Replace(Locomotive loc)
+        {
+            bool returnValue = false;
+            int index = _list.FindIndex(s => s == loc);
+            if (index != -1)
+            {
+                _list[index] = loc;
+                returnValue = true;
+            }
+            return returnValue;
+        }
+
         public static int SizeOf()
         {
             return _list.Count();

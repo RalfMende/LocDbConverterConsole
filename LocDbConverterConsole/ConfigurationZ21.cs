@@ -45,24 +45,25 @@ namespace LocDbConverterConsole
             int returnValue = 0;
             
             //string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
-
-            string tmpPath = exportPath + "\\temp";
-            string databaseFile = tmpPath + "\\export\\New Folder\\Loco.sqlite";
-            var directory = new DirectoryInfo(tmpPath);
-            if (Directory.Exists(tmpPath))
-            {
-                Directory.Delete(tmpPath, true);
-            }
-            Directory.CreateDirectory(tmpPath + "\\export\\New Folder");
-
-            returnValue = ExportLocomotiveFile(databaseFile, listIndex);
+            string dirTempFiles = Path.Combine(exportPath, "temp");
+            string dirTempSqliteFile = Path.Combine(dirTempFiles, "export", "New Folder");
+            string tempSqliteFile = Path.Combine(dirTempSqliteFile, "Loco.sqlite");
             
-            string zipFileName = exportPath + "\\\\" + LocomotiveList.Get(listIndex).Name + ".z21loco";
+            var directory = new DirectoryInfo(dirTempFiles);
+            if (Directory.Exists(dirTempFiles))
+            {
+                Directory.Delete(dirTempFiles, true);
+            }
+            Directory.CreateDirectory(dirTempSqliteFile);
+
+            returnValue = ExportLocomotiveFile(tempSqliteFile, listIndex);
+
+            string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name + ".z21loco");
             if(File.Exists(zipFileName))
             {
                 File.Delete(zipFileName); 
             }
-            ZipFile.CreateFromDirectory(tmpPath, zipFileName);
+            ZipFile.CreateFromDirectory(dirTempFiles, zipFileName);
 
             directory.Delete(true);
 
