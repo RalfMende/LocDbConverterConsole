@@ -37,9 +37,9 @@ namespace LocDbConverterConsole
         /// <summary>
         /// Exports a z21 description file with the given locomotive list entry
         /// </summary>
-        /// <param name="listIndex"></param>
-        /// <param name="exportPath"></param>
-        /// <returns></returns>
+        /// <param name="listIndex">Index of the locomotives list (0-based)</param>
+        /// <param name="exportPath">Directory to where the config file needs to be exported</param>
+        /// <returns>0: Code not executed, Negative: Error, Positive: Ok</returns>
         public int ExportConfiguration(int listIndex, string exportPath)
         {
             int returnValue = 0;
@@ -73,7 +73,7 @@ namespace LocDbConverterConsole
         /// <summary>
         /// Exports a *.sqlite locomotive desciption file for Rodo Z21 from internal list
         /// </summary>
-        /// <param name="file"></param>
+        /// <param name="databaseFile">Sqlite database file that will be used to add data</param>
         /// <param name="listIndex">Index of the locomotives list (0-based)</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Ok</returns>
         /// <exception cref="Exception"></exception>

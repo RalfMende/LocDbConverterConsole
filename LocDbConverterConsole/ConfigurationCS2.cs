@@ -165,7 +165,8 @@ namespace LocDbConverterConsole
                                     break;
 
                                 case ".adresse":
-                                    locomotive.Address = Convert.ToInt32(value); break;
+                                    locomotive.Address = Convert.ToInt32(value, 16);
+                                    break;
 
                                 //case ".mfxuid":
                                 //    locomotive.mfxuid = value; break;

@@ -70,5 +70,10 @@ namespace LocDbConverterConsole
         {
             return _list.Count();
         }
+
+        public static void DeleteAll()
+        {
+            _list.Clear();
+        }
     }
 }
