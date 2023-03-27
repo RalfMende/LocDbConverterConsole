@@ -142,28 +142,31 @@ namespace LocDbConverterConsole
                 // ----------fill table vehicles ----------
 
                 command = connection.CreateCommand();
+                //command.CommandText =
+                //    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [ip], [video], [video_x], [video_y], [video_width], [panorama_x], [panorama_y], [panorama_width], [direct_steering], [crane]) " +
+                //    "VALUES(@id, @name, @type, @max_speed, @address, @active, @position, @speed_display, @traction_direction, @dummy, @ip, @video, @video_x, @video_y, @video_width, @panorama_x, @panorama_y, @panorama_width, @direct_steering, @crane); ";
                 command.CommandText =
-                    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [ip], [video], [video_x], [video_y], [video_width], [panorama_x], [panorama_y], [panorama_width], [direct_steering], [crane]) " +
-                    "VALUES(@id, @name, @type, @max_speed, @address, @active, @position, @speed_display, @traction_direction, @dummy, @ip, @video, @video_x, @video_y, @video_width, @panorama_x, @panorama_y, @panorama_width, @direct_steering, @crane); ";
+                    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [speed_display], [traction_direction], [crane]) " +
+                    "VALUES(@id, @name, @type, @max_speed, @address, @active, @speed_display, @traction_direction, @crane); ";
                 command.Parameters.AddWithValue("@id", 1);
                 command.Parameters.AddWithValue("@name", LocomotiveList.Get(listIndex).Name);
-                command.Parameters.AddWithValue("@type", 0);
+                command.Parameters.AddWithValue("@type", 0); //0=Locomotive
                 command.Parameters.AddWithValue("@max_speed", LocomotiveList.Get(listIndex).SpeedometerMax);
-                command.Parameters.AddWithValue("@address", LocomotiveList.Get(listIndex).Address);
+                command.Parameters.AddWithValue("@address", LocomotiveList.Get(listIndex).Address); //TODO: DECODER (DCC/MM) and FAHRSTUFE (128/28/14) currently can't be set via z21loco-file
                 command.Parameters.AddWithValue("@active", 1);
-                command.Parameters.AddWithValue("@position", 0);
-                command.Parameters.AddWithValue("@speed_display", 0);
-                command.Parameters.AddWithValue("@traction_direction", 0);
-                command.Parameters.AddWithValue("@dummy", 0);
-                command.Parameters.AddWithValue("@ip", "192.168.15.2");
-                command.Parameters.AddWithValue("@video", 0);
-                command.Parameters.AddWithValue("@video_x", 0);
-                command.Parameters.AddWithValue("@video_y", 0);
-                command.Parameters.AddWithValue("@video_width", 768);
-                command.Parameters.AddWithValue("@panorama_x", 0);
-                command.Parameters.AddWithValue("@panorama_y", 0);
-                command.Parameters.AddWithValue("@panorama_width", 1024);
-                command.Parameters.AddWithValue("@direct_steering", 0);
+                //command.Parameters.AddWithValue("@position", 0); //listposition in Z21-App
+                command.Parameters.AddWithValue("@speed_display", 0); //0=km/h
+                command.Parameters.AddWithValue("@traction_direction", 0); 
+                //command.Parameters.AddWithValue("@dummy", 0); //don't know if this does something
+                //command.Parameters.AddWithValue("@ip", "192.168.15.2");
+                //command.Parameters.AddWithValue("@video", 0);
+                //command.Parameters.AddWithValue("@video_x", 0);
+                //command.Parameters.AddWithValue("@video_y", 0);
+                //command.Parameters.AddWithValue("@video_width", 768);
+                //command.Parameters.AddWithValue("@panorama_x", 0);
+                //command.Parameters.AddWithValue("@panorama_y", 0);
+                //command.Parameters.AddWithValue("@panorama_width", 1024);
+                //command.Parameters.AddWithValue("@direct_steering", 0); //not clear what this does
                 command.Parameters.AddWithValue("@crane", 0);
                 command.ExecuteNonQuery();
                 command.Dispose();
@@ -198,20 +201,6 @@ namespace LocDbConverterConsole
                 }
 
 
-                // ---------- fill table layout_data ----------
-
-                command = connection.CreateCommand();
-                command.CommandText =
-                    "INSERT INTO layout_data ([id], [name], [control_station_type], [control_station_theme]) " +
-                    "VALUES(@id, @name, @control_station_type, @control_station_theme); ";
-                command.Parameters.AddWithValue("@id", 1);
-                command.Parameters.AddWithValue("@name", "Neue Anlage");
-                command.Parameters.AddWithValue("@control_station_type", "schematic");
-                command.Parameters.AddWithValue("@control_station_theme", "default");
-                command.ExecuteNonQuery();
-                command.Dispose();
-
-
                 // ---------- fill table update_history ----------
 
                 command = connection.CreateCommand();
@@ -219,7 +208,7 @@ namespace LocDbConverterConsole
                     "INSERT INTO update_history ([id], [os], [update_date], [build_version], [build_number], [to_database_version]) " +
                     "VALUES(@id, @os, @update_date, @build_version, @build_number, @to_database_version); ";
                 command.Parameters.AddWithValue("@id", 1);
-                command.Parameters.AddWithValue("@os", "ios");
+                command.Parameters.AddWithValue("@os", "LokDbConverter");
                 command.Parameters.AddWithValue("@update_date", DateTime.Now.ToString("dd/MM/yy, hh:mm:ss") + " Mitteleuropäische Normalzeit");
                 command.Parameters.AddWithValue("@build_version", "1.4.7");
                 command.Parameters.AddWithValue("@build_number", 6142);

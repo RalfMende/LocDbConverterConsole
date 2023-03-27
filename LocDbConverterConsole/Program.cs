@@ -98,7 +98,7 @@ namespace LocDbConverterConsole
             {
                 if (File.Exists(args[0]) && args[0].Substring(args[0].Length - 4).Contains(".cs2"))
                 {
-                    ConvertLocomotiveConfigurationFile(args[0]);
+                    ConvertLocomotiveConfigurationFile(args[0], true);
                 }
             }
             else
@@ -131,7 +131,7 @@ namespace LocDbConverterConsole
                             {
                                 userEntrySplit[1] = userEntrySplit[1].Replace("\"", "");
                             }
-                            returnValue = ConvertLocomotiveConfigurationFile(userEntrySplit[1]);
+                            returnValue = ConvertLocomotiveConfigurationFile(userEntrySplit[1], true);
                             if (returnValue > 0)
                             {
                                 Console.WriteLine("File exported to " + Path.GetDirectoryName(userEntrySplit[1]));
@@ -156,7 +156,7 @@ namespace LocDbConverterConsole
 
                         case "/update":
                             LocomotiveList.DeleteAll(); //TODO should internal list rather be syncronized?
-                            returnValue = ConvertLocomotiveConfigurationFile(locomotiveListPath);
+                            returnValue = ConvertLocomotiveConfigurationFile(locomotiveListPath, true);
                             if (returnValue > 0) Console.WriteLine("Z21-config files updated according to Lokomotive.cs2 file.");
                             break;
 
@@ -259,7 +259,7 @@ namespace LocDbConverterConsole
                 return;
             }
             LocomotiveList.DeleteAll(); //TODO should internal list rather be syncronized?
-            int returnValue = ConvertLocomotiveConfigurationFile(locomotiveListPath);
+            int returnValue = ConvertLocomotiveConfigurationFile(locomotiveListPath, true);
             if (returnValue > 0) Console.WriteLine(DateTime.Now + " Info: Z21-config files updated according to Lokomotive.cs2 file.");
         }
 
@@ -268,7 +268,7 @@ namespace LocDbConverterConsole
         /// </summary>
         /// <param name="fileToConvert">*.cs2 config file for convertion</param>
         /// <returns></returns>
-        private static int ConvertLocomotiveConfigurationFile(string fileToConvert)
+        private static int ConvertLocomotiveConfigurationFile(string fileToConvert, bool overwriteInternalConfigs)
         {
             int returnValue = 0;
             int number = 0;
@@ -276,16 +276,13 @@ namespace LocDbConverterConsole
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
 
-            if (File.Exists(fileToConvert) && fileToConvert.Substring(fileToConvert.Length - 4).Contains(".cs2"))
+            returnValue = _cs2.ImportConfiguration(fileToConvert, overwriteInternalConfigs);
+            if (returnValue > 0)
             {
-                returnValue = _cs2.ImportConfiguration(fileToConvert);
-                if (returnValue > 0)
+                number = LocomotiveList.SizeOf();
+                for (int index = 0; index < number; index++)
                 {
-                    number = LocomotiveList.SizeOf();
-                    for (int index = 0; index < number; index++)
-                    {
-                        returnValue += _z21.ExportConfiguration(index, Path.GetDirectoryName(locomotiveListPath));
-                    }
+                    returnValue += _z21.ExportConfiguration(index, Path.GetDirectoryName(fileToConvert));
                 }
             }
             else

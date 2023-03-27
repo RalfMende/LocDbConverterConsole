@@ -35,25 +35,21 @@ namespace LocDbConverterConsole
 {
     public class ConfigurationCS2
     {
-        private int numberOfFilesImported;
-        private string locomotiveListFile;
-
         /// <summary>
         /// Imports all locomotive desciption files from a Maerklin CS2/CS3 backup 
         /// </summary>
         /// <param name="file">Path to get locomotive description files from</param>
+        /// <param name="overwriteAllExistingConfigs">true: All configs in internal list are overwritten, false: configs are just added to internal list</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Number of config files found</returns>
-        public int ImportConfiguration(string file)
+        public int ImportConfiguration(string file, bool overwriteAllExistingConfigs)
         {
             int returnValue = 0;
-            numberOfFilesImported = 0;
-
+            
             FileAttributes attr = File.GetAttributes(file);
 
             if (file.Substring(file.Length - 4).Contains(".cs2"))
             {
-                ImportLocomotiveFile(file);
-                returnValue = numberOfFilesImported;
+                returnValue = ImportLocomotiveFile(file, overwriteAllExistingConfigs);
             }
             else
             {
@@ -66,188 +62,9 @@ namespace LocDbConverterConsole
         /// Imports an *.cs2 locomotive desciption file from CS3/CS2 backup and parses it to internal list
         /// </summary>
         /// <param name="file">*.cs2 locomotive desciption file</param>
-        /// <returns>0: Code not executed, Negative: Error, Positive: Index of list where element was added</returns>
-        public int ImportLocomotiveFile(string file)
-        {
-            int returnValue = 0;
-            string trimmedLine = null;
-            string key = null;
-            string subKey = null;
-            string subSubKey = null;
-            string value = null;
-            int currentFunctionNumber = -1;
-            FunctionTypeMapping functionMapping;
-
-            Locomotive locomotive = new Locomotive();
-
-            string[] lines = System.IO.File.ReadAllLines(file);
-
-            if (lines[0].Contains("[lokomotive]")) //first check for section to ensure this is a locomotives backup file
-            {
-                foreach (string line in lines)
-                {
-                    trimmedLine = line.Trim();
-
-                    //if (trimmedLine.StartsWith("["))
-                    // section currently not needed
-
-                    if (trimmedLine.StartsWith(".."))
-                    {
-                        if (subKey == ".funktionen")
-                        {
-                            subSubKey = trimmedLine.Substring(0, trimmedLine.IndexOf("="));
-                            value = trimmedLine.Substring(trimmedLine.IndexOf("=") + 1);
-
-                            switch (subSubKey)
-                            {
-                                case "..nr": // 0 -> F0   15 -> F15
-                                    currentFunctionNumber = Convert.ToInt32(value);
-                                    break;
-
-                                case "..typ":
-                                    functionMapping = FunctionTypeMappingList.Find(x => x.FunctionTypeIndexCS2 == Convert.ToInt32(value));
-                                    locomotive.Functions[currentFunctionNumber] = functionMapping.Key;
-                                    break;
-
-                                case "..typ2":
-                                    //TODO: Sometimes this occurs in config-files, but I don't know what it does...
-                                    break;
-
-                                case "..dauer": // duration   0: constantly, -1 momentary, else time
-                                    //locomotive.functions[currentFunctionNumber].Duration = Convert.ToInt32(value); //TODO: thisis currently not needed, as covered by my mapping
-                                    break;
-
-                                default:
-                                    Debug.Print("Unknown .funktionen subKey: " + trimmedLine);
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            Debug.Print("Unknown subSubKey: " + trimmedLine);
-                        }
-                    }
-                    else if (trimmedLine.StartsWith("."))
-                    {
-                        if (key == "lokomotive")
-                        {
-                            if (trimmedLine.Contains("="))
-                            {
-                                value = trimmedLine.Substring(trimmedLine.IndexOf("=") + 1);
-                                subKey = trimmedLine.Substring(0, trimmedLine.Length - value.Length - 1);
-                            }
-                            else
-                            {
-                                subKey = trimmedLine;
-                            }
-
-                            switch (subKey)
-                            {
-                                case ".uid":
-                                    //locomotive.Uid = Convert.ToInt32(value.Substring(2, value.Length - 2)); //TODO: How to best store this information?
-                                    locomotive.Address = Convert.ToInt32(value.Substring(value.Length - 2), 16); // get address here, as seperate field is sometimes not available
-                                    break;
-
-                                case ".name":
-                                    string name = value;
-                                    if (name.Contains("#20")) name = value.Replace("#20", " ");
-                                    locomotive.Name = name; break;
-
-                                //case ".vorname": name before the last change -> not needed
-
-                                case ".dectyp": //accorting to documentation this should be .typ, but all demo-files show different sub key
-                                    if (value == "mm2_prg") locomotive.Decodertype = DecoderType.MM;
-                                    else if (value == "mm2_dil8") locomotive.Decodertype = DecoderType.MM;
-                                    else if (value == "dcc") locomotive.Decodertype = DecoderType.DCC;
-                                    else if (value == "mfx") locomotive.Decodertype = DecoderType.MFX;
-                                    else if (value == "sx1") locomotive.Decodertype = DecoderType.MFX;
-                                    else locomotive.Decodertype = DecoderType.DCC;
-                                    break;
-
-                                case ".adresse":
-                                    locomotive.Address = Convert.ToInt32(value, 16);
-                                    break;
-
-                                //case ".mfxuid":
-                                //    locomotive.mfxuid = value; break;
-
-                                //case ".icon":
-                                //   locomotive.icon = value; break;
-
-                                //case ".symbol": // 0=Electro, 1=Diesel, 2=Steam, 3=No Icon
-                                //    locomotive.symbol = value; break;
-
-                                //case ".av":
-                                //    locomotive.accelerationDelay = value; break;
-
-                                //case ".bv":
-                                //    locomotive.decelerationDelay = value; break;
-
-                                //case ".vmin":
-                                //    locomotive.vMin = value; break;
-
-                                case ".vmax":
-                                    locomotive.VMax = Convert.ToInt32(value); break;
-
-                                case ".tachomax":
-                                    locomotive.SpeedometerMax = Convert.ToInt32(value); break;
-
-                                //case ".volume":
-                                //    locomotive.volume = value; break;
-
-                                //case ".artikelnr":
-                                //    locomotive.articleNumber = value; break;
-
-                                //case ".spa":
-                                //    locomotive.spa = value; break;
-
-                                //case ".ft":
-                                //    locomotive.ft = value; break;
-
-                                case ".funktionen":
-                                    currentFunctionNumber++;
-                                    //locomotive.SetLocomotiveFunction(new LocomotiveFunction());
-                                    break;
-
-                                default:
-                                    Debug.Print("Unknown lokomotive subKey: " + trimmedLine);
-                                    break;
-                            }
-                        }
-                        else 
-                        {
-                            Debug.Print("Unknown subKey: " + trimmedLine);
-                        }
-                    }
-                    else
-                    {
-                        if (!trimmedLine.Contains("="))
-                        {
-                            key = trimmedLine;
-                        }
-                        else
-                        {
-                            Debug.Print("Unknown key: " + trimmedLine);
-                        }
-                    }
-
-                }//for each line
-            }
-            else // not a locomotive config file
-            {
-                returnValue = -1;
-            }
-            returnValue = LocomotiveList.Set(locomotive);
-            numberOfFilesImported++;
-            return returnValue;
-        }
-
-        /// <summary>
-        /// Imports an *.cs2 locomotive desciption file from CS3/CS2 backup and parses it to internal list
-        /// </summary>
-        /// <param name="file">*.cs2 locomotive desciption file</param>
+        /// <param name="overwriteAllExistingConfigs">true: All configs in internal list are overwritten, false: configs are just added to internal list</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Number of Locomotives added to internal list</returns>
-        public int ImportUpdateLocomotiveList(string file, bool overwriteAllExistingConfigs)
+        private int ImportLocomotiveFile(string file, bool overwriteAllExistingConfigs)
         {
             int returnValue = 0;
             string trimmedLine = null;
@@ -441,8 +258,6 @@ namespace LocDbConverterConsole
             returnValue = numberOfLocomotivesAdded;
             return returnValue;
         }
-
-
 
     }
 }
