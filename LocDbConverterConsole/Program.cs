@@ -247,7 +247,14 @@ namespace LocDbConverterConsole
                             break;*/
 
                         case "/exit":
-                            System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPath"] = locomotiveListPath; // TODO: Does this always need to be set?
+                            if (osNameAndVersion.Contains("Windows"))
+                            {
+                                System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPathWin"] = locomotiveListPath;
+                            }
+                            else
+                            {
+                                System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPathLinux"] = locomotiveListPath;
+                            }
                             quitProgram = true;
                             break;
 
