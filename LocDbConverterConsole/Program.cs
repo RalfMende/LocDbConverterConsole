@@ -30,6 +30,7 @@ using System.Diagnostics;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -50,7 +51,15 @@ namespace LocDbConverterConsole
             string userEntry;
             string[] userEntrySplit;
             int number;
-            locomotiveListPath = System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPath"];
+            string osNameAndVersion = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+            if (osNameAndVersion.Contains("Windows"))
+            {
+                locomotiveListPath = System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPathWin"];
+            }
+            else
+            {
+                locomotiveListPath = System.Configuration.ConfigurationManager.AppSettings["LocomotiveListPathLinux"];
+            }
             using var watcher = new FileSystemWatcher(Path.GetDirectoryName(locomotiveListPath));
             watcher.NotifyFilter = NotifyFilters.LastWrite;
             watcher.Changed += OnChanged;
