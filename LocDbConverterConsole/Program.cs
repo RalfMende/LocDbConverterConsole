@@ -21,8 +21,6 @@
  * <https://www.gnu.org/licenses/>.
 */
 
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -105,10 +103,10 @@ namespace LocDbConverterConsole
 
             if (args.Length != 0)
             {
-                if (File.Exists(args[0]) && args[0].Substring(args[0].Length - 4).Contains(".cs2"))
-                {
-                    ConvertLocomotiveConfigurationFile(args[0], true);
-                }
+                //if (File.Exists(args[0]) && args[0].Substring(args[0].Length - 4).Contains(".cs2"))
+                //{
+                //    ConvertLocomotiveConfigurationFile(args[0], true);
+                //}
             }
             else
             {
@@ -170,8 +168,15 @@ namespace LocDbConverterConsole
                             break;
 
                         case "/autoupdate":
-                            watcher.EnableRaisingEvents = true;
-                            Console.WriteLine("Auomatical convertion for Z21 Files activated for Lokomotive.cs2 file: " + locomotiveListPath);
+                            if (File.Exists(locomotiveListPath) && locomotiveListPath.Substring(locomotiveListPath.Length - 4).Contains(".cs2"))
+                            {
+                                watcher.EnableRaisingEvents = true;
+                                Console.WriteLine("Auomatical convertion for Z21 Files activated for Lokomotive.cs2 file: " + locomotiveListPath);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error. Could not find Lokomotive.cs2 file.");
+                            }
                             break;
 
                         /*case "/import":
