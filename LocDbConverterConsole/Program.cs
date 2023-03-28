@@ -21,19 +21,7 @@
  * <https://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.IO.Compression;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.XPath;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LocDbConverterConsole
 {
@@ -45,7 +33,6 @@ namespace LocDbConverterConsole
         {
             bool quitProgram = false;
             int returnValue;
-            string exportPath;
             string userEntry;
             string[] userEntrySplit;
             int number;
@@ -293,7 +280,6 @@ namespace LocDbConverterConsole
         {
             int returnValue = 0;
             int number = 0;
-            string exportPath = "";
             ConfigurationCS2 _cs2 = new ConfigurationCS2();
             ConfigurationZ21 _z21 = new ConfigurationZ21();
 
