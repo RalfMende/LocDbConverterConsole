@@ -33,7 +33,7 @@ namespace LocDbConverterConsole
             //Icon = "leere Lok" //space must be replaced by #20 for Maerklin files
             //Symbol = 1;
             Functions = new int[32];
-        } 
+        }
 
         public string Name { get; internal set; }
         public DecoderType Decodertype { get; internal set; }

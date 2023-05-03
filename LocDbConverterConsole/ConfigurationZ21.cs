@@ -37,12 +37,12 @@ namespace LocDbConverterConsole
         public int ExportConfiguration(int listIndex, string exportPath)
         {
             int returnValue = 0;
-            
+
             //string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
             string dirTempFiles = Path.Combine(exportPath, "temp");
             string dirTempSqliteFile = Path.Combine(dirTempFiles, "export", "New Folder");
             string tempSqliteFile = Path.Combine(dirTempSqliteFile, "Loco.sqlite");
-            
+
             var directory = new DirectoryInfo(dirTempFiles);
             if (Directory.Exists(dirTempFiles))
             {
@@ -52,10 +52,10 @@ namespace LocDbConverterConsole
 
             returnValue = ExportLocomotiveFile(tempSqliteFile, listIndex);
 
-            string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name + ".z21loco");
-            if(File.Exists(zipFileName))
+            string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name.Replace("/","") + ".z21loco");
+            if (File.Exists(zipFileName))
             {
-                File.Delete(zipFileName); 
+                File.Delete(zipFileName);
             }
             ZipFile.CreateFromDirectory(dirTempFiles, zipFileName);
 
@@ -79,7 +79,7 @@ namespace LocDbConverterConsole
             var connection = new SqliteConnection("Data Source=" + databaseFile);
             connection.Open();
             var command = connection.CreateCommand();
-            
+
             try
             {
                 // ---------- set missing PRAGMAs ----------
@@ -132,7 +132,7 @@ namespace LocDbConverterConsole
                 command.ExecuteNonQuery();
                 command.Dispose();
 
-                
+
                 // ----------fill table vehicles ----------
 
                 command = connection.CreateCommand();
@@ -150,7 +150,7 @@ namespace LocDbConverterConsole
                 command.Parameters.AddWithValue("@active", 1);
                 //command.Parameters.AddWithValue("@position", 0); //listposition in Z21-App
                 command.Parameters.AddWithValue("@speed_display", 0); //0=km/h
-                command.Parameters.AddWithValue("@traction_direction", 0); 
+                command.Parameters.AddWithValue("@traction_direction", 0);
                 //command.Parameters.AddWithValue("@dummy", 0); //don't know if this does something
                 //command.Parameters.AddWithValue("@ip", "192.168.15.2");
                 //command.Parameters.AddWithValue("@video", 0);
@@ -171,7 +171,7 @@ namespace LocDbConverterConsole
                 for (int index = 0; index < LocomotiveList.Get(listIndex).Functions.Length; index++)
                 {
                     functionMapping = FunctionTypeMappingList.Find(x => x.Key == LocomotiveList.Get(listIndex).Functions[index]);
- 
+
                     command = connection.CreateCommand();
                     command.CommandText =
                         "INSERT INTO functions ([id], [vehicle_id], [button_type], [shortcut], [time], [position], [image_name], [function], [show_function_number], [is_configured]) " +

@@ -36,7 +36,7 @@ namespace LocDbConverterConsole
         public int ImportConfiguration(string file, bool overwriteAllExistingConfigs)
         {
             int returnValue = 0;
-            
+
             FileAttributes attr = File.GetAttributes(file);
 
             if (file.Substring(file.Length - 4).Contains(".cs2"))
@@ -76,7 +76,7 @@ namespace LocDbConverterConsole
                 trimmedLine = line.Trim();
 
                 //if (trimmedLine.StartsWith("["))
-                // section currently not needed
+                // section currently not needed //TODO check [lokomotive] to proove file to be right
 
                 if (trimmedLine.StartsWith(".."))
                 {
