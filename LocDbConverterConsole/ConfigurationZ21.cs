@@ -38,9 +38,9 @@ namespace LocDbConverterConsole
         {
             int returnValue = 0;
 
-            //string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
+            string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
             string dirTempFiles = Path.Combine(exportPath, "temp");
-            string dirTempSqliteFile = Path.Combine(dirTempFiles, "export", "New Folder");
+            string dirTempSqliteFile = Path.Combine(dirTempFiles, "export", uuid);
             string tempSqliteFile = Path.Combine(dirTempSqliteFile, "Loco.sqlite");
 
             var directory = new DirectoryInfo(dirTempFiles);
@@ -50,7 +50,15 @@ namespace LocDbConverterConsole
             }
             Directory.CreateDirectory(dirTempSqliteFile);
 
-            returnValue = ExportLocomotiveFile(tempSqliteFile, listIndex);
+            string pictureFile = LocomotiveList.Get(listIndex).Icon;
+            string newPictureFilename = "";
+            if (File.Exists(pictureFile))
+            {
+                newPictureFilename = uuid + ".png";
+                File.Copy(pictureFile, Path.Combine(dirTempSqliteFile, newPictureFilename), true);
+            }
+
+            returnValue = ExportLocomotiveFile(tempSqliteFile, listIndex, newPictureFilename);
 
             string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name.Replace("/","") + ".z21loco");
             if (File.Exists(zipFileName))
@@ -71,7 +79,7 @@ namespace LocDbConverterConsole
         /// <param name="listIndex">Index of the locomotives list (0-based)</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Ok</returns>
         /// <exception cref="Exception"></exception>
-        private int ExportLocomotiveFile(string databaseFile, int listIndex)
+        private int ExportLocomotiveFile(string databaseFile, int listIndex, string pictureName)
         {
             int returnValue = 0;
             FunctionTypeMapping functionMapping;
@@ -140,10 +148,11 @@ namespace LocDbConverterConsole
                 //    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [ip], [video], [video_x], [video_y], [video_width], [panorama_x], [panorama_y], [panorama_width], [direct_steering], [crane]) " +
                 //    "VALUES(@id, @name, @type, @max_speed, @address, @active, @position, @speed_display, @traction_direction, @dummy, @ip, @video, @video_x, @video_y, @video_width, @panorama_x, @panorama_y, @panorama_width, @direct_steering, @crane); ";
                 command.CommandText =
-                    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [speed_display], [traction_direction], [crane]) " +
-                    "VALUES(@id, @name, @type, @max_speed, @address, @active, @speed_display, @traction_direction, @crane); ";
+                    "INSERT INTO vehicles ([id], [name], [image_name], [type], [max_speed], [address], [active], [speed_display], [traction_direction], [crane]) " +
+                    "VALUES(@id, @name, @image_name, @type, @max_speed, @address, @active, @speed_display, @traction_direction, @crane); ";
                 command.Parameters.AddWithValue("@id", 1);
                 command.Parameters.AddWithValue("@name", LocomotiveList.Get(listIndex).Name);
+                command.Parameters.AddWithValue("@image_name", pictureName);
                 command.Parameters.AddWithValue("@type", 0); //0=Locomotive
                 command.Parameters.AddWithValue("@max_speed", LocomotiveList.Get(listIndex).SpeedometerMax);
                 command.Parameters.AddWithValue("@address", LocomotiveList.Get(listIndex).Address); //TODO: DECODER (DCC/MM) and FAHRSTUFE (128/28/14) currently can't be set via z21loco-file

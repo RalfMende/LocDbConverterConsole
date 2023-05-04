@@ -157,8 +157,13 @@ namespace LocDbConverterConsole
                             //case ".mfxuid":
                             //    locomotive.mfxuid = value; break;
 
-                            //case ".icon":
-                            //   locomotive.icon = value; break;
+                            case ".icon":
+                                string fullPathPictureFile = Path.Combine(Path.GetDirectoryName(file),"icons", value + ".png");
+                                if (File.Exists(fullPathPictureFile))
+                                {
+                                    locomotive.Icon = fullPathPictureFile; 
+                                }
+                                break;
 
                             //case ".symbol": // 0=Electro, 1=Diesel, 2=Steam, 3=No Icon
                             //    locomotive.symbol = value; break;

@@ -40,7 +40,7 @@ namespace LocDbConverterConsole
         public int Address { get; internal set; } //Maerklin: derived from "uid"
         public int Uid { get; internal set; }
         public int Mfxuid { get; internal set; }
-        //public string Icon { get; internal set; }
+        public string Icon { get; internal set; } //Picture
         //public string Symbol { get; internal set; }
         public int AccelerationDelay { get; internal set; } //Maerklin:"av"
         public int DecelerationDelay { get; internal set; } //Maerklin:"bv"

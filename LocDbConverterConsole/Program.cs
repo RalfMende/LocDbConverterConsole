@@ -91,14 +91,6 @@ namespace LocDbConverterConsole
             /*------------------------------------------- Run the program -------------------------------------------*/
             if (args.Length != 0)
             {
-                //debug only
-                foreach (string arg in args)
-                {
-                    Console.WriteLine(arg);
-                }
-                //debug only
-
-
                 switch (args[0])
                 {
                     case "-h":
@@ -108,7 +100,7 @@ namespace LocDbConverterConsole
                         Console.WriteLine("\t-c <file>  \tConverts a given locomotive config file from CS2/CS3-format to Z21-format");
                         Console.WriteLine("\t-a         \tAutoconvert locomotive.cs2 file according to settings in App.config file.");
                         Console.WriteLine("You can simply drop a locomotive.cs2 file on the .exe to be converted.");
-
+                        Console.WriteLine("This is version 1.0 beta. Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
                         break;
 
                     case "-c":
@@ -157,7 +149,7 @@ namespace LocDbConverterConsole
                                 watcher.Filter = "lokomotive.cs2";
                                 watcher.EnableRaisingEvents = true;
                                 autoconverterActive = true;
-                                Console.WriteLine("Auomatical convertion for Z21 Files activated for file: " + LocomotiveListFile);
+                                Console.WriteLine("Automatical convertion for Z21 files activated for file: " + LocomotiveListFile);
                             }
                             catch (Exception ex)
                             {
@@ -166,7 +158,7 @@ namespace LocDbConverterConsole
                         }
                         else
                         {
-                            Console.WriteLine("Error. File/Path could not be found. Please check App.config file."); //TODO: Split error description to be more precise 
+                            Console.WriteLine("Error. File/Path could not be found. Please check LocDbConverterConsole.dll.config file."); //TODO: Split error description to be more precise 
                         }
                         break;
 
