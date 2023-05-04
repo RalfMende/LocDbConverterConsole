@@ -100,7 +100,7 @@ namespace LocDbConverterConsole
                         Console.WriteLine("\t-c <file>  \tConverts a given locomotive config file from CS2/CS3-format to Z21-format");
                         Console.WriteLine("\t-a         \tAutoconvert locomotive.cs2 file according to settings in App.config file.");
                         Console.WriteLine("You can simply drop a locomotive.cs2 file on the .exe to be converted.");
-                        Console.WriteLine("This is version 1.0 beta. Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
+                        Console.WriteLine("This is version 1.1 beta. Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
                         break;
 
                     case "-c":
