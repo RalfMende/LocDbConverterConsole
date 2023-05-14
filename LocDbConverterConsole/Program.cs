@@ -31,6 +31,7 @@ namespace LocDbConverterConsole
     internal class Program
     {
         static string LocomotiveListFile = "";
+        static string IconsPath = ""; //TODO use this path instead of fixed relation to lokomotive.cs2 file
         static string ExportFilesPath = "";
 
         static void Main(string[] args)
@@ -98,9 +99,10 @@ namespace LocDbConverterConsole
                         Console.WriteLine("The following commands are available");
                         Console.WriteLine("\t-h / -?    \tHelp menu");
                         Console.WriteLine("\t-c <file>  \tConverts a given locomotive config file from CS2/CS3-format to Z21-format");
-                        Console.WriteLine("\t-a         \tAutoconvert locomotive.cs2 file according to settings in App.config file.");
+                        Console.WriteLine("\t-a         \tAuto convert locomotive.cs2 file according to settings in App.config file.");
+                        Console.WriteLine("\t-m         \tManually force convert locomotive.cs2 file (only when auto-mode ist ON.");
                         Console.WriteLine("You can simply drop a locomotive.cs2 file on the .exe to be converted.");
-                        Console.WriteLine("This is version 1.1 beta. Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
+                        Console.WriteLine("This is version 1.2 beta. Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
                         break;
 
                     case "-c":
@@ -131,11 +133,13 @@ namespace LocDbConverterConsole
                         if (osNameAndVersion.Contains("Windows"))
                         {
                             LocomotiveListFile = ConfigurationManager.AppSettings["LocomotiveListFileWin"];
+                            IconsPath = ConfigurationManager.AppSettings["IconsPathWin"];
                             ExportFilesPath = ConfigurationManager.AppSettings["ExportPathWin"];
                         }
                         else
                         {
                             LocomotiveListFile = ConfigurationManager.AppSettings["LocomotiveListFileLinux"];
+                            IconsPath = ConfigurationManager.AppSettings["IconsPathLinux"];
                             ExportFilesPath = ConfigurationManager.AppSettings["ExportPathLinux"];
                         }
 
@@ -196,7 +200,14 @@ namespace LocDbConverterConsole
                         case "-?":
                             Console.WriteLine("The following commands are available");
                             Console.WriteLine("\t-h / -?    \tHelp menu");
+                            Console.WriteLine("\t-m / -?    \tManually force update");
                             Console.WriteLine("\texit       \tExit the program");
+                            break;
+
+                        case "-m":
+                            LocomotiveList.DeleteAll(); //TODO should internal list rather be syncronized?
+                            returnValue = ConvertLocomotiveConfigurationFile(LocomotiveListFile, ExportFilesPath, true);
+                            if (returnValue > 0) Console.WriteLine(DateTime.Now + " Info: Z21-config files updated according to Lokomotive.cs2 file.");
                             break;
 
                         case "exit":

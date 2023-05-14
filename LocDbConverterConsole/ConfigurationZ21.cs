@@ -155,7 +155,7 @@ namespace LocDbConverterConsole
                 command.Parameters.AddWithValue("@image_name", pictureName);
                 command.Parameters.AddWithValue("@type", 0); //0=Locomotive
                 command.Parameters.AddWithValue("@max_speed", LocomotiveList.Get(listIndex).SpeedometerMax);
-                command.Parameters.AddWithValue("@address", LocomotiveList.Get(listIndex).Address); //TODO: DECODER (DCC/MM) and FAHRSTUFE (128/28/14) currently can't be set via z21loco-file
+                command.Parameters.AddWithValue("@address", 3); //LocomotiveList.Get(listIndex).Address); //TODO: DECODER (DCC/MM) and FAHRSTUFE (128/28/14) currently can't be set via z21loco-file. -> DCC default adress = 3.
                 command.Parameters.AddWithValue("@active", 1);
                 //command.Parameters.AddWithValue("@position", 0); //listposition in Z21-App
                 command.Parameters.AddWithValue("@speed_display", 0); //0=km/h
