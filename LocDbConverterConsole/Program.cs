@@ -142,27 +142,34 @@ namespace LocDbConverterConsole
                             IconsPath = ConfigurationManager.AppSettings["IconsPathLinux"];
                             ExportFilesPath = ConfigurationManager.AppSettings["ExportPathLinux"];
                         }
-
-                        if (File.Exists(LocomotiveListFile) & LocomotiveListFile.Substring(LocomotiveListFile.Length - 4).Contains(".cs2") & Path.Exists(ExportFilesPath))
+                        if (File.Exists(LocomotiveListFile) & LocomotiveListFile.Substring(LocomotiveListFile.Length - 4).Contains(".cs2"))
                         {
-                            try
-                            {
-                                watcher.Path = Path.GetDirectoryName(LocomotiveListFile);
-                                watcher.NotifyFilter = NotifyFilters.LastWrite;
-                                watcher.Changed += OnChanged;
-                                watcher.Filter = "lokomotive.cs2";
-                                watcher.EnableRaisingEvents = true;
-                                autoconverterActive = true;
-                                Console.WriteLine("Automatical convertion for Z21 files activated for file: " + LocomotiveListFile);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.ToString());
-                            }
+                            Console.WriteLine("Error. Please check LocDbConverterConsole.config file. File not found: " + LocomotiveListFile);
+                            break;
                         }
-                        else
+                        if (Path.Exists(IconsPath))
                         {
-                            Console.WriteLine("Error. File/Path could not be found. Please check LocDbConverterConsole.dll.config file."); //TODO: Split error description to be more precise 
+                            Console.WriteLine("Error. Please check LocDbConverterConsole.config file. Path not found: " + IconsPath);
+                            break;
+                        }
+                        if (Path.Exists(ExportFilesPath))
+                        {
+                            Console.WriteLine("Error. Please check LocDbConverterConsole.config file. Path not found: " + ExportFilesPath);
+                            break;
+                        }
+                        try
+                        {
+                            watcher.Path = Path.GetDirectoryName(LocomotiveListFile);
+                            watcher.NotifyFilter = NotifyFilters.LastWrite;
+                            watcher.Changed += OnChanged;
+                            watcher.Filter = "lokomotive.cs2";
+                            watcher.EnableRaisingEvents = true;
+                            autoconverterActive = true;
+                            Console.WriteLine("Automatical convertion for Z21 files activated for file: " + LocomotiveListFile);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.ToString());
                         }
                         break;
 
@@ -233,6 +240,11 @@ namespace LocDbConverterConsole
             }
         }
 
+        /// <summary>
+        /// OnChangedEventHandler for supervision of the locomotive.cs2 file in auto mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private static void OnChanged(object sender, FileSystemEventArgs e)
         {
             if (e.ChangeType != WatcherChangeTypes.Changed)
@@ -248,6 +260,8 @@ namespace LocDbConverterConsole
         /// Converts a given *.cs2 config file into *.z21loco config files
         /// </summary>
         /// <param name="fileToConvert">*.cs2 config file for convertion</param>
+        /// <param name="pathToPlaceConvertedFile">Path to put z21 config file</param>
+        /// <param name="overwriteInternalConfigs">0 = attach file content to internal locomotive list / 1 = delete all entries in locomotive list before plaving new file content</param>
         /// <returns></returns>
         private static int ConvertLocomotiveConfigurationFile(string fileToConvert, string pathToPlaceConvertedFile, bool overwriteInternalConfigs)
         {
