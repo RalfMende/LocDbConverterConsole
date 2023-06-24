@@ -26,20 +26,20 @@ The settings for convertion are made in the mappings.xml file (mapping of the fu
 Current version Beta 1.2 is available for download:
     
     Windows Arm64
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-arm64
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-arm64.zip
     
     Windows x64
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-x64
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-x64.zip
     
     Windows x86
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-x86
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-x86.zip
     
     OSX Arm64 (Silicon)
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-arm64
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-arm64.zip
     
     OSX x64 (Intel)
-     https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-x64     
+     https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-x64.zip    
     
     Linux x64:
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/linux-x64
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/linux-x64.zip
   
