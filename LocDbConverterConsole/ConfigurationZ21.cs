@@ -21,8 +21,8 @@
  * <https://www.gnu.org/licenses/>.
 */
 
-using System.IO.Compression;
 using Microsoft.Data.Sqlite;
+using System.IO.Compression;
 
 namespace LocDbConverterConsole
 {
@@ -58,9 +58,9 @@ namespace LocDbConverterConsole
                 File.Copy(pictureFile, Path.Combine(dirTempSqliteFile, newPictureFilename), true);
             }
 
-            returnValue = ExportLocomotiveFile(tempSqliteFile, listIndex, newPictureFilename);
+            returnValue = ExportDbFile(tempSqliteFile, listIndex, newPictureFilename);
 
-            string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name.Replace("/","") + ".z21loco");
+            string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name.Replace("/", "") + ".z21loco");
             if (File.Exists(zipFileName))
             {
                 File.Delete(zipFileName);
@@ -79,7 +79,7 @@ namespace LocDbConverterConsole
         /// <param name="listIndex">Index of the locomotives list (0-based)</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Ok</returns>
         /// <exception cref="Exception"></exception>
-        private int ExportLocomotiveFile(string databaseFile, int listIndex, string pictureName)
+        private int ExportDbFile(string databaseFile, int listIndex, string pictureName)
         {
             int returnValue = 0;
             FunctionTypeMapping functionMapping;
@@ -95,8 +95,8 @@ namespace LocDbConverterConsole
                 command.ExecuteNonQuery();
                 command.Dispose();
 
-                // ---------- create tables ----------
 
+                // ---------- create tables ----------
                 command = connection.CreateCommand();
                 command.CommandText = @"CREATE TABLE 'categories' ('id' INTEGER PRIMARY KEY NOT NULL, 'name' TEXT)";
                 command.ExecuteNonQuery();
@@ -142,7 +142,6 @@ namespace LocDbConverterConsole
 
 
                 // ----------fill table vehicles ----------
-
                 command = connection.CreateCommand();
                 //command.CommandText =
                 //    "INSERT INTO vehicles ([id], [name], [type], [max_speed], [address], [active], [position], [speed_display], [traction_direction], [dummy], [ip], [video], [video_x], [video_y], [video_width], [panorama_x], [panorama_y], [panorama_width], [direct_steering], [crane]) " +
@@ -155,7 +154,7 @@ namespace LocDbConverterConsole
                 command.Parameters.AddWithValue("@image_name", pictureName);
                 command.Parameters.AddWithValue("@type", 0); //0=Locomotive
                 command.Parameters.AddWithValue("@max_speed", LocomotiveList.Get(listIndex).SpeedometerMax);
-                command.Parameters.AddWithValue("@address", 3); //LocomotiveList.Get(listIndex).Address); //TODO: DECODER (DCC/MM) and FAHRSTUFE (128/28/14) currently can't be set via z21loco-file. -> DCC default adress = 3.
+                command.Parameters.AddWithValue("@address", ConvertAddressSrseii(LocomotiveList.Get(listIndex).Address, LocomotiveList.Get(listIndex).Decodertype));
                 command.Parameters.AddWithValue("@active", 1);
                 //command.Parameters.AddWithValue("@position", 0); //listposition in Z21-App
                 command.Parameters.AddWithValue("@speed_display", 0); //0=km/h
@@ -223,8 +222,8 @@ namespace LocDbConverterConsole
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
                 returnValue = -1;
+                throw new Exception(ex.Message);
             }
 
             connection.Close();
@@ -236,6 +235,19 @@ namespace LocDbConverterConsole
             //GC.WaitForPendingFinalizers();
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// Converter for locomotive address to make it suitable for SRSEII-Gleisbox by Gerd
+        /// </summary>
+        /// <param name="addressSrseii">Locomotives address</param>
+        /// <param name="decoderType">Type of protocol used</param>
+        /// <returns>Locomotives address according to SRSEII</returns>
+        private int ConvertAddressSrseii(int addressSrseii, DecoderType decoderType)
+        {
+            if (decoderType == DecoderType.MFX) addressSrseii += 1000;
+            else if (decoderType == DecoderType.DCC) addressSrseii += 5000;
+            return addressSrseii;
         }
 
     }
