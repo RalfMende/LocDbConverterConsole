@@ -38,6 +38,11 @@ namespace LocDbConverterConsole
             return _list.Count();
         }
 
+        public static void SetIcon(int index, string file)
+        {
+            _list[index].Icon = file;
+        }
+
         public static Locomotive Get(int index)
         {
             return _list[index];
