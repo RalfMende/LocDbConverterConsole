@@ -37,11 +37,11 @@ namespace LocDbConverterConsole
         {
             int returnValue = 0;
 
-            FileAttributes attr = File.GetAttributes(file);
+            //            FileAttributes attr = File.GetAttributes(file);
 
             if (file.Substring(file.Length - 4).Contains(".cs2"))
             {
-                returnValue = ImportLocomotiveFile(file, overwriteAllExistingConfigs);
+                returnValue = ParseLocomotiveFile(file, overwriteAllExistingConfigs);
             }
             else
             {
@@ -56,14 +56,14 @@ namespace LocDbConverterConsole
         /// <param name="file">*.cs2 locomotive desciption file</param>
         /// <param name="overwriteAllExistingConfigs">true: All configs in internal list are overwritten, false: configs are just added to internal list</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Number of Locomotives added to internal list</returns>
-        private int ImportLocomotiveFile(string file, bool overwriteAllExistingConfigs)
+        private int ParseLocomotiveFile(string file, bool overwriteAllExistingConfigs)
         {
             int returnValue = 0;
-            string trimmedLine = null;
-            string key = null;
-            string subKey = null;
-            string subSubKey = null;
-            string value = null;
+            string trimmedLine = "";
+            string key = "";
+            string subKey = "";
+            string subSubKey = "";
+            string value = "";
             int currentFunctionNumber = -1;
             int numberOfLocomotiveConfigs = 0;
             int numberOfLocomotivesAdded = 0;
@@ -130,10 +130,8 @@ namespace LocDbConverterConsole
 
                         switch (subKey)
                         {
-                            case ".uid":
-                                //locomotive.Uid = Convert.ToInt32(value.Substring(2, value.Length - 2)); //TODO: How to best store this information?
-                                locomotive.Address = Convert.ToInt32(value.Substring(value.Length - 2), 16); // get address here, as seperate field is sometimes not available
-                                break;
+                            //case ".uid":
+                            //    string tmp = value.Substring(2); break; // 
 
                             case ".name":
                                 string name = value;
@@ -142,6 +140,7 @@ namespace LocDbConverterConsole
 
                             //case ".vorname": name before the last change -> not needed
 
+                            case ".typ":
                             case ".dectyp": //accorting to documentation this should be .typ, but all demo-files show different sub key
                                 if (value == "mm2_prg") locomotive.Decodertype = DecoderType.MM;
                                 else if (value == "mm2_dil8") locomotive.Decodertype = DecoderType.MM;
@@ -152,17 +151,14 @@ namespace LocDbConverterConsole
                                 break;
 
                             case ".adresse":
-                                locomotive.Address = Convert.ToInt32(value, 16); break;
+                                locomotive.Address = Convert.ToInt32(value, 16);
+                                break;
 
                             //case ".mfxuid":
                             //    locomotive.mfxuid = value; break;
 
                             case ".icon":
-                                string fullPathPictureFile = Path.Combine(Path.GetDirectoryName(file),"icons", value + ".png");
-                                if (File.Exists(fullPathPictureFile))
-                                {
-                                    locomotive.Icon = fullPathPictureFile; 
-                                }
+                                locomotive.Icon = value;
                                 break;
 
                             //case ".symbol": // 0=Electro, 1=Diesel, 2=Steam, 3=No Icon
@@ -178,10 +174,12 @@ namespace LocDbConverterConsole
                             //    locomotive.vMin = value; break;
 
                             case ".vmax":
-                                locomotive.VMax = Convert.ToInt32(value); break;
+                                locomotive.VMax = Convert.ToInt32(value);
+                                break;
 
                             case ".tachomax":
-                                locomotive.SpeedometerMax = Convert.ToInt32(value); break;
+                                locomotive.SpeedometerMax = Convert.ToInt32(value);
+                                break;
 
                             //case ".volume":
                             //    locomotive.volume = value; break;
@@ -240,7 +238,8 @@ namespace LocDbConverterConsole
                     }
                 }
 
-            }//for each line
+            } // foreach line
+
             if (!LocomotiveList.Contains(locomotive))
             {
                 LocomotiveList.Set(locomotive);
@@ -255,6 +254,7 @@ namespace LocDbConverterConsole
             returnValue = numberOfLocomotivesAdded;
             return returnValue;
         }
+
 
     }
 }
