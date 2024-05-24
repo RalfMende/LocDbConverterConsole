@@ -32,9 +32,9 @@ namespace LocDbConverterConsole
 {
     internal class Program
     {
-        static string IpAddressHostnameCS2 = "";
         static string LocomotiveConfigFilePath = "";
         static string ExportFilesPath = "";
+        static string IpAddressHostnameCS2 = "";
         private static string LocomotiveConfigFileName = "lokomotive.cs2";
         static bool remoteFileServer = false;
 
@@ -43,10 +43,7 @@ namespace LocDbConverterConsole
             bool quitProgram = false;
             int returnValue;
             string userEntry;
-            string[] userEntrySplit;
             int status = 0;
-            int userTry = 0;
-            string LocomotiveListFile = "";
             bool setupOk = true;
             string osNameAndVersion = RuntimeInformation.OSDescription;
             string programVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString(); //Setup on csproj file
@@ -79,7 +76,7 @@ namespace LocDbConverterConsole
             }
 
             // Check lokomotive.cs file
-            Console.Write("Checking access to lokomotive.cs file ... ");
+            Console.WriteLine("Checking access to lokomotive.cs file ... ");
             status = GetLocomotiveConfigFilePath();
             if (status < 1)
             {
@@ -92,16 +89,22 @@ namespace LocDbConverterConsole
             }
 
             // Check export path 
-            Console.Write("Checking path for file export ... ");
+            Console.WriteLine("Checking path for file export ... ");
             status = GetExportPath();
             if (status < 1)
             {
-                Console.WriteLine("ERROR Path not found: " + ExportFilesPath + ".");
+                Console.WriteLine("ERROR Path not found.");
                 setupOk = false;
             }
             else
             {
                 Console.WriteLine("OK");
+            }
+
+            // Setup Remote Connection
+            if (remoteFileServer == true)
+            {
+                LocomotiveConfigFilePath = ExportFilesPath; // Because Lokomotive.cs and icon files are copied to export path to be converted
             }
 
             /*--------------------------------- Run actual program -----------------------------------*/
@@ -247,14 +250,26 @@ namespace LocDbConverterConsole
             ConsoleKey userInput;
             
             tmpPath = ConfigurationManager.AppSettings["LocomotiveConfigFilePath"].Trim();
-            
-            //Todo
-            //Console.Write("Do you like to use " + tmpPath + " ? [y/n]");
-            //userInput = Console.ReadKey(false).Key;
-            //if (userInput == ConsoleKey.N) tmpPath = "";
-            //else if (userInput != ConsoleKey.Y) tmpPath = tmpPath;
 
-            returnValue = CheckLocomotiveConfigFileAccess(tmpPath);
+            Console.Write("Do you like to use " + tmpPath + " ? [y/n]");
+            userInput = Console.ReadKey(false).Key;
+            Console.WriteLine("");// just for cosmetics ;)
+            if (userInput == ConsoleKey.Y)
+            {
+                returnValue = CheckLocomotiveConfigFileAccess(tmpPath);
+                if (returnValue > 0)
+                {
+                    LocomotiveConfigFilePath = tmpPath;
+                }
+            }
+            else if (userInput == ConsoleKey.N)
+            {
+                returnValue = -1;
+            }
+            else
+            {
+                return returnValue;
+            }
 
             if (returnValue < 0)
             {
@@ -270,7 +285,7 @@ namespace LocDbConverterConsole
                         if (returnValue > 0)
                         {
                             LocomotiveConfigFilePath = tmpPath;
-                            System.Configuration.ConfigurationManager.AppSettings["LocomotiveConfigFilePath"] = tmpPath;
+                            AddUpdateAppSettings(LocomotiveConfigFilePath, tmpPath);
                             userTry = 0;
                         }
                         else
@@ -293,16 +308,29 @@ namespace LocDbConverterConsole
             int returnValue = 0;
             string tmpPath;
             int userTry = 3;
+            ConsoleKey userInput;
 
             tmpPath = ConfigurationManager.AppSettings["ExportFilesPath"].Trim();
 
-            //Todo
-            //Console.Write("Do you like to use " + tmpPath + " ? [y/n]");
-            //userInput = Console.ReadKey(false).Key;
-            //if (userInput == ConsoleKey.N) tmpPath = "";
-            //else if (userInput != ConsoleKey.Y) tmpPath = tmpPath;
-
-            returnValue = CheckExportPathAccess(tmpPath);
+            Console.Write("Do you like to use " + tmpPath + " ? [y/n]");
+            userInput = Console.ReadKey(false).Key;
+            Console.WriteLine("");// just for cosmetics ;)
+            if (userInput == ConsoleKey.Y)
+            {
+                returnValue = CheckExportPathAccess(tmpPath);
+                if (returnValue > 0)
+                {
+                    ExportFilesPath = tmpPath;
+                }
+            }
+            else if (userInput == ConsoleKey.N)
+            {
+                returnValue = -1;
+            }
+            else
+            {
+                return returnValue;
+            }
 
             if (returnValue < 0)
             {
@@ -318,7 +346,7 @@ namespace LocDbConverterConsole
                         if (returnValue > 0)
                         {
                             ExportFilesPath = tmpPath;
-                            System.Configuration.ConfigurationManager.AppSettings["ExportFilesPath"] = tmpPath;
+                            AddUpdateAppSettings(LocomotiveConfigFilePath, tmpPath);
                             userTry = 0;
                         }
                         else
@@ -351,16 +379,17 @@ namespace LocDbConverterConsole
 
                 if (path.Contains("\\") ^ path.Contains("/"))
                 {
-                    if (!path.EndsWith(Path.DirectorySeparatorChar))
-                    {
-                        path += Path.DirectorySeparatorChar;
-                    }
+                    if (!path.EndsWith(Path.DirectorySeparatorChar)) path += Path.DirectorySeparatorChar;
                     returnValue = CheckLocomotiveConfigFileAccessLocal(path);
                 }
                 else
                 {
                     returnValue = CheckLocomotiveConfigFileAccessRemote(path);
-                    if (returnValue > 0) Program.remoteFileServer = true;
+                    if (returnValue > 0)
+                    {
+                        Program.remoteFileServer = true;
+                        IpAddressHostnameCS2 = path;
+                    }
                 }
             }
             else
@@ -464,7 +493,8 @@ namespace LocDbConverterConsole
         {
             int returnValue = 0;
             int index = 0;
-            string iconsFilename;
+            string currentIconFilename;
+            string destinationPath;
             string destinationFilename;
             bool copied;
             ConfigurationCS2 configCS2 = new ConfigurationCS2();
@@ -481,19 +511,23 @@ namespace LocDbConverterConsole
             {
                 for (index = 0; index < LocomotiveList.SizeOf(); index++)
                 {
-                    iconsFilename = LocomotiveList.Get(index).Icon + ".png";
-                    destinationFilename = Path.Combine(LocomotiveConfigFilePath, "icons", iconsFilename);
-                    if (!Directory.Exists(LocomotiveConfigFilePath + "/icons/"))
+                    currentIconFilename = LocomotiveList.Get(index).Icon + ".png";
+                    destinationPath = Path.Combine(LocomotiveConfigFilePath, "icons");
+                    destinationFilename = Path.Combine(destinationPath, currentIconFilename);
+                    if (!Directory.Exists(destinationPath))
                     {
-                        Directory.CreateDirectory(LocomotiveConfigFilePath + "/icons/");
+                        Directory.CreateDirectory(destinationPath);
                     }
                     copied = false;
                     try
                     {
-                        remoteFileServer.DownloadFile("http://" + IpAddressHostnameCS2 + "/icons/" + iconsFilename, destinationFilename);
+                        remoteFileServer.DownloadFile("http://" + IpAddressHostnameCS2 + "/icons/" + currentIconFilename, destinationFilename);
                         copied = true;
                     }
-                    catch (Exception e) { throw; }
+                    catch (Exception e)
+                    {
+                        //Console.Write(e); 
+                    }
                     if (copied == true)
                     {
                         LocomotiveList.SetIcon(index, destinationFilename);
@@ -518,6 +552,35 @@ namespace LocDbConverterConsole
             remoteFileServer = null;
             return returnValue;
         }
+
+        
+        // Out of MSDN (https://learn.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager.appsettings?view=net-8.0&redirectedfrom=MSDN#System_Configuration_ConfigurationManager_AppSettings)
+        // Todo: This is not storing the parameter. Why?
+        private static void AddUpdateAppSettings(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
+            }
+        }
+
+
+
     }
 }
 
