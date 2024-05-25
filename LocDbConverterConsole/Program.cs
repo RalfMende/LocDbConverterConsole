@@ -21,11 +21,14 @@
  * <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Configuration;
 using System.Diagnostics.Eventing.Reader;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Timers;
 using System.Xml;
 
 namespace LocDbConverterConsole
@@ -37,7 +40,7 @@ namespace LocDbConverterConsole
         static string IpAddressHostnameCS2 = "";
         private static string LocomotiveConfigFileName = "lokomotive.cs2";
         static bool remoteFileServer = false;
-
+        
         static void Main()
         {
             bool quitProgram = false;
@@ -49,7 +52,7 @@ namespace LocDbConverterConsole
             string programVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString(); //Setup on csproj file
             FileSystemWatcher watcher = new FileSystemWatcher();
 
-            Console.WriteLine("Welcome to LocDbConverter Console v" + programVersion + " (beta)");
+            Console.WriteLine($"Welcome to LocDbConverter Console v{programVersion} (beta)");
 
             /*--------------------------------- Initialize application -----------------------------------*/
 
@@ -71,7 +74,7 @@ namespace LocDbConverterConsole
             }
             else
             {
-                Console.WriteLine("ERROR File mapping.xml not found at " + mappingFile);
+                Console.WriteLine($"ERROR File mapping.xml not found at {mappingFile}");
                 setupOk = false;
             }
 
@@ -90,7 +93,7 @@ namespace LocDbConverterConsole
 
             // Check export path 
             Console.WriteLine("Checking path for file export ... ");
-            status = GetExportPath();
+            status = GetExportFilesPath();
             if (status < 1)
             {
                 Console.WriteLine("ERROR Path not found.");
@@ -115,10 +118,11 @@ namespace LocDbConverterConsole
             else
             {
                 Console.WriteLine("Program running. Please enter command or ? for help:");
+                
+                userEntry = Console.ReadLine().Trim().ToLowerInvariant();
                 while (!quitProgram & setupOk == true)
                 {
-                    userEntry = Console.ReadLine();
-                    switch (userEntry.ToLowerInvariant())
+                    switch (userEntry)
                     {
                         case "?":
                         case "h":
@@ -129,12 +133,12 @@ namespace LocDbConverterConsole
                             Console.WriteLine("\t(a)uto       \tAuto convert lokomotive.cs2 file according to settings in App.config file.");
                             Console.WriteLine("\t(f)orce      \tManually force convert lokomotive.cs2 file (only when auto-mode ist ON.");
                             Console.WriteLine("\t(e)xit       \tExit the program");
-                            Console.WriteLine("This is version " + programVersion + " (beta). Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
+                            Console.WriteLine($"This is version {programVersion} (beta). Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
                             break;
 
                         case "c":
                         case "convert":
-                            returnValue = ConvertLocomotiveConfigurationFile(LocomotiveConfigFilePath + LocomotiveConfigFileName, ExportFilesPath, true);
+                            returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
                             if (returnValue > 0)
                             {
                                 Console.WriteLine(DateTime.Now + " Z21-config files updated according to Lokomotive.cs2 file.");
@@ -144,7 +148,7 @@ namespace LocDbConverterConsole
                         case "f":
                         case "force":
                             LocomotiveList.DeleteAll();
-                            returnValue = ConvertLocomotiveConfigurationFile(LocomotiveConfigFilePath + LocomotiveConfigFileName, ExportFilesPath, true);
+                            returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
                             if (returnValue > 0)
                             {
                                 Console.WriteLine(DateTime.Now + " Z21-config files updated according to Lokomotive.cs2 file.");
@@ -162,7 +166,7 @@ namespace LocDbConverterConsole
                                     watcher.Changed += OnChanged;
                                     watcher.Filter = LocomotiveConfigFileName;
                                     watcher.EnableRaisingEvents = true;
-                                    Console.WriteLine("Automatical convertion for Z21 files activated.");
+                                    Console.WriteLine("Automatical convertion for Z21 files activated whenever Lokomotive.cs file changes.");
                                 }
                                 catch (Exception ex)
                                 {
@@ -199,29 +203,29 @@ namespace LocDbConverterConsole
         private static int ImportMappingConfigFile(string mappingConfigFile)
         {
             int returnValue = 0;
-            XmlTextReader reader = null;
             try
             {
-                // Load the reader with the data file and ignore all white space nodes.
-                reader = new XmlTextReader(mappingConfigFile);
-                reader.WhitespaceHandling = WhitespaceHandling.None;
-                while (reader.Read())
+                using (var reader = new XmlTextReader(mappingConfigFile))
                 {
-                    if (reader.Name == "mapping")
+                    reader.WhitespaceHandling = WhitespaceHandling.None;
+                    while (reader.Read())
                     {
-                        //Enum.TryParse(reader.GetAttribute("FunctionTypeCS2"), out FunctionTypeCS2 _functionTypeCS2); -> Working with the CS2-Index from mapping.xml is more reliable
-                        Enum.TryParse(reader.GetAttribute("FunctionTypeZ21"), out FunctionTypeZ21 _functionTypeZ21);
-
-                        FunctionTypeMappingList.Set(new FunctionTypeMapping()
+                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "mapping")
                         {
-                            Key = Convert.ToInt32(reader.GetAttribute("Id")),
-                            Shortname = reader.GetAttribute("Shortname"),
-                            Duration = Convert.ToInt32(reader.GetAttribute("Duration")),
-                            //FunctionTypeIndexCS2 = (int)_functionTypeCS2, -> Working with the CS2-Index from mapping.xml is more reliable
-                            FunctionTypeIndexCS2 = Convert.ToInt32(reader.GetAttribute("FunctionTypeIndexCS2")),
-                            FunctionTypeZ21 = _functionTypeZ21
-                        });
+                            //Enum.TryParse(reader.GetAttribute("FunctionTypeCS2"), out FunctionTypeCS2 _functionTypeCS2); -> Working with the CS2-Index from mapping.xml is more reliable
+                            Enum.TryParse(reader.GetAttribute("FunctionTypeZ21"), out FunctionTypeZ21 _functionTypeZ21);
 
+                            FunctionTypeMappingList.Set(new FunctionTypeMapping()
+                            {
+                                Key = Convert.ToInt32(reader.GetAttribute("Id")),
+                                Shortname = reader.GetAttribute("Shortname"),
+                                Duration = Convert.ToInt32(reader.GetAttribute("Duration")),
+                                //FunctionTypeIndexCS2 = (int)_functionTypeCS2, -> Working with the CS2-Index from mapping.xml is more reliable
+                                FunctionTypeIndexCS2 = Convert.ToInt32(reader.GetAttribute("FunctionTypeIndexCS2")),
+                                FunctionTypeZ21 = _functionTypeZ21
+                            });
+
+                        }
                     }
                 }
                 returnValue = 1;
@@ -230,10 +234,6 @@ namespace LocDbConverterConsole
             {
                 //Console.WriteLine(ex.ToString());
                 returnValue = -1;
-            }
-            finally
-            {
-                if (reader != null) reader.Close();
             }
             return returnValue;
         }
@@ -245,21 +245,20 @@ namespace LocDbConverterConsole
         private static int GetLocomotiveConfigFilePath()
         {
             int returnValue = 0;
-            string tmpPath;
-            int userTry = 3;
-            ConsoleKey userInput;
-            
-            tmpPath = ConfigurationManager.AppSettings["LocomotiveConfigFilePath"].Trim();
+            int attemptsLeft = 3;
+            string tmpConfigFilePath = ConfigurationManager.AppSettings["LocomotiveConfigFilePath"].Trim();
 
-            Console.Write("Do you like to use " + tmpPath + " ? [y/n]");
-            userInput = Console.ReadKey(false).Key;
+            Console.Write($"Do you like to use {tmpConfigFilePath} ? [y/n]");
+            ConsoleKey userInput = Console.ReadKey(false).Key;
             Console.WriteLine("");// just for cosmetics ;)
+            
             if (userInput == ConsoleKey.Y)
             {
-                returnValue = CheckLocomotiveConfigFileAccess(tmpPath);
+                returnValue = CheckLocomotiveConfigFileAccess(tmpConfigFilePath);
                 if (returnValue > 0)
                 {
-                    LocomotiveConfigFilePath = tmpPath;
+                    LocomotiveConfigFilePath = tmpConfigFilePath;
+                    return returnValue;
                 }
             }
             else if (userInput == ConsoleKey.N)
@@ -270,28 +269,25 @@ namespace LocDbConverterConsole
             {
                 return returnValue;
             }
-
-            if (returnValue < 0)
+            
+            while (returnValue < 0 && attemptsLeft > 0)
             {
-                while (userTry > 0)
+                Console.WriteLine("ERROR Connection could not be established.");
+                Console.WriteLine("Please enter IP address / Hostname of CS2/CS3/CS3+/SRSEII or simply Path to Lokomotive.cs file:");
+                tmpConfigFilePath = Console.ReadLine()?.Trim();
+
+                if (!string.IsNullOrEmpty(tmpConfigFilePath))
                 {
-                    Console.WriteLine("ERROR Connection could not be established.");
-                    Console.WriteLine("Please enter IP address / Hostname of CS2/CS3/CS3+/SRSEII or simply Path to Lokomotive.cs file:");
-                    tmpPath = Console.ReadLine();
-                    if (tmpPath != null)
+                    returnValue = CheckLocomotiveConfigFileAccess(tmpConfigFilePath);
+                    if (returnValue > 0)
                     {
-                        tmpPath = tmpPath.Trim();
-                        returnValue = CheckLocomotiveConfigFileAccess(tmpPath);
-                        if (returnValue > 0)
-                        {
-                            LocomotiveConfigFilePath = tmpPath;
-                            AddUpdateAppSettings(LocomotiveConfigFilePath, tmpPath);
-                            userTry = 0;
-                        }
-                        else
-                        {
-                            userTry--;
-                        }
+                        LocomotiveConfigFilePath = tmpConfigFilePath;
+                        AddUpdateAppSettings("LocomotiveConfigFilePath", tmpConfigFilePath);
+                        return returnValue;
+                    }
+                    else
+                    {
+                        attemptsLeft--;
                     }
                 }
             }
@@ -303,24 +299,23 @@ namespace LocDbConverterConsole
         /// Gets path to save converted files to
         /// </summary>
         /// <returns>positive = success / 0 = nothing done / negative = errors</returns>
-        private static int GetExportPath()
+        private static int GetExportFilesPath()
         {
             int returnValue = 0;
-            string tmpPath;
-            int userTry = 3;
-            ConsoleKey userInput;
+            int attemptsLeft = 3;
+            string tmpExportFilesPath = ConfigurationManager.AppSettings["ExportFilesPath"].Trim();
 
-            tmpPath = ConfigurationManager.AppSettings["ExportFilesPath"].Trim();
-
-            Console.Write("Do you like to use " + tmpPath + " ? [y/n]");
-            userInput = Console.ReadKey(false).Key;
+            Console.Write($"Do you like to use {tmpExportFilesPath} ? [y/n]");
+            ConsoleKey userInput = Console.ReadKey(false).Key;
             Console.WriteLine("");// just for cosmetics ;)
+            
             if (userInput == ConsoleKey.Y)
             {
-                returnValue = CheckExportPathAccess(tmpPath);
+                returnValue = CheckExportPathAccess(tmpExportFilesPath);
                 if (returnValue > 0)
                 {
-                    ExportFilesPath = tmpPath;
+                    ExportFilesPath = tmpExportFilesPath;
+                    return returnValue;
                 }
             }
             else if (userInput == ConsoleKey.N)
@@ -331,32 +326,29 @@ namespace LocDbConverterConsole
             {
                 return returnValue;
             }
-
-            if (returnValue < 0)
+            
+            while (returnValue < 0 && attemptsLeft > 0)
             {
-                while (userTry > 0)
+                Console.WriteLine("ERROR Connection could not be established.");
+                Console.WriteLine("Please enter a valid Path:");
+                tmpExportFilesPath = Console.ReadLine()?.Trim();
+
+                if (!string.IsNullOrEmpty(tmpExportFilesPath))
                 {
-                    Console.WriteLine("ERROR Connection could not be established.");
-                    Console.WriteLine("Please enter a valid Path:");
-                    tmpPath = Console.ReadLine();
-                    if (tmpPath != null)
+                    returnValue = CheckExportPathAccess(tmpExportFilesPath);
+                    if (returnValue > 0)
                     {
-                        tmpPath = tmpPath.Trim();
-                        returnValue = CheckExportPathAccess(tmpPath);
-                        if (returnValue > 0)
-                        {
-                            ExportFilesPath = tmpPath;
-                            AddUpdateAppSettings(LocomotiveConfigFilePath, tmpPath);
-                            userTry = 0;
-                        }
-                        else
-                        {
-                            userTry--;
-                        }
+                        ExportFilesPath = tmpExportFilesPath;
+                        AddUpdateAppSettings("ExportFilesPath", tmpExportFilesPath);
+                        return returnValue;
+                    }
+                    else
+                    {
+                        attemptsLeft--;
                     }
                 }
             }
-
+            
             return returnValue;
         }
 
@@ -368,34 +360,39 @@ namespace LocDbConverterConsole
         private static int CheckLocomotiveConfigFileAccess(string path)
         {
             int returnValue = 0;
-            if (path != null)
-            {
-                path.Trim();
-                if (path.Contains("http://"))
-                {
-                    path = path.Remove(0,7);
-                    if(path.EndsWith("/")) path = path.Remove(path.Length - 1);
-                }
 
-                if (path.Contains("\\") ^ path.Contains("/"))
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return -2;
+            }
+
+            path = path.Trim();
+
+            if (path.StartsWith("http://"))
+            {
+                path = path.Substring(7);
+                int index = path.IndexOf('/');
+                if(index > 0)
                 {
-                    if (!path.EndsWith(Path.DirectorySeparatorChar)) path += Path.DirectorySeparatorChar;
-                    returnValue = CheckLocomotiveConfigFileAccessLocal(path);
+                    path = path.Substring(0, index);
                 }
-                else
-                {
-                    returnValue = CheckLocomotiveConfigFileAccessRemote(path);
-                    if (returnValue > 0)
-                    {
-                        Program.remoteFileServer = true;
-                        IpAddressHostnameCS2 = path;
-                    }
-                }
+            }
+
+            if (path.Contains("\\") ^ path.Contains("/"))
+            {
+                if (!path.EndsWith(Path.DirectorySeparatorChar)) path += Path.DirectorySeparatorChar; //Todo: Is this really needded here?
+                returnValue = CheckLocomotiveConfigFileAccessLocal(path);
             }
             else
             {
-                returnValue = -2;
+                returnValue = CheckLocomotiveConfigFileAccessRemote(path);
+                if (returnValue > 0)
+                {
+                    Program.remoteFileServer = true;
+                    IpAddressHostnameCS2 = path;
+                }
             }
+
             return returnValue;
         }
 
@@ -404,23 +401,24 @@ namespace LocDbConverterConsole
         /// </summary>
         /// <param name="IpAddressHostname">IP address or Hostname defined in config file</param>
         /// <returns>positive = success / 0 = nothing done / negative = errors</returns>
-        private static int CheckLocomotiveConfigFileAccessRemote(string IpAddressHostname)
+        private static int CheckLocomotiveConfigFileAccessRemote(string ipAddressHostname)
         {
             int returnValue = 0;
-            WebClient remoteFileServer = new WebClient();
-            try
+
+            using (WebClient remoteFileServer = new WebClient())
             {
-                remoteFileServer.DownloadData("http://" + IpAddressHostname + "/config/" + LocomotiveConfigFileName);
-                returnValue = 1;
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine(ex.ToString()); 
-                returnValue = -1;
-            }
-            finally
-            {
-                remoteFileServer = null;
+                try
+                {
+                    string url = $"http://{ipAddressHostname}/config/{LocomotiveConfigFileName}";
+                    remoteFileServer.DownloadData(url);
+                    returnValue = 1;
+                }
+                catch (Exception ex)
+                {
+                    // Console.WriteLine(ex.ToString()); 
+                    returnValue = -1;
+                }
+
             }
             return returnValue;
         }
@@ -428,39 +426,22 @@ namespace LocDbConverterConsole
         /// <summary>
         /// Checks if locomotive config file is available at local path, definded in config-file
         /// </summary>
-        /// <param name="LocomotiveListPath">Path and file defined in config file</param>
+        /// <param name="locomotiveListPath">Path and file defined in config file</param>
         /// <returns>positive = success / 0 = nothing done / negative = errors</returns>
-        private static int CheckLocomotiveConfigFileAccessLocal(string LocomotiveListPath)
+        private static int CheckLocomotiveConfigFileAccessLocal(string locomotiveListPath)
         {
-            int returnValue = 0;
-            if (File.Exists(LocomotiveListPath + LocomotiveConfigFileName))
-            {
-                returnValue = 1;
-            }
-            else
-            {
-                returnValue = -1;
-            }
-            return returnValue;
+            string fullPath = Path.Combine(locomotiveListPath, LocomotiveConfigFileName);
+            return File.Exists(fullPath) ? 1 : -1;
         }
 
         /// <summary>
         /// Checks if path for file export, defined in config-file is available
         /// </summary>
-        /// <param name="ExportPath">Path defined in config file</param>
+        /// <param name="exportPath">Path defined in config file</param>
         /// <returns>positive = success / 0 = nothing done / negative = errors</returns>
-        private static int CheckExportPathAccess(string ExportPath)
+        private static int CheckExportPathAccess(string exportPath)
         {
-            int returnValue = 0;
-            if (Path.Exists(ExportPath))
-            {
-                returnValue = 1;
-            }
-            else
-            {
-                returnValue = -1;
-            }
-            return returnValue;
+            return Directory.Exists(exportPath) ? 1 : -1;
         }
 
         /// <summary>
@@ -475,7 +456,7 @@ namespace LocDbConverterConsole
                 return;
             }
             LocomotiveList.DeleteAll(); //TODO should internal list rather be syncronized?
-            int returnValue = ConvertLocomotiveConfigurationFile(LocomotiveConfigFilePath + LocomotiveConfigFileName, ExportFilesPath, true);
+            int returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
             if (returnValue > 0)
             {
                 Console.WriteLine(DateTime.Now + " Info: Z21-config files updated according to Lokomotive.cs2 file.");
@@ -489,55 +470,28 @@ namespace LocDbConverterConsole
         /// <param name="pathToPlaceConvertedFile">Path to put z21 config file</param>
         /// <param name="overwriteInternalConfigs">0 = attach file content to internal locomotive list / 1 = delete all entries in locomotive list before plaving new file content</param>
         /// <returns>0 = success / negative = errors</returns>
-        private static int ConvertLocomotiveConfigurationFile(string fileToConvert, string pathToPlaceConvertedFile, bool overwriteInternalConfigs)
+        private static int ConvertLocomotiveConfigFile(string fileToConvert, string pathToPlaceConvertedFile, bool overwriteInternalConfigs)
         {
             int returnValue = 0;
-            int index = 0;
-            string currentIconFilename;
-            string destinationPath;
-            string destinationFilename;
-            bool copied;
+
             ConfigurationCS2 configCS2 = new ConfigurationCS2();
             ConfigurationZ21 configZ21 = new ConfigurationZ21();
-            WebClient remoteFileServer = new WebClient();
-
-            if (Program.remoteFileServer == true) // get Lokomotive.cs2 from remote to tmp directory
+            
+            if (Program.remoteFileServer) // get Lokomotive.cs2 from remote to tmp directory
             {
-                remoteFileServer.DownloadFile("http://" + IpAddressHostnameCS2 + "/config/" + LocomotiveConfigFileName, ExportFilesPath + LocomotiveConfigFileName);
+                DownloadLocomotiveConfigFile();
             }
-            returnValue = configCS2.ImportConfiguration(fileToConvert, overwriteInternalConfigs);//TODO: instead of overwrite just add the new ones?
+            
+            returnValue = configCS2.ImportConfiguration(fileToConvert, overwriteInternalConfigs);// TODO: instead of overwrite just add the new ones?
 
-            if (Program.remoteFileServer == true) // get locomotives icons from remote to tmp directory
+            if (Program.remoteFileServer) // get locomotives icons from remote to tmp directory
             {
-                for (index = 0; index < LocomotiveList.SizeOf(); index++)
-                {
-                    currentIconFilename = LocomotiveList.Get(index).Icon + ".png";
-                    destinationPath = Path.Combine(LocomotiveConfigFilePath, "icons");
-                    destinationFilename = Path.Combine(destinationPath, currentIconFilename);
-                    if (!Directory.Exists(destinationPath))
-                    {
-                        Directory.CreateDirectory(destinationPath);
-                    }
-                    copied = false;
-                    try
-                    {
-                        remoteFileServer.DownloadFile("http://" + IpAddressHostnameCS2 + "/icons/" + currentIconFilename, destinationFilename);
-                        copied = true;
-                    }
-                    catch (Exception e)
-                    {
-                        //Console.Write(e); 
-                    }
-                    if (copied == true)
-                    {
-                        LocomotiveList.SetIcon(index, destinationFilename);
-                    }
-                }
+                DownloadLocomotiveIcons();
             }
 
             if (returnValue > 0)
             {
-                for (index = 0; index < LocomotiveList.SizeOf(); index++)
+                for (int index = 0; index < LocomotiveList.SizeOf(); index++)
                 {
                     returnValue += configZ21.ExportConfiguration(index, pathToPlaceConvertedFile);
                 }
@@ -547,13 +501,65 @@ namespace LocDbConverterConsole
                 returnValue = -1;
             }
 
-            configCS2 = null;
-            configZ21 = null;
-            remoteFileServer = null;
             return returnValue;
         }
 
-        
+        /// <summary>
+        /// Downloads LoKomotive.cs file to temporary folder
+        /// </summary>
+        private static void DownloadLocomotiveConfigFile()
+        {
+            using (WebClient remoteFileServer = new WebClient())
+            {
+                string url = $"http://{IpAddressHostnameCS2}/config/{LocomotiveConfigFileName}";
+                string destinationFilename = Path.Combine(ExportFilesPath, LocomotiveConfigFileName);
+                try
+                {
+                    remoteFileServer.DownloadFile(url, destinationFilename);
+                }
+                catch (Exception e)
+                {
+                    // Console.Write(e); 
+                }
+            }
+        }
+
+        /// <summary>
+        /// Downloads all referenced Icon files to temporary folder
+        /// </summary>
+        private static void DownloadLocomotiveIcons()
+        {
+            using (WebClient remoteFileServer = new WebClient())
+            {
+                for (int index = 0; index < LocomotiveList.SizeOf(); index++)
+                {
+                    string currentIconFilename = $"{LocomotiveList.Get(index).Icon}.png";
+                    string destinationPath = Path.Combine(LocomotiveConfigFilePath, "icons");
+                    string destinationFilename = Path.Combine(destinationPath, currentIconFilename);
+
+                    if (!Directory.Exists(destinationPath))
+                    {
+                        Directory.CreateDirectory(destinationPath);
+                    }
+
+                    try
+                    {
+                        remoteFileServer.DownloadFile($"http://{IpAddressHostnameCS2}/icons/{currentIconFilename}", destinationFilename);
+                        LocomotiveList.SetIcon(index, destinationFilename);
+                    }
+                    catch (Exception e)
+                    {
+                        // Console.Write(e); 
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
         // Out of MSDN (https://learn.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager.appsettings?view=net-8.0&redirectedfrom=MSDN#System_Configuration_ConfigurationManager_AppSettings)
         // Todo: This is not storing the parameter. Why?
         private static void AddUpdateAppSettings(string key, string value)
