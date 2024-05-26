@@ -139,13 +139,8 @@ namespace LocDbConverterConsole
                             //case ".vorname": name before the last change -> not needed
 
                             case ".typ":
-                            case ".dectyp": //accorting to documentation this should be .typ, but all demo-files show different sub key
-                                if (value == "mm2_prg") locomotive.Decodertype = DecoderType.MM;
-                                else if (value == "mm2_dil8") locomotive.Decodertype = DecoderType.MM;
-                                else if (value == "dcc") locomotive.Decodertype = DecoderType.DCC;
-                                else if (value == "mfx") locomotive.Decodertype = DecoderType.MFX;
-                                else if (value == "sx1") locomotive.Decodertype = DecoderType.MFX;
-                                else locomotive.Decodertype = DecoderType.DCC;
+                            case ".dectyp": // according to documentation this should be .typ, but all demo-files show different sub key
+                                locomotive.Decodertype = GetDecoderType(value);
                                 break;
 
                             case ".adresse":
@@ -214,17 +209,7 @@ namespace LocDbConverterConsole
                         {
                             if (numberOfLocomotiveConfigs > 0)
                             {
-                                if (!LocomotiveList.Contains(locomotive))
-                                {
-                                    LocomotiveList.Set(locomotive);
-                                    locomotive = new Locomotive();
-                                    numberOfLocomotivesAdded++;
-                                }
-                                else if (overwriteAllExistingConfigs)
-                                {
-                                    LocomotiveList.Replace(locomotive);
-                                    numberOfLocomotivesAdded++;
-                                }
+                                AddOrUpdateLocomotive(ref locomotive, overwriteAllExistingConfigs, ref numberOfLocomotivesAdded);
                             }
                             numberOfLocomotiveConfigs++;
                         }
@@ -238,6 +223,36 @@ namespace LocDbConverterConsole
 
             } // foreach line
 
+            AddOrUpdateLocomotive(ref locomotive, overwriteAllExistingConfigs, ref numberOfLocomotivesAdded);
+
+            return numberOfLocomotivesAdded;
+        }
+
+        /// <summary>
+        /// Gets DecoderType out of given string
+        /// </summary>
+        /// <param name="value">DecoderType as string</param>
+        /// <returns>DecoderType</returns>
+        private DecoderType GetDecoderType(string value)
+        {
+            return value switch
+            {
+                "mm2_prg" or "mm2_dil8" => DecoderType.MM,
+                "dcc" => DecoderType.DCC,
+                "mfx" => DecoderType.MFX,
+                "sx1" => DecoderType.MFX,
+                _ => DecoderType.DCC,
+            };
+        }
+
+        /// <summary>
+        /// Adds or Overwrites a locomotive entry in LocomotiveList
+        /// </summary>
+        /// <param name="locomotive">Reference to instance of locomotive</param>
+        /// <param name="overwriteAllExistingConfigs">entry in list is overwritten if true</param>
+        /// <param name="numberOfLocomotivesAdded">Reference to counter for added locomotives</param>
+        private void AddOrUpdateLocomotive(ref Locomotive locomotive, bool overwriteAllExistingConfigs, ref int numberOfLocomotivesAdded)
+        {
             if (!LocomotiveList.Contains(locomotive))
             {
                 LocomotiveList.Set(locomotive);
@@ -249,9 +264,8 @@ namespace LocDbConverterConsole
                 LocomotiveList.Replace(locomotive);
                 numberOfLocomotivesAdded++;
             }
-            returnValue = numberOfLocomotivesAdded;
-            return returnValue;
         }
+
 
 
     }
