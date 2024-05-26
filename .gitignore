@@ -63,3 +63,4 @@ LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml.user
 .vs/ProjectEvaluation/locdbconverterconsole.projects.v6.1
 LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml
 LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml.user
+*.bin
