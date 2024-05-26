@@ -37,9 +37,7 @@ namespace LocDbConverterConsole
         {
             int returnValue = 0;
 
-            //            FileAttributes attr = File.GetAttributes(file);
-
-            if (file.Substring(file.Length - 4).Contains(".cs2"))
+            if (file.EndsWith(".cs2", StringComparison.OrdinalIgnoreCase))
             {
                 returnValue = ParseLocomotiveFile(file, overwriteAllExistingConfigs);
             }
@@ -59,11 +57,11 @@ namespace LocDbConverterConsole
         private int ParseLocomotiveFile(string file, bool overwriteAllExistingConfigs)
         {
             int returnValue = 0;
-            string trimmedLine = "";
-            string key = "";
-            string subKey = "";
-            string subSubKey = "";
-            string value = "";
+            string trimmedLine = string.Empty;
+            string key = string.Empty;
+            string subKey = string.Empty;
+            string subSubKey = string.Empty;
+            string value = string.Empty;
             int currentFunctionNumber = -1;
             int numberOfLocomotiveConfigs = 0;
             int numberOfLocomotivesAdded = 0;
