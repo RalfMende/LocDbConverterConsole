@@ -35,9 +35,9 @@ namespace LocDbConverterConsole
 {
     internal class Program
     {
-        static string LocomotiveConfigFilePath = "";
-        static string ExportFilesPath = "";
-        static string IpAddressHostnameCS2 = "";
+        static string LocomotiveConfigFilePath = string.Empty;
+        static string ExportFilesPath = string.Empty;
+        static string IpAddressHostnameCS2 = string.Empty;
         private static string LocomotiveConfigFileName = "lokomotive.cs2";
         static bool remoteFileServer = false;
         
@@ -119,9 +119,9 @@ namespace LocDbConverterConsole
             {
                 Console.WriteLine("Program running. Please enter command or ? for help:");
                 
-                userEntry = Console.ReadLine().Trim().ToLowerInvariant();
                 while (!quitProgram & setupOk == true)
                 {
+                    userEntry = Console.ReadLine().Trim().ToLowerInvariant();
                     switch (userEntry)
                     {
                         case "?":
@@ -138,7 +138,7 @@ namespace LocDbConverterConsole
 
                         case "c":
                         case "convert":
-                            returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
+                            returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, false);
                             if (returnValue > 0)
                             {
                                 Console.WriteLine(DateTime.Now + " Z21-config files updated according to Lokomotive.cs2 file.");
@@ -147,7 +147,6 @@ namespace LocDbConverterConsole
 
                         case "f":
                         case "force":
-                            LocomotiveList.DeleteAll();
                             returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
                             if (returnValue > 0)
                             {
@@ -189,6 +188,7 @@ namespace LocDbConverterConsole
                             break;
 
                     }
+ //                   userEntry = string.Empty;
                 }
             }
             Environment.Exit(0);
@@ -455,8 +455,7 @@ namespace LocDbConverterConsole
             {
                 return;
             }
-            LocomotiveList.DeleteAll(); //TODO should internal list rather be syncronized?
-            int returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
+            int returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, false);
             if (returnValue > 0)
             {
                 Console.WriteLine(DateTime.Now + " Info: Z21-config files updated according to Lokomotive.cs2 file.");
@@ -476,13 +475,18 @@ namespace LocDbConverterConsole
 
             ConfigurationCS2 configCS2 = new ConfigurationCS2();
             ConfigurationZ21 configZ21 = new ConfigurationZ21();
-            
-            if (Program.remoteFileServer) // get Lokomotive.cs2 from remote to tmp directory
+
+            if (overwriteInternalConfigs)
+            {
+                LocomotiveList.DeleteAll();
+            }
+
+                if (Program.remoteFileServer) // get Lokomotive.cs2 from remote to tmp directory
             {
                 DownloadLocomotiveConfigFile();
             }
             
-            returnValue = configCS2.ImportConfiguration(fileToConvert, overwriteInternalConfigs);// TODO: instead of overwrite just add the new ones?
+            returnValue = configCS2.ImportConfiguration(fileToConvert, overwriteInternalConfigs);
 
             if (Program.remoteFileServer) // get locomotives icons from remote to tmp directory
             {
@@ -493,7 +497,11 @@ namespace LocDbConverterConsole
             {
                 for (int index = 0; index < LocomotiveList.SizeOf(); index++)
                 {
-                    returnValue += configZ21.ExportConfiguration(index, pathToPlaceConvertedFile);
+                    if (LocomotiveList.Get(index).RecentlyAdded == true)
+                    {
+                        returnValue += configZ21.ExportConfiguration(index, pathToPlaceConvertedFile);
+                        LocomotiveList.Get(index).RecentlyAdded = false;
+                    }
                 }
             }
             else
@@ -545,7 +553,7 @@ namespace LocDbConverterConsole
                     try
                     {
                         remoteFileServer.DownloadFile($"http://{IpAddressHostnameCS2}/icons/{currentIconFilename}", destinationFilename);
-                        LocomotiveList.SetIcon(index, destinationFilename);
+                        LocomotiveList.Get(index).Icon = destinationFilename;
                     }
                     catch (Exception e)
                     {

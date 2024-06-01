@@ -27,6 +27,7 @@ namespace LocDbConverterConsole
     {
         public Locomotive()
         {
+            RecentlyAdded = true;
             Name = "New Locomotive";
             Decodertype = DecoderType.None;
             Address = 1;
@@ -35,6 +36,7 @@ namespace LocDbConverterConsole
             Functions = new int[32];
         }
 
+        public bool RecentlyAdded { get; internal set; }
         public string Name { get; internal set; }
         public DecoderType Decodertype { get; internal set; }
         public int Address { get; internal set; } //Maerklin: derived from "uid"

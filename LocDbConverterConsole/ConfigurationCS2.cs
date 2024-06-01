@@ -253,6 +253,7 @@ namespace LocDbConverterConsole
         /// <param name="numberOfLocomotivesAdded">Reference to counter for added locomotives</param>
         private void AddOrUpdateLocomotive(ref Locomotive locomotive, bool overwriteAllExistingConfigs, ref int numberOfLocomotivesAdded)
         {
+            locomotive.RecentlyAdded = true;    
             if (!LocomotiveList.Contains(locomotive))
             {
                 LocomotiveList.Set(locomotive);
