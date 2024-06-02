@@ -71,9 +71,9 @@ namespace LocDbConverterConsole
 
                 return returnValue;
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                // Console.Write(e);
+                // Console.Write(ex.ToString());
                 return -1;
             }
             finally
