@@ -64,3 +64,5 @@ LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml.user
 LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml
 LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml.user
 *.bin
+.vs/LocDbConverterConsole/v17/.futdcache.v2
+.vs/LocDbConverterConsole/v17/.suo
