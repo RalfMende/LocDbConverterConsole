@@ -193,11 +193,11 @@ namespace LocDbConverterConsole
         static void DisplayHelp()
         {
             Console.WriteLine("Commands:");
-            Console.WriteLine("\t(h)elp /?  \tHelp menu");
-            Console.WriteLine("\t(c)onvert    \tConvert Lokomotive.cs2 file");
-            Console.WriteLine("\t(a)uto       \tAuto convert Lokomotive.cs2 file according to settings in App.config file.");
-            Console.WriteLine("\t(f)orce      \tManually force convert Lokomotive.cs2 file (only when auto-mode is ON.");
-            Console.WriteLine("\t(e)xit       \tExit the program");
+            Console.WriteLine("\th / ?  \tHelp menu");
+            Console.WriteLine("\tc      \tConvert Lokomotive.cs2 file");
+            Console.WriteLine("\ta      \tAuto convert Lokomotive.cs2 file according to settings in App.config file.");
+            Console.WriteLine("\tf      \tForce convert of all entries in Lokomotive.cs2 file");
+            Console.WriteLine("\tx      \tExit the program");
             Console.WriteLine($"This is version {Assembly.GetExecutingAssembly().GetName().Version.ToString()} (beta). Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
         }
         
@@ -274,9 +274,13 @@ namespace LocDbConverterConsole
             int returnValue = 0;
             int attemptsLeft = 3;
             string tmpConfigFilePath = ConfigurationManager.AppSettings["LocomotiveConfigFilePath"].Trim();
+            ConsoleKey userInput;
 
             Console.Write($"Do you like to use {tmpConfigFilePath} ? [y/n]");
-            ConsoleKey userInput = Console.ReadKey(false).Key;
+            do
+            {
+                userInput = Console.ReadKey(false).Key;
+            } while (userInput != ConsoleKey.Y && userInput != ConsoleKey.N);
             Console.WriteLine("");// just for cosmetics ;)
             
             if (userInput == ConsoleKey.Y)
@@ -331,9 +335,13 @@ namespace LocDbConverterConsole
             int returnValue = 0;
             int attemptsLeft = 3;
             string tmpExportFilesPath = ConfigurationManager.AppSettings["ExportFilesPath"].Trim();
+            ConsoleKey userInput;
 
             Console.Write($"Do you like to use {tmpExportFilesPath} ? [y/n]");
-            ConsoleKey userInput = Console.ReadKey(false).Key;
+            do
+            {
+                userInput = Console.ReadKey(false).Key;
+            } while (userInput != ConsoleKey.Y && userInput != ConsoleKey.N);
             Console.WriteLine("");// just for cosmetics ;)
             
             if (userInput == ConsoleKey.Y)
