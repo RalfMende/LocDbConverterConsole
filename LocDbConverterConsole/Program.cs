@@ -27,7 +27,6 @@ using System.Diagnostics.Eventing.Reader;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Timers;
 using System.Xml;
 
@@ -40,16 +39,17 @@ namespace LocDbConverterConsole
         static string IpAddressHostnameCS2 = string.Empty;
         private static string LocomotiveConfigFileName = "lokomotive.cs2";
         static bool remoteFileServer = false;
-        
+        private static System.Timers.Timer AutoConvertionTimer;
+
         static void Main()
         {
             bool quitProgram = false;
             int returnValue;
-            string userEntry;
             int status = 0;
             bool setupOk = true;
             string osNameAndVersion = RuntimeInformation.OSDescription;
             FileSystemWatcher watcher = new FileSystemWatcher();
+            AutoConvertionTimer = new System.Timers.Timer();
 
             Console.WriteLine($"Welcome to LocDbConverter Console");
 
@@ -67,8 +67,11 @@ namespace LocDbConverterConsole
                 Console.WriteLine("Program running. Please enter command or ? for help:");
                 while (!quitProgram)
                 {
-                    userEntry = Console.ReadLine().Trim().ToLowerInvariant();
-                    switch (userEntry)
+                    string userEntryLine = Console.ReadLine().Trim().ToLowerInvariant();
+                    string[] userEntry = userEntryLine.Split(' ');
+                    string command = userEntry[0];
+
+                    switch (command)
                     {
                         case "?":
                         case "h":
@@ -81,7 +84,7 @@ namespace LocDbConverterConsole
                             returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, false);
                             if (returnValue > 0)
                             {
-                                Console.WriteLine($"{DateTime.Now} Z21-config files updated according to Lokomotive.cs2 file.");
+                                Console.WriteLine($"{DateTime.Now} {returnValue} Z21-config files updated according to Lokomotive.cs2 file.");
                             }
                             break;
 
@@ -90,7 +93,7 @@ namespace LocDbConverterConsole
                             returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
                             if (returnValue > 0)
                             {
-                                Console.WriteLine($"{DateTime.Now} Z21-config files updated according to Lokomotive.cs2 file.");
+                                Console.WriteLine($"{DateTime.Now} {returnValue} Z21-config files updated according to Lokomotive.cs2 file.");
                             }
                             break;
 
@@ -98,12 +101,12 @@ namespace LocDbConverterConsole
                         case "auto":
                             if (!remoteFileServer)
                             {
-                                SetupAutoConversion(watcher);
+                                SetupAutoConversionWatcher(watcher);
                             }
                             else
                             {
-                                // Todo: Setup AutoConvertion via Timer
-                                Console.WriteLine("Automatical convertion for Z21 files not possible when using remote location.");
+                                double timing = GetTiming(userEntry);
+                                SetupAutoConversionTimer(timing);
                             }
                             break;
 
@@ -123,8 +126,10 @@ namespace LocDbConverterConsole
             Environment.Exit(0);
         }
 
-
-        //static bool InitializeApplication(out string locomotiveConfigFilePath, out string exportFilesPath)
+        /// <summary>
+        /// Initializes all Paths, Connections and parameter files that are used by the app 
+        /// </summary>
+        /// <returns>true = initialization Ok / false = initialization failed / </returns>
         static bool InitializeApplication()
         {
             bool setupOk = true;
@@ -195,7 +200,7 @@ namespace LocDbConverterConsole
             Console.WriteLine("Commands:");
             Console.WriteLine("\th / ?  \tHelp menu");
             Console.WriteLine("\tc      \tConvert Lokomotive.cs2 file");
-            Console.WriteLine("\ta      \tAuto convert Lokomotive.cs2 file according to settings in App.config file.");
+            Console.WriteLine("\ta 5    \tAuto convert Lokomotive.cs2 file according to settings in App.config file. Opt. Timing in [min].");
             Console.WriteLine("\tf      \tForce convert of all entries in Lokomotive.cs2 file");
             Console.WriteLine("\tx      \tExit the program");
             Console.WriteLine($"This is version {Assembly.GetExecutingAssembly().GetName().Version.ToString()} (beta). Code is available under GNU General Public License at Github https://github.com/RalfMende/LocDbConverterConsole.");
@@ -205,7 +210,7 @@ namespace LocDbConverterConsole
         /// Setup the locomotive config file watcher for auto convertion
         /// </summary>
         /// <param name="watcher">FileSystemWatcher for auto convertion</param>
-        static void SetupAutoConversion(FileSystemWatcher watcher)
+        static void SetupAutoConversionWatcher(FileSystemWatcher watcher)
         {
             try
             {
@@ -215,6 +220,33 @@ namespace LocDbConverterConsole
                 watcher.Filter = "Lokomotive.cs2";
                 watcher.EnableRaisingEvents = true;
                 Console.WriteLine("Automatical conversion for Z21 files activated whenever Lokomotive.cs file changes.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Setup the locomotive config file watcher for auto convertion
+        /// </summary>
+        /// <param name="watcher">FileSystemWatcher for auto convertion</param>
+        static void SetupAutoConversionTimer(double timing)
+        {
+            try
+            {
+                if (!AutoConvertionTimer.Enabled)
+                {
+                    AutoConvertionTimer.Elapsed += OnTimedEvent;
+                    AutoConvertionTimer.AutoReset = true;
+                }
+                else
+                {
+                    AutoConvertionTimer.Stop();
+                }
+                AutoConvertionTimer.Interval = 1000 * 60 * timing;
+                AutoConvertionTimer.Start();
+                Console.WriteLine($"Automatical convertion for Z21 files activated every {timing} minutes.");
             }
             catch (Exception ex)
             {
@@ -480,6 +512,28 @@ namespace LocDbConverterConsole
         }
 
         /// <summary>
+        /// Get the timing value from user entry
+        /// </summary>
+        /// <param name="userEntry">user entry as array</param>
+        /// <returns>timing value</returns>
+        private static double GetTiming(string[] userEntry)
+        {
+            double timing = 1; // by default 1 Minute
+            if (userEntry.Length > 1 && double.TryParse(userEntry[1], out double tmpValue))
+            {
+                if (tmpValue >= 0.5 && tmpValue <= 30)
+                {
+                    timing = tmpValue;
+                }
+                else
+                {
+                    Console.WriteLine("ERROR Value must be between 0.5 and 30 minutes. -> Set to every minute (default).");
+                }
+            }
+            return timing;
+        }
+
+        /// <summary>
         /// OnChangedEventHandler for supervision of the lokomotive.cs2 file in auto mode
         /// </summary>
         /// <param name="sender"></param>
@@ -493,7 +547,21 @@ namespace LocDbConverterConsole
             int returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, false);
             if (returnValue > 0)
             {
-                Console.WriteLine(DateTime.Now + " Info: Z21-config files updated according to Lokomotive.cs2 file.");
+                Console.WriteLine($"{DateTime.Now} {returnValue} Z21-config files updated according to Lokomotive.cs2 file.");
+            }
+        }
+
+        /// <summary>
+        /// OnTimedEventHandler for the auto convertion of the lokomotive.cs2 file
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            int returnValue = ConvertLocomotiveConfigFile(Path.Combine(LocomotiveConfigFilePath, LocomotiveConfigFileName), ExportFilesPath, true);
+            if (returnValue > 0)
+            {
+                Console.WriteLine($"{DateTime.Now} {returnValue} Z21-config files updated according to Lokomotive.cs2 file.");
             }
         }
 
@@ -548,7 +616,7 @@ namespace LocDbConverterConsole
         }
 
         /// <summary>
-        /// Downloads LoKomotive.cs file to temporary folder
+        /// Downloads Lokomotive.cs file from CS2 to temporary folder
         /// </summary>
         private static void DownloadLocomotiveConfigFile()
         {
@@ -568,7 +636,7 @@ namespace LocDbConverterConsole
         }
 
         /// <summary>
-        /// Downloads all referenced Icon files to temporary folder
+        /// Downloads all referenced icon files from CS2 to temporary folder
         /// </summary>
         private static void DownloadLocomotiveIcons()
         {

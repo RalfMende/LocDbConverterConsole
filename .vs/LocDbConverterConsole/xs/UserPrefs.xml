@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{DD4AB7CF-F349-4AA9-980C-4CA276A1426C}|Default">
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="LocDbConverterConsole/Program.cs">
     <Files>
-      <File FileName="LocDbConverterConsole/Program.cs" Line="65" Column="1" />
+      <File FileName="LocDbConverterConsole/Program.cs" Line="121" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="LocDbConverterConsole" expanded="True">
-            <Node name="LocDbConverterConsole" expanded="True">
+            <Node name="LocDbConverterConsole">
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
@@ -21,5 +22,4 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.LocDbConverterConsole PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
 </Properties>
