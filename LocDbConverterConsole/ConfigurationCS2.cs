@@ -99,7 +99,7 @@ namespace LocDbConverterConsole
                                 break;
 
                             case "..dauer": // duration   0: constantly, -1 momentary, else time
-                                            //locomotive.functions[currentFunctionNumber].Duration = Convert.ToInt32(value); //TODO: thisis currently not needed, as covered by my mapping
+                                            //locomotive.functions[currentFunctionNumber].Duration = Convert.ToInt32(value); //TODO: this is currently not needed, as covered by my mapping
                                 break;
 
                             default:

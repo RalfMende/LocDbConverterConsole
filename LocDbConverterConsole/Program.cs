@@ -447,7 +447,7 @@ namespace LocDbConverterConsole
 
             if (path.Contains("\\") ^ path.Contains("/"))
             {
-                if (!path.EndsWith(Path.DirectorySeparatorChar)) path += Path.DirectorySeparatorChar; //Todo: Is this really needded here?
+                if (!path.EndsWith(Path.DirectorySeparatorChar)) path += Path.DirectorySeparatorChar;
                 returnValue = CheckLocomotiveConfigFileAccessLocal(path);
             }
             else
@@ -600,7 +600,7 @@ namespace LocDbConverterConsole
             {
                 for (int index = 0; index < LocomotiveList.SizeOf(); index++)
                 {
-                    if (LocomotiveList.Get(index).RecentlyAdded)
+                    if (LocomotiveList.Get(index).RecentlyAdded && LocomotiveList.Get(index).Name != "Lokliste") // SRSEII
                     {
                         returnValue += configZ21.ExportConfiguration(index, pathToPlaceConvertedFile);
                         LocomotiveList.Get(index).RecentlyAdded = false;
@@ -666,13 +666,11 @@ namespace LocDbConverterConsole
             }
         }
 
-
-
-
-
-
-        // Out of MSDN (https://learn.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager.appsettings?view=net-8.0&redirectedfrom=MSDN#System_Configuration_ConfigurationManager_AppSettings)
-        // Todo: This is not storing the parameter. Why?
+        /// <summary>
+        /// Adds or Updates key values in App.config
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <param name="value">value</param>
         private static void AddUpdateAppSettings(string key, string value)
         {
             try
