@@ -189,7 +189,7 @@ namespace LocDbConverterConsole
                 int statusMappingFile = ImportMappingConfigFile(mappingFile);
                 if (statusMappingFile < 1)
                 {
-                    Console.WriteLine("ERROR File could not be imported.");
+                    Console.WriteLine("ERROR File could not be located beside exe. Application is closed.");
                     return false;
                 }
                 else
@@ -208,7 +208,7 @@ namespace LocDbConverterConsole
             int statusConfigPath = GetLocomotiveConfigFilePath();
             if (statusConfigPath < 1)
             {
-                Console.WriteLine("ERROR Lokomotive.cs file could not be located.");
+                Console.WriteLine("ERROR Lokomotive.cs file could not be located. Application is closed.");
                 return false;
             }
             else
@@ -221,7 +221,7 @@ namespace LocDbConverterConsole
             int statusExportPath = GetExportFilesPath();
             if (statusExportPath < 1)
             {
-                Console.WriteLine("ERROR Path not found.");
+                Console.WriteLine("ERROR Path not found. Application is closed.");
                 return false;
             }
             else
