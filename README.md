@@ -7,19 +7,20 @@ To do this, you can either specify the path or the IP-address/Hostname of the Lo
 The code is available under GNU General Public License.
 
 
+
 The following commands are available:
+            
+            h / ?  Help menu
+            c      Convert Lokomotive.cs2 file
+            a 5    Auto convert Lokomotive.cs2 file according to settings in App.config file. Opt. Timing in [min].
+            f      Force convert of all entries in Lokomotive.cs2 file
+            x      Exit the program
 
-    ?/h        Help menu
-    
-    c          Converts the locomotive config file from CS2/CS3-format to Z21-format.
-    
-    a          Auto convert locomotive.cs2 file according to settings in App.config file.
-    
-    f          Manually force convert locomotive.cs2 file (only when auto-mode ist ON.
+Also the following Arguments are available
 
-    x          Exit the application.
-    
-  
+            --help / -h    Help menu
+            --importpath=  Sets local path or IP address, where Lokomotive.cs2 file and images can be found.
+            --exportpath=  Sets local path to where converted files are stored.
     
 The settings for convertion are made in the mappings.xml file (mapping of the function icons and names) and the LocDbConverterConsole.config file (paths for auto convertion).
 
@@ -27,21 +28,23 @@ The settings for convertion are made in the mappings.xml file (mapping of the fu
     
 Current version v0.2.1 (beta) is available for download:
     
-    Windows Arm64
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-arm64.zip
-    
     Windows x64
       https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-x64.zip
     
     Windows x86
       https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-x86.zip
-    
-    OSX Arm64 (Silicon)
-      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-arm64.zip
+      
+    Windows ARM64
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/win-arm64.zip    
     
     OSX x64 (Intel)
-     https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-x64.zip    
+     https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-x64.zip  
+     
+    OSX ARM64 (Silicon)
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/osx-arm64.zip    
     
-    Linux x64:
+    Linux x64 (.Net-Runtime self-contained)
       https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/linux-x64.zip
-  
+
+    Linux ARM64 (.Net-Runtime self-contained)
+      https://github.com/RalfMende/LocDbConverterConsole/tree/main/publish/linux-arm64.zip
