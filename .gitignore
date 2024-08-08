@@ -66,3 +66,6 @@ LocDbConverterConsole/Properties/PublishProfiles/FolderProfile.pubxml.user
 *.bin
 .vs/LocDbConverterConsole/v17/.futdcache.v2
 .vs/LocDbConverterConsole/v17/.suo
+.vs/LocDbConverterConsole/DesignTimeBuild/.dtbcache.v2
+.vs/LocDbConverterConsole/v17/.futdcache.v2
+.vs/LocDbConverterConsole/v17/.suo
