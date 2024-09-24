@@ -36,13 +36,15 @@ namespace LocDbConverterConsole
 {
     internal class Program
     {
-        static string locomotiveConfigFilePath = string.Empty;
-        static string exportFilesPath = string.Empty;
-        static string ipAddressHostnameCS2 = string.Empty;
-        static string importPath = string.Empty;
-        static string exportPath = string.Empty;    
+        public static string WorkingDirectory = string.Empty;
+        private static string locomotiveConfigFilePath = string.Empty;
+        private static string exportFilesPath = string.Empty;
+        private static string ipAddressHostnameCS2 = string.Empty;
+        private static string importPathArg = string.Empty;
+        private static string exportPathArg = string.Empty;    
         private const string locomotiveConfigFileName = "lokomotive.cs2";
-        static bool remoteFileServer = false;
+        private static bool remoteFileServer = false;
+        private static string osNameAndVersion = string.Empty;
         private static System.Timers.Timer AutoConvertionTimer;
 
         static void Main(string[] args)
@@ -152,12 +154,12 @@ namespace LocDbConverterConsole
                     switch (key)
                     {
                         case "--importpath":
-                            importPath = value;
+                            importPathArg = value;
                             result++;
                             break;
 
                         case "--exportpath":
-                            exportPath = value;
+                            exportPathArg = value;
                             result++;
                             break;
                     }
@@ -183,7 +185,12 @@ namespace LocDbConverterConsole
         {
             // Get mapping for functions from mapping.xml file
             string mappingFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mapping.xml");
-            if (File.Exists(mappingFile))
+            if (!File.Exists(mappingFile))
+            {
+                Console.WriteLine($"ERROR File mapping.xml not found at {mappingFile}");
+                return false;
+            }
+            else
             {
                 Console.Write("Importing mapping.xml file ... ");
                 int statusMappingFile = ImportMappingConfigFile(mappingFile);
@@ -196,11 +203,6 @@ namespace LocDbConverterConsole
                 {
                     Console.WriteLine("OK");
                 }
-            }
-            else
-            {
-                Console.WriteLine($"ERROR File mapping.xml not found at {mappingFile}");
-                return false;
             }
 
             // Check lokomotive.cs file
@@ -229,10 +231,17 @@ namespace LocDbConverterConsole
                 Console.WriteLine("OK");
             }
 
-            // Setup Remote Connection
-            if (remoteFileServer)
+            // Set temporary working directory
+            osNameAndVersion = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+            if (osNameAndVersion.Contains("Windows"))
             {
-                locomotiveConfigFilePath = exportFilesPath; // Because Lokomotive.cs and icon files are copied to export path to be converted
+                WorkingDirectory = Path.Combine(System.IO.Path.GetTempPath(), "LocDbConverter");
+                //Console.WriteLine($"Temp directory set to {WorkingDirectory}");
+                if (remoteFileServer) locomotiveConfigFilePath = WorkingDirectory;
+            }
+            else // Todo: Workaround because file copy to/from temporary directory does not work on Linux, maybe due to user rights management
+            {
+                WorkingDirectory = exportFilesPath;
             }
 
             return true;
@@ -247,7 +256,7 @@ namespace LocDbConverterConsole
             Console.WriteLine("Arguments:");
             Console.WriteLine("\t--help / -h    \tHelp menu");
             Console.WriteLine("\t--importpath=  \tSets local path or IP address, where Lokomotive.cs2 file and images can be found.");
-            Console.WriteLine("\t--exportpath=  \tSets local path to where converted files are stored.");
+            Console.WriteLine("\t--exportpath=  \tSets path to where converted files are stored.");
             //Console.WriteLine("\t--auto / -a    \tStart automatic convertion of the Lokomotove.cs2 file."); // TODO not yet implemented
             Console.WriteLine("\nCommands:");
             Console.WriteLine("\th / ?  \tHelp menu");
@@ -359,9 +368,9 @@ namespace LocDbConverterConsole
             int attemptsLeft = 3;
             ConsoleKey userInput;
 
-            if (importPath != string.Empty)
+            if (importPathArg != string.Empty)
             {
-                returnValue = CheckLocomotiveConfigFileAccess(importPath);
+                returnValue = CheckLocomotiveConfigFileAccess(importPathArg);
                 return returnValue;
             }
             if (returnValue < 1)
@@ -424,9 +433,9 @@ namespace LocDbConverterConsole
             int attemptsLeft = 3;
             ConsoleKey userInput;
 
-            if (exportPath != string.Empty)
+            if (exportPathArg != string.Empty)
             {
-                returnValue = CheckExportPathAccess(exportPath);
+                returnValue = CheckExportPathAccess(exportPathArg);
                 return returnValue;
             }
             if (returnValue < 1)
@@ -534,7 +543,7 @@ namespace LocDbConverterConsole
             {
                 try
                 {
-                    string url = $"http://{ipAddressHostname}/config/{locomotiveConfigFileName}";
+                    string url = $"http://{ipAddressHostname}/config/{locomotiveConfigFileName}"; //Todo: Double check, that config was not entered by user already
                     remoteFileServer.DownloadData(url);
                 }
                 catch (Exception ex)
@@ -641,14 +650,14 @@ namespace LocDbConverterConsole
                 LocomotiveList.DeleteAll();
             }
 
-                if (Program.remoteFileServer) // get Lokomotive.cs2 from remote to tmp directory
+            if (Program.remoteFileServer) // get Lokomotive.cs2 from remote to temporary folder
             {
                 DownloadLocomotiveConfigFile();
             }
             
             returnValue = configCS2.ImportConfiguration(fileToConvert, overwriteInternalConfigs);
 
-            if (Program.remoteFileServer) // get locomotives icons from remote to tmp directory
+            if (Program.remoteFileServer) // get only required locomotive icons from remote to temporary folder
             {
                 DownloadLocomotiveIcons();
             }
@@ -659,8 +668,16 @@ namespace LocDbConverterConsole
                 {
                     if (LocomotiveList.Get(index).RecentlyAdded && LocomotiveList.Get(index).Name != "Lokliste") // SRSEII
                     {
-                        returnValue += configZ21.ExportConfiguration(index, pathToPlaceConvertedFile);
-                        LocomotiveList.Get(index).RecentlyAdded = false;
+                        if (configZ21.ExportConfiguration(index) > 0)
+                        {
+                            string newConfigFileName = LocomotiveList.Get(index).Name + ".z21loco";
+                            if (osNameAndVersion.Contains("Windows")) //Todo: Does not work in Linux, maybe due to user rights? -> Workaround by WorkingDirectory = exportFilesPath
+                            {
+                                File.Copy(Path.Combine(WorkingDirectory, newConfigFileName), Path.Combine(pathToPlaceConvertedFile, newConfigFileName), true);
+                            }
+                            LocomotiveList.Get(index).RecentlyAdded = false;
+                            returnValue = 2;
+                        }
                     }
                 }
             }
@@ -681,7 +698,7 @@ namespace LocDbConverterConsole
             using (WebClient remoteFileServer = new WebClient())
             {
                 string url = $"http://{ipAddressHostnameCS2}/config/{locomotiveConfigFileName}";
-                string destinationFilename = Path.Combine(exportFilesPath, locomotiveConfigFileName);
+                string destinationFilename = Path.Combine(WorkingDirectory, locomotiveConfigFileName);
                 try
                 {
                     remoteFileServer.DownloadFile(url, destinationFilename);
@@ -706,7 +723,7 @@ namespace LocDbConverterConsole
                 for (int index = 0; index < LocomotiveList.SizeOf(); index++)
                 {
                     string currentIconFilename = $"{LocomotiveList.Get(index).Icon}.png";
-                    string destinationPath = Path.Combine(locomotiveConfigFilePath, "icons");
+                    string destinationPath = Path.Combine(WorkingDirectory, "icons");
                     string destinationFilename = Path.Combine(destinationPath, currentIconFilename);
 
                     if (!Directory.Exists(destinationPath))

@@ -29,17 +29,16 @@ namespace LocDbConverterConsole
     public class ConfigurationZ21
     {
         /// <summary>
-        /// Exports a z21 description file with the given locomotive list entry
+        /// Exports a z21 description file with the given locomotive list entry to temporary folder
         /// </summary>
         /// <param name="listIndex">Index of the locomotives list (0-based)</param>
-        /// <param name="exportPath">Directory to where the config file needs to be exported</param>
         /// <returns>0: Code not executed, Negative: Error, Positive: Ok</returns>
-        public int ExportConfiguration(int listIndex, string exportPath)
+        public int ExportConfiguration(int listIndex)
         {
             int returnValue = 0;
 
             string uuid = Guid.NewGuid().ToString(); // uuid would only be needed in case images should be stored
-            string dirTempFiles = Path.Combine(exportPath, "temp");
+            string dirTempFiles = Path.Combine(Program.WorkingDirectory, "zip");
             string dirTempSqliteFile = Path.Combine(dirTempFiles, "export", uuid);
             string tempSqliteFile = Path.Combine(dirTempSqliteFile, "Loco.sqlite");
 
@@ -62,7 +61,7 @@ namespace LocDbConverterConsole
 
                 returnValue = ExportDbFile(tempSqliteFile, listIndex, newPictureFilename);
 
-                string zipFileName = Path.Combine(exportPath, LocomotiveList.Get(listIndex).Name.Replace("/", "") + ".z21loco");
+                string zipFileName = Path.Combine(Program.WorkingDirectory, LocomotiveList.Get(listIndex).Name.Replace("/", "") + ".z21loco");
                 if (File.Exists(zipFileName))
                 {
                     File.Delete(zipFileName);
