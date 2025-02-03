@@ -237,6 +237,10 @@ namespace LocDbConverterConsole
             {
                 WorkingDirectory = Path.Combine(System.IO.Path.GetTempPath(), "LocDbConverter");
                 //Console.WriteLine($"Temp directory set to {WorkingDirectory}");
+                if (!Directory.Exists(WorkingDirectory))
+                {
+                    Directory.CreateDirectory(WorkingDirectory);
+                }
                 if (remoteFileServer) locomotiveConfigFilePath = WorkingDirectory;
             }
             else // Todo: Workaround because file copy to/from temporary directory does not work on Linux, maybe due to user rights management
